@@ -1,0 +1,298 @@
+# Cursor Governance Framework Configuration
+# Copy this file to your project root and customize as needed.
+
+# Framework version
+version: "1.0.0"
+
+# Project information
+project:
+  name: "Your Project Name"
+  type: web  # web | api | library | mobile | cli
+  
+# =============================================================================
+# SKILL CONFIGURATION
+# =============================================================================
+
+skills:
+  # Security Gate Configuration
+  security:
+    enabled: true
+    severity_threshold: high  # critical | high | medium | low
+    block_on_secrets: true
+    scanners:
+      sast: true
+      sca: true
+      secrets: true
+      container: auto  # true | false | auto (detects Dockerfile)
+      iac: auto        # true | false | auto (detects Terraform/CF)
+    
+    # Paths to exclude from scanning
+    exclude:
+      - "node_modules/"
+      - "vendor/"
+      - "**/*.test.*"
+      - "**/*.spec.*"
+      - "__mocks__/"
+    
+    # CVE exceptions (document justification separately)
+    cve_exceptions: []
+    # - CVE-2023-XXXXX  # Documented in security-exceptions/
+
+  # Human Approval Configuration
+  human_approval:
+    enabled: true
+    always_require_for:
+      - security
+      - privacy
+      - breaking_changes
+    
+    # Auto-approve these categories (use cautiously)
+    auto_approve: []
+    # - style_changes
+    # - documentation_only
+    
+    # Timeout behavior
+    timeout:
+      security_decisions: never  # never auto-approve
+      other_decisions: 24h       # remind after 24 hours
+
+  # Documentation Configuration
+  documentation:
+    enabled: true
+    require_changelog: true
+    require_adr_for:
+      - architecture
+      - technology_selection
+      - breaking_changes
+    
+    # Documentation locations
+    paths:
+      changelog: "CHANGELOG.md"
+      adr_directory: "docs/adr/"
+      api_docs: "docs/api/"
+
+  # Privacy Guard Configuration  
+  privacy:
+    enabled: true
+    regulations:
+      - GDPR
+      - CCPA
+    
+    # Fields that always require encryption
+    sensitive_fields:
+      - ssn
+      - social_security
+      - credit_card
+      - card_number
+      - password
+      - secret
+    
+    # Patterns that trigger PII detection
+    pii_patterns:
+      - email
+      - phone
+      - address
+      - birth_date
+      - dob
+    
+    # Require PIA for these operations
+    require_pia_for:
+      - new_pii_collection
+      - third_party_sharing
+      - cross_border_transfer
+      - automated_decisions
+
+  # Accessibility Configuration
+  accessibility:
+    enabled: true
+    standard: "WCAG21"
+    level: "AA"  # A | AA | AAA
+    
+    # File patterns to check
+    include:
+      - "**/*.tsx"
+      - "**/*.jsx"
+      - "**/*.vue"
+      - "**/*.svelte"
+      - "**/*.html"
+    
+    # Block deployment on these severities
+    block_on:
+      - critical
+      - serious
+
+  # Code Quality Configuration
+  code_quality:
+    enabled: true
+    
+    # Complexity limits
+    complexity:
+      cyclomatic_max: 10
+      cognitive_max: 15
+      file_lines_max: 500
+      function_lines_max: 50
+    
+    # Require linting to pass
+    linting:
+      enabled: true
+      config_file: auto  # auto-detect or specify path
+    
+    # Formatting
+    formatting:
+      enabled: true
+      on_save: true
+
+  # Testing Standards Configuration
+  testing:
+    enabled: true
+    
+    # Coverage requirements
+    coverage:
+      minimum: 80
+      enforce: true
+      exclude:
+        - "**/*.config.*"
+        - "**/index.*"
+    
+    # Required test types
+    require:
+      unit: true
+      integration: false  # set true for APIs
+      e2e: false          # set true for web apps
+    
+    # Test file patterns
+    patterns:
+      - "**/*.test.*"
+      - "**/*.spec.*"
+      - "**/__tests__/**"
+
+  # License Compliance Configuration
+  license_compliance:
+    enabled: true
+    
+    # Allowed licenses
+    allowed:
+      - MIT
+      - Apache-2.0
+      - BSD-2-Clause
+      - BSD-3-Clause
+      - ISC
+      - CC0-1.0
+      - Unlicense
+    
+    # Licenses that require review
+    review_required:
+      - LGPL-2.1
+      - LGPL-3.0
+      - MPL-2.0
+    
+    # Licenses that block deployment
+    forbidden:
+      - GPL-2.0
+      - GPL-3.0
+      - AGPL-3.0
+      - SSPL-1.0
+      - BSL-1.1
+    
+    # Exception list (document justification)
+    exceptions: []
+
+  # Dependency Scanning Configuration
+  dependency_scanning:
+    enabled: true
+    vulnerability_threshold: high  # critical | high | medium | low
+    block_on_outdated_major: false
+    supply_chain_checks: true
+    update_policy:
+      patch: auto
+      minor: review
+      major: approval_required
+
+  # Secrets Management Configuration
+  secrets_management:
+    enabled: true
+    scan_on_commit: true
+    require_env_validation: true
+    rotation_reminder_days: 90
+    blocked_patterns:
+      - "AKIA[0-9A-Z]{16}"      # AWS Access Key
+      - "ghp_[a-zA-Z0-9]{36}"   # GitHub PAT
+      - "sk_live_[a-zA-Z0-9]+"  # Stripe Live Key
+      - "-----BEGIN.*PRIVATE KEY-----"
+
+# =============================================================================
+# ENVIRONMENT OVERRIDES
+# =============================================================================
+
+environments:
+  development:
+    security:
+      severity_threshold: medium
+    testing:
+      coverage:
+        minimum: 60
+        enforce: false
+  
+  staging:
+    security:
+      severity_threshold: high
+    testing:
+      coverage:
+        minimum: 80
+  
+  production:
+    security:
+      severity_threshold: high
+      block_on_secrets: true
+    testing:
+      coverage:
+        minimum: 80
+        enforce: true
+    accessibility:
+      block_on:
+        - critical
+        - serious
+        - moderate
+
+# =============================================================================
+# CI/CD INTEGRATION
+# =============================================================================
+
+ci:
+  # Run these checks on pull requests
+  pull_request:
+    - security
+    - code_quality
+    - testing
+    - license_compliance
+  
+  # Run these checks before merge to main
+  pre_merge:
+    - security
+    - testing
+    - documentation
+  
+  # Run these checks before deployment
+  pre_deploy:
+    - security
+    - privacy
+    - accessibility
+    - license_compliance
+
+# =============================================================================
+# NOTIFICATIONS
+# =============================================================================
+
+notifications:
+  # Slack/Teams webhook for security findings
+  security_webhook: ""
+  
+  # Email for compliance reports
+  compliance_email: ""
+  
+  # Notify on these events
+  events:
+    security_finding: true
+    human_approval_needed: true
+    deployment_blocked: true
+

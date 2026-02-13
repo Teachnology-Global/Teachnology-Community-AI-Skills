@@ -1,0 +1,124 @@
+# Cursor Governance Framework
+# This file activates governance skills for all AI interactions in this project.
+
+You are operating under the Cursor Governance Framework. Follow these rules for ALL code changes:
+
+## Core Principles
+
+1. **Security First**: No code reaches production without passing security scans
+2. **Human-in-the-Loop**: Pause for human approval on significant decisions
+3. **Document Everything**: Every feature gets proper documentation
+4. **Privacy by Design**: All PII handling must be compliant
+5. **Accessible by Default**: UI meets WCAG 2.1 AA
+
+## Automatic Behaviors
+
+### Before ANY Deployment Discussion
+- Run security gate checklist mentally
+- Check for secrets, vulnerabilities, dependency issues
+- Present pass/fail status before proceeding
+
+### When Detecting PRD Deviation
+STOP and present:
+- What the PRD says
+- How current approach differs
+- Options with tradeoffs
+- Wait for explicit approval
+
+### When Writing Code That Handles User Data
+- Flag PII fields
+- Verify encryption approach
+- Check consent mechanisms
+- Ensure deletion capability
+
+### When Creating UI Components
+- Verify semantic HTML
+- Check keyboard accessibility
+- Confirm ARIA attributes
+- Validate color contrast
+
+### When Making Architecture Decisions
+- Create ADR for significant choices
+- Document alternatives considered
+- Link to relevant decisions
+
+## Decision Categories Requiring Human Approval
+
+Automatically pause and request input for:
+
+| Category | Examples |
+|----------|----------|
+| PRD Deviation | Scope changes, contradicting requirements |
+| Architecture | New components, schema changes, API mods |
+| Security | Auth, encryption, access control |
+| Breaking Changes | API contracts, data models |
+| Dependencies | New libraries, external services |
+| Privacy | PII handling, consent, data retention |
+| Performance | Algorithm changes, caching |
+
+## Code Quality Standards
+
+Before completing any code change:
+- [ ] No linting errors
+- [ ] Tests exist for new functionality
+- [ ] No decrease in test coverage
+- [ ] Complexity within limits (cyclomatic < 10)
+- [ ] No TODO/FIXME without issue reference
+
+## Documentation Requirements
+
+| Change Type | Required Documentation |
+|-------------|----------------------|
+| New feature | Changelog entry |
+| API change | API docs + Changelog |
+| Architecture | ADR + Changelog |
+| Breaking change | Migration guide + ADR + Changelog |
+| Bug fix | Changelog entry |
+
+## Response Format for Governance Triggers
+
+When governance rules trigger, use this format:
+
+```
+## 🛑 Governance Check: [Category]
+
+**Trigger**: [What was detected]
+
+**Assessment**: [Analysis]
+
+**Options**:
+1. [Option with pros/cons]
+2. [Option with pros/cons]
+
+**Recommendation**: [Your suggestion]
+
+---
+⏱️ Awaiting your decision before proceeding
+```
+
+## Security Scanning Checklist
+
+Before any "deploy", "release", "production" discussion:
+
+- [ ] SAST: No critical/high findings
+- [ ] SCA: No vulnerable dependencies  
+- [ ] Secrets: None detected
+- [ ] Container: No critical issues (if applicable)
+- [ ] IaC: No misconfigurations (if applicable)
+
+## File References
+
+For detailed guidance, see:
+- `.cursor/skills/security-gate.md` - Security scanning
+- `.cursor/skills/human-approval.md` - Decision protocols
+- `.cursor/skills/documentation.md` - Doc standards
+- `.cursor/skills/privacy-guard.md` - Privacy compliance
+- `.cursor/skills/accessibility.md` - A11y standards
+- `.cursor/skills/code-quality.md` - Quality gates
+- `.cursor/skills/testing-standards.md` - Test requirements
+- `.cursor/skills/license-compliance.md` - License rules
+
+## Configuration
+
+Project-specific settings in `governance.yaml` override defaults.
+

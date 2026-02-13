@@ -1,0 +1,158 @@
+# Cursor Governance Skills - GitHub Actions Workflow
+# 
+# Add this to your repository as .github/workflows/governance.yml
+#
+
+name: Governance Gate
+
+on:
+  pull_request:
+    branches: [main, master, production]
+  push:
+    branches: [staging, production]
+
+jobs:
+  security-gate:
+    name: Security Gate
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      security-events: write
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      
+      # SAST - Static Analysis
+      - name: SAST Scan (Semgrep)
+        uses: semgrep/semgrep-action@v1
+        with:
+          config: auto
+        continue-on-error: true
+      
+      # SCA - Dependency Vulnerabilities
+      - name: SCA Scan (Trivy)
+        uses: aquasecurity/trivy-action@master
+        with:
+          scan-type: 'fs'
+          scan-ref: '.'
+          severity: 'CRITICAL,HIGH'
+          exit-code: '1'
+        continue-on-error: true
+      
+      # Secrets Detection
+      - name: Secret Scan (Gitleaks)
+        uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      
+      # Container Security (if Dockerfile exists)
+      - name: Check for Dockerfile
+        id: dockerfile
+        run: |
+          if [ -f "Dockerfile" ]; then
+            echo "exists=true" >> $GITHUB_OUTPUT
+          fi
+      
+      - name: Container Scan (Grype)
+        if: steps.dockerfile.outputs.exists == 'true'
+        uses: anchore/scan-action@v3
+        with:
+          path: "."
+          fail-build: true
+          severity-cutoff: high
+
+  privacy-check:
+    name: Privacy Check
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      
+      - name: Check for PII patterns
+        run: |
+          echo "Scanning for potential PII handling..."
+          
+          # Check for common PII field names
+          grep -rn --include="*.ts" --include="*.js" --include="*.py" \
+            -E "(ssn|social.?security|passport|credit.?card|password)" . || true
+          
+          # Check for PII in logs
+          grep -rn --include="*.ts" --include="*.js" --include="*.py" \
+            -E "log.*(email|phone|address|ssn)" . && {
+              echo "::warning::Potential PII in logs detected"
+          } || true
+
+  accessibility-check:
+    name: Accessibility Check
+    runs-on: ubuntu-latest
+    if: hashFiles('**/*.tsx') != '' || hashFiles('**/*.jsx') != '' || hashFiles('**/*.html') != ''
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      
+      - name: Install dependencies
+        run: npm ci || npm install
+        continue-on-error: true
+      
+      - name: Run accessibility tests
+        run: |
+          # If you have a11y tests configured
+          npm run test:a11y 2>/dev/null || echo "No a11y tests configured"
+        continue-on-error: true
+
+  documentation-check:
+    name: Documentation Check
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      
+      - name: Check changelog
+        run: |
+          if git diff --name-only origin/${{ github.base_ref }}...HEAD | grep -q "CHANGELOG.md"; then
+            echo "✅ CHANGELOG.md updated"
+          else
+            echo "::warning::CHANGELOG.md not updated for this PR"
+          fi
+      
+      - name: Check for ADR on significant changes
+        run: |
+          CHANGED=$(git diff --name-only origin/${{ github.base_ref }}...HEAD | wc -l)
+          if [ "$CHANGED" -gt 50 ]; then
+            if git diff --name-only origin/${{ github.base_ref }}...HEAD | grep -q "docs/adr/"; then
+              echo "✅ ADR present for significant change"
+            else
+              echo "::warning::Consider adding ADR for significant change ($CHANGED files changed)"
+            fi
+          fi
+
+  gate-decision:
+    name: Gate Decision
+    needs: [security-gate, privacy-check]
+    runs-on: ubuntu-latest
+    if: always()
+    
+    steps:
+      - name: Check results
+        run: |
+          if [ "${{ needs.security-gate.result }}" == "failure" ]; then
+            echo "❌ Security Gate FAILED"
+            exit 1
+          fi
+          
+          echo "✅ All gates passed"
+
