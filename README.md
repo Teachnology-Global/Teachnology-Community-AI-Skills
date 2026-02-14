@@ -2,7 +2,7 @@
 
 [![MIT Licence](https://img.shields.io/badge/licence-MIT-blue.svg)](LICENSE)
 [![Cursor Compatible](https://img.shields.io/badge/Cursor-Compatible-purple.svg)](https://cursor.com)
-[![14 Skills](https://img.shields.io/badge/skills-14-green.svg)](#whats-included)
+[![24 Skills](https://img.shields.io/badge/skills-24-green.svg)](#whats-included)
 [![Australian Made](https://img.shields.io/badge/made%20in-Australia%20🇦🇺-gold.svg)](https://www.skool.com/teachnology)
 
 **Stop your AI from shipping insecure, undocumented rubbish.** Drop these governance skills into any Cursor project and your AI assistant will follow proper security, privacy, accessibility, and quality standards - automatically, every time.
@@ -166,10 +166,37 @@ The AI knows what to do.
 
 ---
 
+## Marketing Skills (NEW)
+
+10 marketing skills built specifically for education entrepreneurs. Drop them into any project where you're writing copy, planning content, or building your education business.
+
+| Skill | What It Does |
+|-------|-------------|
+| **brand-context** | Create a positioning document that all other marketing skills reference |
+| **content-strategy** | Plan content across newsletter, YouTube, LinkedIn, blog, and community |
+| **copy-polish** | Seven-sweep editing framework with the "3pm tired teacher" test |
+| **email-nurture** | Email sequence templates: welcome, lead magnet, launch, re-engagement |
+| **education-pricing** | Price courses, coaching, and communities without undercharging |
+| **education-copywriting** | Write sales pages and landing pages for education businesses |
+| **course-page-optimisation** | CRO analysis framework with education-specific benchmarks |
+| **education-comparison** | Career path and competitor comparison pages for SEO |
+| **education-lead-magnets** | Free tools, quizzes, and templates for lead generation |
+| **education-psychology** | 10 behavioural science models adapted for teacher marketing |
+
+**Quick start:** Copy the `skills/` folder into your project, then ask your AI:
+- "Create my brand context document"
+- "Plan my content strategy for next month"
+- "Edit this sales page copy"
+- "Design a welcome email sequence"
+- "What should I charge for my course?"
+
+---
+
 ## Project Structure
 
 ```
 .cursor/skills/          <- 14 governance skills
+skills/                  <- 10 marketing skills for education entrepreneurs
 .cursorrules             <- Cursor AI rules (auto-loaded)
 governance.yaml          <- Project configuration
 scripts/                 <- Security, privacy, a11y scanning
