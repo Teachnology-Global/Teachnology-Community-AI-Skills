@@ -42,7 +42,7 @@ Also activates when detecting:
 | Biometric | Critical | Fingerprint, facial, voice |
 | Health | Critical | Medical records, conditions |
 | Location | High | GPS, IP address, check-ins |
-| Behavioral | Medium | Browsing history, preferences |
+| Behavioural | Medium | Browsing history, preferences |
 
 ### Detection Patterns
 

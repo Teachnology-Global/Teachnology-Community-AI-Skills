@@ -158,11 +158,11 @@ newFunction(param, options)
 |------------|-------------|-----------------|
 | `oldFunc()` | `newFunc()` | v3.0.0 |
 
-## Behavioral Changes
+## Behavioural Changes
 
 Changes that don't require code updates but affect runtime:
 
-| Behavior | Before | After |
+| Behaviour | Before | After |
 |----------|--------|-------|
 | Default timeout | 30s | 60s |
 ```
@@ -212,7 +212,7 @@ Changes that don't require code updates but affect runtime:
 | Code | Description |
 |------|-------------|
 | 400 | Invalid request |
-| 401 | Unauthorized |
+| 401 | Unauthorised |
 | 404 | Not found |
 
 ### Example
@@ -229,7 +229,7 @@ curl -X POST https://api.example.com/endpoint \
 ### After Feature Implementation
 
 1. **Determine documentation needs**
-   - Did behavior change? → Changelog
+   - Did behaviour change? → Changelog
    - Did API change? → API docs + Changelog
    - Was architecture decision made? → ADR
    - Is it breaking? → Migration guide
@@ -294,7 +294,7 @@ try {
 }
 ```
 
-## File Organization
+## File Organisation
 
 ```
 docs/

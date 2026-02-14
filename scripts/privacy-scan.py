@@ -21,7 +21,7 @@ import sys
 from dataclasses import dataclass, asdict
 from enum import Enum
 from pathlib import Path
-from typing import Generator
+from typing import Generator, List
 
 
 class Severity(Enum):
@@ -116,7 +116,7 @@ def get_files(path: str) -> Generator[Path, None, None]:
             yield file_path
 
 
-def scan_file(file_path: Path) -> list[Finding]:
+def scan_file(file_path: Path) -> List[Finding]:
     """Scan a single file for PII issues."""
     findings = []
     
@@ -178,7 +178,7 @@ def scan_file(file_path: Path) -> list[Finding]:
     return findings
 
 
-def deduplicate_findings(findings: list[Finding]) -> list[Finding]:
+def deduplicate_findings(findings: List[Finding]) -> List[Finding]:
     """Remove duplicate findings."""
     seen = set()
     unique = []
@@ -192,7 +192,7 @@ def deduplicate_findings(findings: list[Finding]) -> list[Finding]:
     return unique
 
 
-def filter_by_severity(findings: list[Finding], min_severity: str) -> list[Finding]:
+def filter_by_severity(findings: List[Finding], min_severity: str) -> List[Finding]:
     """Filter findings by minimum severity."""
     severity_order = ['critical', 'high', 'medium', 'low']
     min_index = severity_order.index(min_severity.lower())
@@ -200,7 +200,7 @@ def filter_by_severity(findings: list[Finding], min_severity: str) -> list[Findi
     return [f for f in findings if severity_order.index(f.severity) <= min_index]
 
 
-def format_text_report(findings: list[Finding]) -> str:
+def format_text_report(findings: List[Finding]) -> str:
     """Format findings as text report."""
     if not findings:
         return "✅ No privacy issues found."
@@ -250,7 +250,7 @@ def format_text_report(findings: list[Finding]) -> str:
     return '\n'.join(lines)
 
 
-def format_json_report(findings: list[Finding]) -> str:
+def format_json_report(findings: List[Finding]) -> str:
     """Format findings as JSON."""
     report = {
         'summary': {

@@ -255,7 +255,7 @@ Every decision must be logged:
 | Privacy decision | Privacy Guard | Run compliance check |
 | Dependency approved | Security Gate | Add to scan scope |
 
-## Timeout Behavior
+## Timeout Behaviour
 
 - **No automatic timeout for security decisions**
 - For non-security: Remind after 24 hours of inactivity

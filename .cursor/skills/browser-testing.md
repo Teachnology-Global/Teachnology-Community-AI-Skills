@@ -1,7 +1,7 @@
 ---
 description: >
   Executes browser-based testing using Cursor's @Browser tools. Captures screenshots,
-  validates UI behavior, and generates visual test reports. Use when: (1) testing UI
+  validates UI behaviour, and generates visual test reports. Use when: (1) testing UI
   features, (2) validating user flows, (3) capturing visual evidence, (4) running
   E2E tests, (5) generating test documentation with screenshots.
 globs: ["**/*.spec.ts", "**/*.test.ts", "**/e2e/**", "**/tests/**"]

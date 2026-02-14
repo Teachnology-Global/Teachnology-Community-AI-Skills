@@ -305,7 +305,7 @@ repos:
 
 ## IDE Integration
 
-### VS Code Settings
+### Cursor Settings
 
 ```json
 {

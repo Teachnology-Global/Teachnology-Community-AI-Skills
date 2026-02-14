@@ -1,5 +1,12 @@
 # ADR-[NNN]: [Title]
 
+<!--
+Example: ADR-001: Use PostgreSQL via Neon for the primary database
+
+Fill in each section below. Keep it concise. The goal is a clear record
+of what was decided, why, and what alternatives were considered.
+-->
+
 ## Status
 
 [Proposed | Accepted | Deprecated | Superseded by ADR-XXX]
@@ -12,9 +19,15 @@ YYYY-MM-DD
 
 [What is the issue motivating this decision? What forces are at play - technical, political, social, project-specific?]
 
+<!-- Example: We need a relational database for user accounts and transaction data.
+The team is small (2 developers) and we want minimal ops overhead. -->
+
 ## Decision
 
 [What is the change being proposed or decided?]
+
+<!-- Example: We will use Neon (serverless PostgreSQL) as our primary database,
+accessed via the @neondatabase/serverless driver. -->
 
 ## Consequences
 

@@ -105,7 +105,7 @@ python scripts/privacy-scan.py --severity high
 | Automated scan passed | [ ] | axe-core, WAVE |
 | Keyboard navigation tested | [ ] | |
 | Screen reader tested | [ ] | VoiceOver, NVDA |
-| Color contrast verified | [ ] | 4.5:1 minimum |
+| Colour contrast verified | [ ] | 4.5:1 minimum |
 | Focus management correct | [ ] | |
 | No critical/serious issues | [ ] | |
 

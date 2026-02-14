@@ -1,8 +1,28 @@
 # Cursor Governance Skills
 
-**Stop your AI from shipping insecure, undocumented rubbish.** This is a drop-in governance framework for Cursor IDE that makes your AI assistant follow proper security, privacy, accessibility, and quality standards automatically.
+[![MIT Licence](https://img.shields.io/badge/licence-MIT-blue.svg)](LICENSE)
+[![Cursor Compatible](https://img.shields.io/badge/Cursor-Compatible-purple.svg)](https://cursor.com)
+[![14 Skills](https://img.shields.io/badge/skills-14-green.svg)](#whats-included)
+[![Australian Made](https://img.shields.io/badge/made%20in-Australia%20🇦🇺-gold.svg)](https://www.skool.com/teachnology)
+
+**Stop your AI from shipping insecure, undocumented rubbish.** Drop these governance skills into any Cursor project and your AI assistant will follow proper security, privacy, accessibility, and quality standards - automatically, every time.
+
+No plugins. No config servers. Just copy the files and go.
 
 Built for the [Teachnology Community](https://www.skool.com/teachnology) by Jason La Greca.
+
+---
+
+## Before and After
+
+| Without Governance | With Governance |
+|---|---|
+| AI hardcodes API keys in source files | AI uses environment variables, flags any secrets |
+| AI skips alt text, breaks keyboard navigation | AI follows WCAG 2.1 AA, checks contrast and ARIA |
+| AI installs GPL packages in your MIT project | AI checks every licence before adding dependencies |
+| AI logs user emails and phone numbers in plaintext | AI flags PII in logs, enforces encryption |
+| AI makes architecture changes without asking | AI pauses, explains the tradeoff, waits for your call |
+| AI ships without tests or documentation | AI enforces 80% coverage, generates changelogs and ADRs |
 
 ---
 
@@ -11,10 +31,10 @@ Built for the [Teachnology Community](https://www.skool.com/teachnology) by Jaso
 ### 1. Copy to your project
 
 ```bash
-git clone https://github.com/ColossalCuck/Teachnology-Community-AI-Skills.git
-cp -r Teachnology-Community-AI-Skills/.cursor /path/to/your/project/
-cp Teachnology-Community-AI-Skills/.cursorrules /path/to/your/project/
-cp Teachnology-Community-AI-Skills/governance.yaml /path/to/your/project/
+git clone https://github.com/Teachnology-Global/cursor-governance-skills.git
+cp -r cursor-governance-skills/.cursor /path/to/your/project/
+cp cursor-governance-skills/.cursorrules /path/to/your/project/
+cp cursor-governance-skills/governance.yaml /path/to/your/project/
 ```
 
 ### 2. Open your project in Cursor
@@ -38,6 +58,22 @@ skills:
 
 ---
 
+## Verify It Works
+
+After installation, paste this into a file in Cursor and ask the AI to review it:
+
+```python
+password = "admin123"
+api_key = "sk_live_abc123456789"
+print(f"User logged in: {user.email}")
+```
+
+Your AI should flag all three lines - hardcoded password, exposed API key, and PII in logs. If it does, governance is working.
+
+You can also try: "Run pre-release checklist" and watch it walk through all 14 governance gates.
+
+---
+
 ## What's Included
 
 ### 14 Skills
@@ -46,12 +82,12 @@ skills:
 |-------|-------------|------------|
 | **Security Gate** | Blocks deployments with vulnerabilities. Runs SAST, SCA, secret detection. | No |
 | **Human Approval** | Pauses AI when it deviates from your PRD or touches security/privacy code. | **Yes** |
-| **Code Quality** | Enforces linting, complexity limits (cyclomatic ≤ 10), formatting. | **Yes** |
+| **Code Quality** | Enforces linting, complexity limits (cyclomatic <= 10), formatting. | **Yes** |
 | **Privacy Guard** | Validates GDPR/CCPA compliance. Catches PII in logs, unencrypted data. | No |
 | **Accessibility** | WCAG 2.1 Level AA. Semantic HTML, keyboard nav, contrast, ARIA. | No |
 | **Documentation** | Generates ADRs, changelogs, API docs, migration guides. | No |
-| **Testing Standards** | Enforces coverage (≥ 80%), test quality, proper patterns. | No |
-| **License Compliance** | Prevents GPL contamination. Validates every dependency licence. | No |
+| **Testing Standards** | Enforces coverage (>= 80%), test quality, proper patterns. | No |
+| **Licence Compliance** | Prevents GPL contamination. Validates every dependency licence. | No |
 | **Pre-Release** | Orchestrates all skills into a single go/no-go release gate. | No |
 | **Test Plan** | Generates test plans from PRDs with full requirements traceability. | No |
 | **Browser Testing** | E2E testing with Cursor's @Browser tools. Screenshots at every step. | No |
@@ -86,31 +122,31 @@ Ready-to-use templates for: Architecture Decision Records, changelogs, human app
 
 ```
 You write code in Cursor
-        │
-        ▼
-┌──────────────────────────┐
-│  .cursorrules loaded     │ ← AI reads governance rules
-│  Skills activate on      │
-│  context (file type,     │
-│  keywords, always-on)    │
-└──────────┬───────────────┘
-           │
-           ▼
-┌──────────────────────────┐
-│  AI follows governance:  │
-│  • Checks security       │
-│  • Pauses for approval   │
-│  • Validates privacy     │
-│  • Enforces quality      │
-│  • Documents decisions   │
-└──────────┬───────────────┘
-           │
-           ▼
-┌──────────────────────────┐
-│  Pre-Release Gate        │
-│  All checks must pass    │
-│  before shipping         │
-└──────────────────────────┘
+        |
+        v
++----------------------------+
+|  .cursorrules loaded       | <- AI reads governance rules
+|  Skills activate on        |
+|  context (file type,       |
+|  keywords, always-on)      |
++-------------+--------------+
+              |
+              v
++----------------------------+
+|  AI follows governance:    |
+|  - Checks security         |
+|  - Pauses for approval     |
+|  - Validates privacy       |
+|  - Enforces quality        |
+|  - Documents decisions     |
++-------------+--------------+
+              |
+              v
++----------------------------+
+|  Pre-Release Gate          |
+|  All checks must pass      |
+|  before shipping           |
++----------------------------+
 ```
 
 ---
@@ -133,12 +169,12 @@ The AI knows what to do.
 ## Project Structure
 
 ```
-.cursor/skills/          ← 14 governance skills
-.cursorrules             ← Cursor AI rules (auto-loaded)
-governance.yaml          ← Project configuration
-scripts/                 ← Security, privacy, a11y scanning
-templates/               ← ADR, changelog, PIA, PRD, test plan
-guides/                  ← Setup and workflow guides
+.cursor/skills/          <- 14 governance skills
+.cursorrules             <- Cursor AI rules (auto-loaded)
+governance.yaml          <- Project configuration
+scripts/                 <- Security, privacy, a11y scanning
+templates/               <- ADR, changelog, PIA, PRD, test plan
+guides/                  <- Setup and workflow guides
 ```
 
 ---

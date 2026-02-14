@@ -6,7 +6,25 @@
 # Usage: ./security-scan.sh [path] [--sast-only|--sca-only|--secrets-only]
 #
 
-set -e
+set -euo pipefail
+
+# Cleanup temp files on exit
+trap 'rm -f /tmp/sast-results.json /tmp/sca-results.json /tmp/secrets-results.json' EXIT
+
+# Help
+if [[ "${1:-}" == "--help" || "${1:-}" == "-h" ]]; then
+    echo "Usage: ./security-scan.sh [path] [--sast-only|--sca-only|--secrets-only]"
+    echo ""
+    echo "Runs security scans (SAST, SCA, secret detection) against your codebase."
+    echo ""
+    echo "Options:"
+    echo "  path             Directory to scan (default: current directory)"
+    echo "  --sast-only      Run only static analysis"
+    echo "  --sca-only       Run only dependency scanning"
+    echo "  --secrets-only   Run only secret detection"
+    echo "  --help, -h       Show this help message"
+    exit 0
+fi
 
 # Colors
 RED='\033[0;31m'

@@ -1,5 +1,9 @@
 # Cursor Governance Framework Configuration
-# Copy this file to your project root and customize as needed.
+# Copy this file to your project root and customise as needed.
+#
+# NOTE: Cursor reads this file contextually via the AI. It is not parsed by
+# external tooling. Think of it as a contract between you and the AI assistant,
+# not a traditional config file consumed by a build system.
 
 # Framework version
 version: "1.0.0"
@@ -51,7 +55,7 @@ skills:
     # - style_changes
     # - documentation_only
     
-    # Timeout behavior
+    # Timeout behaviour
     timeout:
       security_decisions: never  # never auto-approve
       other_decisions: 24h       # remind after 24 hours

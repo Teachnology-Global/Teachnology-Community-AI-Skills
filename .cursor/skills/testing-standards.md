@@ -196,7 +196,7 @@ const testUser = {
 
 ### Each Test Should
 
-- [ ] Test ONE behavior
+- [ ] Test ONE behaviour
 - [ ] Have a descriptive name
 - [ ] Be independent (no shared state)
 - [ ] Be deterministic (same result every run)
@@ -251,7 +251,7 @@ it('axios makes HTTP requests', () => { ... });  // Not your code
 ### ✅ Good Test Practices
 
 ```typescript
-// GOOD: Test behavior, not implementation
+// GOOD: Test behaviour, not implementation
 it('returns order confirmation with total', () => {
   const result = handleOrder(order);
   expect(result.status).toBe('success');
@@ -379,5 +379,5 @@ it('handles empty string input without crashing (fixes #123)', () => {
 ### With Documentation
 
 - Test examples serve as documentation
-- API tests document expected behavior
+- API tests document expected behaviour
 

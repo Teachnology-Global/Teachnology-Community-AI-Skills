@@ -66,7 +66,7 @@ brew install gitleaks
 cd ~/Downloads
 
 # Clone the governance framework
-git clone https://github.com/ColossalCuck/Teachnology_Security_Compliance_Skills_Framework.git governance-framework
+git clone https://github.com/Teachnology-Global/cursor-governance-skills.git governance-framework
 ```
 
 ### Step 2.2: Copy Files to Your Project
@@ -79,21 +79,21 @@ cd /path/to/your/nextjs-project
 mkdir -p .cursor/skills
 
 # Copy the skills
-cp -r ~/Downloads/governance-framework/cursor-governance-skills/.cursor/skills/* .cursor/skills/
+cp -r ~/Downloads/governance-framework/.cursor/skills/* .cursor/skills/
 
 # Copy the Cursor rules file
-cp ~/Downloads/governance-framework/cursor-governance-skills/.cursorrules .cursorrules
+cp ~/Downloads/governance-framework/.cursorrules .cursorrules
 
 # Copy the configuration template
-cp ~/Downloads/governance-framework/cursor-governance-skills/governance.yaml governance.yaml
+cp ~/Downloads/governance-framework/governance.yaml governance.yaml
 
 # Copy the scripts
 mkdir -p scripts/governance
-cp ~/Downloads/governance-framework/cursor-governance-skills/scripts/* scripts/governance/
+cp ~/Downloads/governance-framework/scripts/* scripts/governance/
 
 # Copy the templates
 mkdir -p docs/templates
-cp ~/Downloads/governance-framework/cursor-governance-skills/templates/* docs/templates/
+cp ~/Downloads/governance-framework/templates/* docs/templates/
 ```
 
 ### Step 2.3: Verify Installation
@@ -104,15 +104,20 @@ Your project should now have:
 your-nextjs-project/
 ├── .cursor/
 │   └── skills/
-│       ├── security-gate.md
-│       ├── human-approval.md
-│       ├── documentation.md
-│       ├── privacy-guard.md
 │       ├── accessibility.md
+│       ├── browser-testing.md
 │       ├── code-quality.md
-│       ├── testing-standards.md
+│       ├── dependency-scanning.md
+│       ├── documentation.md
+│       ├── human-approval.md
 │       ├── license-compliance.md
-│       └── pre-release.md
+│       ├── pre-release.md
+│       ├── privacy-guard.md
+│       ├── secrets-management.md
+│       ├── security-gate.md
+│       ├── test-automation.md
+│       ├── test-plan.md
+│       └── testing-standards.md
 ├── .cursorrules
 ├── governance.yaml
 ├── scripts/
@@ -149,7 +154,7 @@ echo "*.sarif" >> .gitignore
 
 ### Step 3.1: Edit governance.yaml
 
-Open `governance.yaml` and customize for your Next.js + Vercel + Neon project:
+Open `governance.yaml` and customise for your Next.js + Vercel + Neon project:
 
 ```yaml
 # governance.yaml
@@ -818,7 +823,7 @@ Running governance gates...
 
 **Accessibility Issues:**
 1. Button missing aria-label (moderate)
-2. Color contrast 4.2:1 on muted text (moderate)
+2. Colour contrast 4.2:1 on muted text (moderate)
 
 **Options:**
 1. Fix issues then deploy

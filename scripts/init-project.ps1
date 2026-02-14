@@ -47,7 +47,7 @@ function Write-Warning {
 }
 
 # Config
-$RepoUrl = "https://github.com/ColossalCuck/Teachnology-Community-AI-Skills.git"
+$RepoUrl = "https://github.com/Teachnology-Global/cursor-governance-skills.git"
 $TempDir = Join-Path $env:TEMP "governance-framework-$(Get-Random)"
 
 Write-Header
@@ -84,7 +84,7 @@ catch {
     exit 1
 }
 
-$FrameworkDir = Join-Path $TempDir "cursor-governance-skills"
+$FrameworkDir = $TempDir
 
 # Step 2: Copy skills
 Write-Step "2/5" "Copying skill files..."

@@ -3,13 +3,27 @@
 # Cursor Governance Framework - Project Initializer
 # 
 # Usage: 
-#   curl -fsSL https://raw.githubusercontent.com/ColossalCuck/Teachnology-Community-AI-Skills/main/cursor-governance-skills/scripts/init-project.sh | bash
+#   curl -fsSL https://raw.githubusercontent.com/Teachnology-Global/cursor-governance-skills/main/scripts/init-project.sh | bash
 #
 # Or locally:
 #   ./init-project.sh /path/to/your/project
 #
 
-set -e
+set -euo pipefail
+
+# Help
+if [[ "${1:-}" == "--help" || "${1:-}" == "-h" ]]; then
+    echo "Usage: ./init-project.sh [path]"
+    echo ""
+    echo "Sets up the Cursor Governance Framework in your project."
+    echo "Copies skills, configuration, scripts, and templates."
+    echo ""
+    echo "Arguments:"
+    echo "  path    Target project directory (default: current directory)"
+    echo ""
+    echo "  --help, -h    Show this help message"
+    exit 0
+fi
 
 # Colors
 RED='\033[0;31m'
@@ -19,7 +33,7 @@ BLUE='\033[0;34m'
 NC='\033[0m' # No Color
 
 # Framework repo
-REPO_URL="https://github.com/ColossalCuck/Teachnology-Community-AI-Skills.git"
+REPO_URL="https://github.com/Teachnology-Global/cursor-governance-skills.git"
 TEMP_DIR=$(mktemp -d)
 
 echo -e "${BLUE}"
@@ -69,7 +83,7 @@ git clone --depth 1 "$REPO_URL" "$TEMP_DIR/framework" 2>/dev/null || {
     exit 1
 }
 
-FRAMEWORK_DIR="$TEMP_DIR/framework/cursor-governance-skills"
+FRAMEWORK_DIR="$TEMP_DIR/framework"
 
 echo -e "${BLUE}Step 2/5: Copying skill files...${NC}"
 mkdir -p .cursor/skills

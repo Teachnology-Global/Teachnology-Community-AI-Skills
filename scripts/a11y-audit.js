@@ -360,6 +360,20 @@ function main() {
   let outputFormat = 'text';
   let minSeverity = 'minor';
   
+  // Help
+  if (args.includes('--help') || args.includes('-h')) {
+    console.log('Usage: node a11y-audit.js [path] [--output json|text] [--severity critical|serious|moderate|minor]');
+    console.log('');
+    console.log('Scans HTML/JSX/TSX files for common accessibility issues.');
+    console.log('');
+    console.log('Options:');
+    console.log('  path                  Directory or file to scan (default: current directory)');
+    console.log('  --output, -o          Output format: json or text (default: text)');
+    console.log('  --severity, -s        Minimum severity to report (default: minor)');
+    console.log('  --help, -h            Show this help message');
+    process.exit(0);
+  }
+
   // Parse args
   for (let i = 0; i < args.length; i++) {
     if (args[i] === '--output' || args[i] === '-o') {

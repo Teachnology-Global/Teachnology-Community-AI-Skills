@@ -36,7 +36,7 @@
 | Contact | phone, address | Medium | Communication |
 | Financial | credit card | High | Payment processing |
 | Technical | IP address, device ID | Low | Analytics |
-| Behavioral | preferences, history | Medium | Personalization |
+| Behavioural | preferences, history | Medium | Personalization |
 | | | | |
 
 ### 2.2 Data Subjects
@@ -135,7 +135,7 @@ How are the following rights implemented?
 - [ ] Regular security testing
 - [ ] Data backup and recovery
 
-### 6.2 Organizational Controls
+### 6.2 Organisational Controls
 
 - [ ] Privacy policies
 - [ ] Staff training
@@ -153,7 +153,7 @@ How are the following rights implemented?
 | Risk ID | Description | Likelihood | Impact | Risk Level |
 |---------|-------------|------------|--------|------------|
 | R1 | [e.g., Data breach] | [Low/Med/High] | [Low/Med/High] | [Low/Med/High/Critical] |
-| R2 | [e.g., Unauthorized access] | | | |
+| R2 | [e.g., Unauthorised access] | | | |
 | R3 | [e.g., Data loss] | | | |
 | R4 | [e.g., Excessive collection] | | | |
 

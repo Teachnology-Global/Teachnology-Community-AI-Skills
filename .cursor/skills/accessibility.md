@@ -1,7 +1,7 @@
 ---
 description: >
   Validates WCAG 2.1 Level AA compliance for web interfaces. Checks semantic HTML,
-  ARIA attributes, color contrast, keyboard navigation, and screen reader compatibility.
+  ARIA attributes, colour contrast, keyboard navigation, and screen reader compatibility.
   Use when: (1) building user interfaces, (2) conducting accessibility audits,
   (3) reviewing PRs for a11y compliance, (4) fixing accessibility issues,
   (5) implementing accessible components.
@@ -21,7 +21,7 @@ This skill activates when you mention:
 - "accessibility", "a11y"
 - "WCAG", "screen reader"
 - "keyboard navigation", "focus"
-- "color contrast", "alt text"
+- "colour contrast", "alt text"
 - "ARIA", "semantic HTML"
 
 Also activates when working on:
@@ -289,7 +289,7 @@ function closeModal(modal, trigger) {
 }
 ```
 
-## Color Contrast
+## Colour Contrast
 
 ### Requirements
 
@@ -344,7 +344,7 @@ test('component is accessible', async () => {
 | Focus order | Does it make sense? |
 | Screen reader | Test with VoiceOver/NVDA |
 | Zoom | Works at 200%? |
-| Color only | Info without color? |
+| Colour only | Info without colour? |
 
 ## Accessibility Report
 
@@ -374,7 +374,7 @@ test('component is accessible', async () => {
 - [x] Automated (axe-core)
 - [x] Keyboard navigation
 - [x] Screen reader (VoiceOver)
-- [x] Color contrast
+- [x] Colour contrast
 - [ ] User testing with disabilities
 ```
 
@@ -396,5 +396,5 @@ test('component is accessible', async () => {
 
 - Accessible component patterns documented
 - Keyboard shortcuts documented
-- Screen reader behavior documented
+- Screen reader behaviour documented
 

@@ -212,7 +212,11 @@ services:
 
 ```bash
 # 1. Rotate the secret IMMEDIATELY (before cleaning git)
-# 2. Then clean git history:
+# 2. Then clean git history (preferred: git filter-repo):
+pip install git-filter-repo
+git filter-repo --invert-paths --path path/to/secret-file
+
+# Or the older git filter-branch (deprecated but still works):
 git filter-branch --force --index-filter \
   'git rm --cached --ignore-unmatch path/to/secret-file' \
   --prune-empty --tag-name-filter cat -- --all
