@@ -2,7 +2,7 @@
 
 [![MIT Licence](https://img.shields.io/badge/licence-MIT-blue.svg)](LICENSE)
 [![Cursor Compatible](https://img.shields.io/badge/Cursor-Compatible-purple.svg)](https://cursor.com)
-[![24 Skills](https://img.shields.io/badge/skills-24-green.svg)](#whats-included)
+[![27 Skills](https://img.shields.io/badge/skills-27-green.svg)](#whats-included)
 [![Australian Made](https://img.shields.io/badge/made%20in-Australia%20🇦🇺-gold.svg)](https://www.skool.com/teachnology)
 
 **Stop your AI from shipping insecure, undocumented rubbish.** Drop these governance skills into any Cursor project and your AI assistant will follow proper security, privacy, accessibility, and quality standards - automatically, every time.
@@ -70,13 +70,13 @@ print(f"User logged in: {user.email}")
 
 Your AI should flag all three lines - hardcoded password, exposed API key, and PII in logs. If it does, governance is working.
 
-You can also try: "Run pre-release checklist" and watch it walk through all 14 governance gates.
+You can also try: "Run pre-release checklist" and watch it walk through all 17 governance gates.
 
 ---
 
 ## What's Included
 
-### 14 Skills
+### 17 Skills
 
 | Skill | What It Does | Always On? |
 |-------|-------------|------------|
@@ -84,7 +84,7 @@ You can also try: "Run pre-release checklist" and watch it walk through all 14 g
 | **Human Approval** | Pauses AI when it deviates from your PRD or touches security/privacy code. | **Yes** |
 | **Code Quality** | Enforces linting, complexity limits (cyclomatic <= 10), formatting. | **Yes** |
 | **Privacy Guard** | Validates GDPR/CCPA compliance. Catches PII in logs, unencrypted data. | No |
-| **Accessibility** | WCAG 2.1 Level AA. Semantic HTML, keyboard nav, contrast, ARIA. | No |
+| **Accessibility** | WCAG 2.2 Level AA. Semantic HTML, keyboard nav, contrast, ARIA. 2026 compliance ready. | No |
 | **Documentation** | Generates ADRs, changelogs, API docs, migration guides. | No |
 | **Testing Standards** | Enforces coverage (>= 80%), test quality, proper patterns. | No |
 | **Licence Compliance** | Prevents GPL contamination. Validates every dependency licence. | No |
@@ -94,6 +94,9 @@ You can also try: "Run pre-release checklist" and watch it walk through all 14 g
 | **Test Automation** | Generates Playwright/Cypress test suites from test plans. | No |
 | **Dependency Scanning** | Catches vulnerable, outdated, and risky packages. Supply chain checks. | No |
 | **Secrets Management** | Keeps credentials out of code, logs, and git. Rotation policies. | No |
+| **API Rate Limiting** | Prevents quota exhaustion, service costs, 429 errors. Smart retry logic. | No |
+| **Error Handling** | User-friendly errors, graceful degradation, proper logging. | No |
+| **Environment Consistency** | Dev/staging/prod parity. Eliminates "works on my machine" issues. | No |
 
 ### Scripts
 

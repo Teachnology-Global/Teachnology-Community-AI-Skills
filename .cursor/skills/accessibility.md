@@ -1,10 +1,10 @@
 ---
 description: >
-  Validates WCAG 2.1 Level AA compliance for web interfaces. Checks semantic HTML,
+  Validates WCAG 2.2 Level AA compliance for web interfaces. Checks semantic HTML,
   ARIA attributes, colour contrast, keyboard navigation, and screen reader compatibility.
   Use when: (1) building user interfaces, (2) conducting accessibility audits,
   (3) reviewing PRs for a11y compliance, (4) fixing accessibility issues,
-  (5) implementing accessible components.
+  (5) implementing accessible components. Updated for 2026 compliance deadlines.
 globs: ["**/*.html", "**/*.tsx", "**/*.jsx", "**/*.vue", "**/*.svelte"]
 alwaysApply: false
 ---
@@ -13,7 +13,7 @@ alwaysApply: false
 
 ## Purpose
 
-Ensure web interfaces are usable by everyone, including people with disabilities. Target WCAG 2.1 Level AA compliance.
+Ensure web interfaces are usable by everyone, including people with disabilities. Target WCAG 2.2 Level AA compliance (current standard as of 2026, with federal compliance deadlines in April 2026).
 
 ## Activation
 
@@ -31,14 +31,26 @@ Also activates when working on:
 - Modals/dialogs
 - Interactive widgets
 
-## WCAG Principles (POUR)
+## WCAG 2.2 Principles (POUR)
 
 | Principle | Meaning | Key Checks |
 |-----------|---------|------------|
-| **Perceivable** | Can users perceive the content? | Alt text, contrast, captions |
-| **Operable** | Can users operate the interface? | Keyboard, focus, timing |
-| **Understandable** | Can users understand it? | Labels, errors, consistency |
-| **Robust** | Does it work with assistive tech? | Valid HTML, ARIA |
+| **Perceivable** | Can users perceive the content? | Alt text, contrast, captions, focus appearance |
+| **Operable** | Can users operate the interface? | Keyboard, focus, timing, drag operations |
+| **Understandable** | Can users understand it? | Labels, errors, consistency, help text |
+| **Robust** | Does it work with assistive tech? | Valid HTML, ARIA, status messages |
+
+### WCAG 2.2 New Success Criteria (Required)
+
+| Level | Criterion | Description |
+|-------|-----------|-------------|
+| **AA** | **2.4.11 Focus Not Obscured (Minimum)** | When element receives keyboard focus, it's not entirely hidden |
+| **AA** | **2.4.12 Focus Not Obscured (Enhanced)** | No part of focused element is hidden by author-created content |
+| **AA** | **2.5.7 Dragging Movements** | All drag functionality has single pointer alternative |
+| **AA** | **2.5.8 Target Size (Minimum)** | Interactive targets minimum 24×24 CSS pixels |
+| **AA** | **3.2.6 Consistent Help** | Help mechanism in consistent order across pages |
+| **AA** | **3.3.7 Redundant Entry** | Don't require re-entering information already provided |
+| **AA** | **3.3.8 Accessible Authentication (Minimum)** | No cognitive tests for authentication |
 
 ## Critical Checklist
 
@@ -346,13 +358,22 @@ test('component is accessible', async () => {
 | Zoom | Works at 200%? |
 | Colour only | Info without colour? |
 
+## 2026 Compliance Requirements
+
+**Federal Deadlines:**
+- **April 24, 2026**: ADA Title II compliance for state/local government (population 50,000+)
+- **Late 2026**: WCAG 2.2 becomes ISO/IEC 40500:2026 standard
+- **Ongoing**: EU Accessibility Act, WCAG 2.2 AA expected
+
+**Target Standard**: WCAG 2.2 Level AA (backward compatible with 2.1)
+
 ## Accessibility Report
 
 ```markdown
 ## Accessibility Audit
 
 **Date**: [timestamp]
-**Standard**: WCAG 2.1 Level AA
+**Standard**: WCAG 2.2 Level AA
 
 ### Summary
 | Severity | Count |

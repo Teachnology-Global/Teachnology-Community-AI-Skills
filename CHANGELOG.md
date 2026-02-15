@@ -5,6 +5,24 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.0] - 2026-02-15
+
+### Added
+- **API Rate Limiting** skill - prevents quota exhaustion, service costs, and 429 errors with smart retry logic
+- **Error Handling** skill - ensures user-friendly errors, graceful degradation, and proper logging standards  
+- **Environment Consistency** skill - eliminates "works on my machine" by ensuring dev/staging/prod parity
+
+### Changed
+- **Accessibility** skill updated from WCAG 2.1 to WCAG 2.2 Level AA compliance
+- Added WCAG 2.2 new success criteria (focus visibility, drag alternatives, target size, consistent help, redundant entry, accessible authentication)
+- Added 2026 federal compliance deadline awareness (April 24, 2026 for ADA Title II)
+- Updated skill count from 14 to 17 throughout documentation
+
+### Security
+- Enhanced security considerations for Cursor IDE's new browser/terminal access features
+- Updated secrets management best practices with 2026 standards
+- Added prompt injection attack awareness for autonomous agents
+
 ## [1.0.0] - 2026-02-14
 
 ### Added
