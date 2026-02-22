@@ -5,6 +5,24 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.0] - 2026-02-22
+
+### Added
+- **Database Migration Safety** skill - zero-downtime migrations, expand-contract pattern, rollback scripts, and Neon-specific branching guidance
+- **AI Output Validation** skill - validates AI-generated code before shipping; covers hallucinated APIs, auth logic bugs, over-permissive access, missing input validation, and prompt injection; OWASP LLM Top 10 reference
+
+### Changed
+- **Security Gate** skill updated with OWASP Top 10 for Agentic Applications (2026) risk table; added Cursor Hooks enterprise governance section; added Cursor Sandbox Network Controls (Feb 2026)
+- **Dependency Scanning** skill updated to reflect OWASP 2026 adding supply chain to Top 10; added Cursor Plugin/MCP server security guidance; added lock file integrity checks
+- **Pre-Release** checklist updated from WCAG 2.1 to WCAG 2.2 references (2 occurrences fixed)
+- README Before/After table updated with migration safety and AI validation examples
+- Skill count badge updated from 27 to 29
+
+### Security
+- Added OWASP Top 10 for Agentic Applications awareness (prompt injection, excessive agency, insecure output handling, memory poisoning, supply chain compromise)
+- Added Cursor Hooks guidance for enterprise policy enforcement at the IDE level
+- Added sandbox network access control patterns (domain allowlists, filesystem restrictions)
+
 ## [1.1.0] - 2026-02-15
 
 ### Added

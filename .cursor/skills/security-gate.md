@@ -194,6 +194,83 @@ security-gate:
       run: gitleaks detect --source=.
 ```
 
+## OWASP Top 10 for Agentic Applications (2026)
+
+If your project uses AI agents (Cursor agents, LLM-powered features, or autonomous workflows), scan for these agentic-specific risks in addition to standard OWASP Top 10:
+
+| Risk | Description | What to Check |
+|------|-------------|---------------|
+| **Prompt Injection** | Malicious input redirects agent behaviour | Inputs to LLM APIs validated and sanitised |
+| **Excessive Agency** | Agent granted more permissions than needed | Principle of least privilege on all agent actions |
+| **Insecure Output Handling** | Agent output used without validation | AI-generated code reviewed before execution |
+| **Data Exfiltration** | Agent leaks data via tools or API calls | Egress controls on agent network access |
+| **Memory Poisoning** | Malicious data stored in agent context/memory | Context sources trusted and validated |
+| **Supply Chain Compromise** | Malicious plugins, MCP servers, or tools | Verify all installed plugins and MCP servers |
+| **Uncontrolled Resource Use** | Agent spawns expensive loops or subagents | Rate limits on agent tool calls and spawning |
+
+## Cursor Hooks (Enterprise Teams)
+
+If your organisation uses Cursor for Teams or Enterprise, leverage **Cursor Hooks** to enforce the security gate at the IDE level:
+
+Hooks run custom scripts before or after defined stages of the agent loop and can observe, block, or modify behaviour. Use them to:
+
+```yaml
+# Example hook configuration (cursor-hooks.json)
+{
+  "hooks": [
+    {
+      "event": "pre-tool-use",
+      "script": "scripts/hooks/check-secret-patterns.sh",
+      "description": "Block agent from using tools that would expose secrets"
+    },
+    {
+      "event": "pre-deploy",
+      "script": "scripts/hooks/run-security-gate.sh",
+      "description": "Run full security gate before any deployment action"
+    },
+    {
+      "event": "post-file-write",
+      "script": "scripts/hooks/scan-written-file.sh",
+      "description": "Scan files the agent writes for credentials or PII"
+    }
+  ]
+}
+```
+
+**Hook capabilities:**
+- Connect to your SIEM, secrets manager, or compliance system
+- Block agent actions that violate policy before they execute
+- Audit trail of every agent action for compliance reporting
+- Enforce organisation-wide egress policies in the sandbox
+
+> See Cursor docs for enterprise hooks setup: https://cursor.com/blog/hooks-partners
+
+## Sandbox Network Controls (Feb 2026)
+
+Cursor's sandbox now supports granular network access controls. Use them to restrict what the agent can reach during code execution:
+
+```json
+// .cursor/sandbox.json
+{
+  "network": {
+    "mode": "allowlist",
+    "allow": [
+      "api.github.com",
+      "registry.npmjs.org",
+      "pypi.org"
+    ],
+    "deny": [
+      "*.internal.company.com"  // Never expose internal services to agent
+    ]
+  },
+  "filesystem": {
+    "deny": ["~/.ssh", "~/.aws", "~/.config"]
+  }
+}
+```
+
+Enterprise admins can enforce these policies org-wide from the Cursor admin dashboard.
+
 ## When to Skip (Rarely)
 
 The security gate can only be skipped with:

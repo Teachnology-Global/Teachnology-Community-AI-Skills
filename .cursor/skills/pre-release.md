@@ -37,7 +37,7 @@ This skill activates when you mention:
 │     └── PII handling, consent, encryption                   │
 │                                                             │
 │  3. Accessibility Audit ────────────────────► Pass/Fail     │
-│     └── WCAG 2.1 AA compliance                              │
+│     └── WCAG 2.2 AA compliance                              │
 │                                                             │
 │  4. License Compliance ─────────────────────► Pass/Fail     │
 │     └── Dependency license validation                       │
@@ -196,7 +196,7 @@ npm run test:e2e
 |------|--------|---------|
 | Security | ✅ PASS | 0 critical, 0 high, 2 medium |
 | Privacy | ✅ PASS | All PII encrypted |
-| Accessibility | ✅ PASS | WCAG 2.1 AA compliant |
+| Accessibility | ✅ PASS | WCAG 2.2 AA compliant |
 | Licenses | ✅ PASS | All permissive |
 | Code Quality | ✅ PASS | 0 lint errors |
 | Testing | ✅ PASS | 87% coverage |

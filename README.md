@@ -2,7 +2,7 @@
 
 [![MIT Licence](https://img.shields.io/badge/licence-MIT-blue.svg)](LICENSE)
 [![Cursor Compatible](https://img.shields.io/badge/Cursor-Compatible-purple.svg)](https://cursor.com)
-[![27 Skills](https://img.shields.io/badge/skills-27-green.svg)](#whats-included)
+[![29 Skills](https://img.shields.io/badge/skills-29-green.svg)](#whats-included)
 [![Australian Made](https://img.shields.io/badge/made%20in-Australia%20🇦🇺-gold.svg)](https://www.skool.com/teachnology)
 
 **Stop your AI from shipping insecure, undocumented rubbish.** Drop these governance skills into any Cursor project and your AI assistant will follow proper security, privacy, accessibility, and quality standards - automatically, every time.
@@ -18,11 +18,13 @@ Built for the [Teachnology Community](https://www.skool.com/teachnology) by Jaso
 | Without Governance | With Governance |
 |---|---|
 | AI hardcodes API keys in source files | AI uses environment variables, flags any secrets |
-| AI skips alt text, breaks keyboard navigation | AI follows WCAG 2.1 AA, checks contrast and ARIA |
+| AI skips alt text, breaks keyboard navigation | AI follows WCAG 2.2 AA, checks contrast and ARIA |
 | AI installs GPL packages in your MIT project | AI checks every licence before adding dependencies |
 | AI logs user emails and phone numbers in plaintext | AI flags PII in logs, enforces encryption |
 | AI makes architecture changes without asking | AI pauses, explains the tradeoff, waits for your call |
 | AI ships without tests or documentation | AI enforces 80% coverage, generates changelogs and ADRs |
+| AI writes a DROP COLUMN migration and runs it live | AI uses expand-contract, writes rollback, tests on staging |
+| AI generates plausible auth code with a logic bug | AI output validation checklist catches the flaw before merge |
 
 ---
 
@@ -76,11 +78,11 @@ You can also try: "Run pre-release checklist" and watch it walk through all 17 g
 
 ## What's Included
 
-### 17 Skills
+### 19 Skills
 
 | Skill | What It Does | Always On? |
 |-------|-------------|------------|
-| **Security Gate** | Blocks deployments with vulnerabilities. Runs SAST, SCA, secret detection. | No |
+| **Security Gate** | Blocks deployments with vulnerabilities. Runs SAST, SCA, secret detection. Updated for OWASP Agentic Top 10 and Cursor Hooks. | No |
 | **Human Approval** | Pauses AI when it deviates from your PRD or touches security/privacy code. | **Yes** |
 | **Code Quality** | Enforces linting, complexity limits (cyclomatic <= 10), formatting. | **Yes** |
 | **Privacy Guard** | Validates GDPR/CCPA compliance. Catches PII in logs, unencrypted data. | No |
@@ -92,11 +94,13 @@ You can also try: "Run pre-release checklist" and watch it walk through all 17 g
 | **Test Plan** | Generates test plans from PRDs with full requirements traceability. | No |
 | **Browser Testing** | E2E testing with Cursor's @Browser tools. Screenshots at every step. | No |
 | **Test Automation** | Generates Playwright/Cypress test suites from test plans. | No |
-| **Dependency Scanning** | Catches vulnerable, outdated, and risky packages. Supply chain checks. | No |
+| **Dependency Scanning** | Catches vulnerable, outdated, and risky packages. OWASP 2026 supply chain checks. | No |
 | **Secrets Management** | Keeps credentials out of code, logs, and git. Rotation policies. | No |
 | **API Rate Limiting** | Prevents quota exhaustion, service costs, 429 errors. Smart retry logic. | No |
 | **Error Handling** | User-friendly errors, graceful degradation, proper logging. | No |
 | **Environment Consistency** | Dev/staging/prod parity. Eliminates "works on my machine" issues. | No |
+| **Database Migration Safety** | Zero-downtime migrations, expand-contract pattern, rollback scripts. Neon-specific guidance. | No |
+| **AI Output Validation** | Validates AI-generated code before shipping. Catches hallucinated APIs, auth bugs, prompt injection. | No |
 
 ### Scripts
 

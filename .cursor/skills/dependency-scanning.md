@@ -172,6 +172,30 @@ dependency-scan:
 - **Regenerate periodically** to pick up transitive dependency patches
 - **Never manually edit** lock files
 
+## OWASP 2026: Supply Chain Now Top 10
+
+Software supply chain failures officially joined the OWASP Top 10 in early 2026. This means dependency hygiene is no longer optional — it's a recognised critical risk category.
+
+**What this means for your scanning:**
+- **Transitive dependencies matter as much as direct ones** — a compromised package 3 levels deep can still own your app
+- **Install scripts are a major attack vector** — any `postinstall` script that makes network calls is a red flag
+- **Lock file integrity checks** — verify lock files haven't been tampered with (especially in CI environments)
+- **Checksum verification** — use `npm ci` (not `npm install`) in CI to enforce lock file integrity
+
+```bash
+# Verify lock file integrity in CI
+npm ci --audit
+
+# Check for unexpected install scripts
+npx can-i-ignore-scripts --dry-run
+
+# Verify package checksums (pnpm)
+pnpm install --frozen-lockfile --verify-store-integrity
+```
+
+**Cursor Plugin/MCP Security:**
+If using Cursor Marketplace plugins or MCP servers, treat them as dependencies. Only install plugins from verified publishers. Check the plugin's source repository before installing in team environments.
+
 ## Integration
 
 ### With Security Gate
