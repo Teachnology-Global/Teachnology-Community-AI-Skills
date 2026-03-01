@@ -307,6 +307,67 @@ Ask the AI: "Is this code requesting or accessing any data that the feature does
 
 AI often over-fetches and over-grants. Always trim back to what the feature genuinely requires.
 
+## Cursor Cloud Agents and Bugbot Autofix (Feb 2026)
+
+Cursor launched **Cloud Agents** (Feb 24, 2026) and **Bugbot Autofix** (Feb 26, 2026). Both run autonomously in isolated VMs and submit pull requests without a human at the keyboard. Apply all validation checks in this skill to their output — plus these additional checks.
+
+### Cloud Agent PR Validation
+
+Cloud Agents run in their own VM, write code, and submit PRs with video/screenshot artifacts.
+
+```markdown
+## Cloud Agent PR — Validation Checklist
+
+Step 1: Review the artifacts BEFORE the code
+- [ ] Watched the agent's screen recording
+- [ ] The recorded actions match what you asked for (nothing extra, nothing missing)
+- [ ] No unexpected files opened, URLs visited, or commands run
+
+Step 2: Apply all 5 Failure Modes above to the generated code
+- [ ] Hallucinated APIs checked (every import verified)
+- [ ] Auth logic reviewed if touched
+- [ ] Access control checked (permissions not over-granted)
+- [ ] Input validation present on all user-facing inputs
+- [ ] Prompt injection mitigated if LLMs are involved
+
+Step 3: Scope check (unique to agentic code)
+- [ ] Agent only modified files it was asked to modify
+- [ ] No new dependencies added without justification
+- [ ] No migrations, auth changes, or billing changes unless explicitly requested
+- [ ] Test coverage exists for the new code
+```
+
+### Bugbot Autofix Validation
+
+Bugbot Autofix proposes targeted fixes for issues found in PRs. The fix rate is ~35% — meaning most need human review regardless.
+
+```markdown
+## Bugbot Autofix — Before Merging
+
+- [ ] Do I understand the original issue Bugbot described?
+- [ ] Does the fix address the root cause, or just the symptom?
+- [ ] Is the fix minimal? (no unexpected changes to unrelated code)
+- [ ] Run all failure mode checks on the changed lines specifically
+- [ ] Tests pass with the fix applied
+
+Do NOT merge Bugbot fixes automatically without review — even for "obvious" fixes.
+The 35% merge rate means 65% of Bugbot suggestions need modification or rejection.
+```
+
+### Why Autonomous Agents Fail Differently
+
+Human developers make mistakes under time pressure or distraction. Agents make mistakes systematically — they'll repeat the same pattern across dozens of files before anyone notices.
+
+| AI failure mode | How it manifests in agent PRs |
+|-----------------|-------------------------------|
+| Hallucinated APIs | Entire feature built on non-existent method — tests may still pass if mocks are wrong |
+| Over-permissive access | "Fixed" an access bug by removing the check entirely |
+| Missing validation | Added form handling without any server-side validation |
+| Confident wrongness | Auth bypass that looks correct but fails on edge case inputs |
+| Scope creep | "Improved" 6 adjacent functions while fixing 1 bug |
+
+> For full governance guidance on Cloud Agents, see the **Cloud Agent Governance** skill.
+
 ## Integration
 
 ### With Security Gate
@@ -318,6 +379,11 @@ AI often over-fetches and over-grants. Always trim back to what the feature genu
 - Large agentic tasks that modify many files require post-run review before merge
 - Auth and payment features written by AI require human approval before deployment
 - AI-generated migrations require database migration safety checks
+
+### With Cloud Agent Governance
+- Apply this validation checklist to every Cloud Agent and Bugbot Autofix PR
+- Cloud Agent governance skill covers repo safeguards and PR review workflow
+- Both skills work together for full autonomous agent safety coverage
 
 ### With Code Quality
 - AI-generated code must pass the same linting and type-checking standards as human code

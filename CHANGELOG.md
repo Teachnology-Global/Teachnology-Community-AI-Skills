@@ -5,6 +5,25 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.3.0] - 2026-03-01
+
+### Added
+- **MCP Security** skill — Model Context Protocol governance: vetting, version pinning, team approval registry, quarterly audit workflow, and incident response. Covers CVE-2025-54136 (MCPoison trust bypass attack) discovered by Check Point Research (August 2025). Also covers Cursor Marketplace plugin governance (Feb 2026).
+- **Cloud Agent Governance** skill — Safe use of Cursor Cloud Agents (launched Feb 24, 2026) and Bugbot Autofix (launched Feb 26, 2026). Includes repository safeguards required before enabling agents, PR review checklist, Bugbot evaluation workflow, safe agent task patterns, artifact review guidance, and rollback planning. Designed for non-technical founders who can't spot subtle AI-generated bugs by eye.
+
+### Changed
+- **Security Gate** skill updated with MCPoison (CVE-2025-54136) detection checks: unpinned MCP version detection, hardcoded credential scan in mcp.json, MCP config change verification. Added reference to MCP Security skill. Updated Supply Chain row in OWASP Agentic Top 10 table.
+- **AI Output Validation** skill updated with Cloud Agent and Bugbot Autofix PR validation section: artifact review process, validation checklist for agent PRs, Bugbot fix evaluation workflow, and table of how AI failure modes manifest differently in autonomous agent output.
+- README Before/After table updated with MCP and Cloud Agent governance examples.
+- Skill count badge updated from 29 to 31 (21 governance + 10 marketing).
+- README governance skills table updated from 19 to 21 skills.
+
+### Security
+- Added MCPoison (CVE-2025-54136) awareness and mitigations — critical for any team using Cursor in shared repositories
+- Added guidance on MCP version pinning to prevent silent malicious updates after approval
+- Added Cloud Agent scope controls — preventing agents from touching auth, payments, or database migrations autonomously
+- Added Bugbot Autofix governance — human review required before merging any autonomous fix (including "obvious" ones)
+
 ## [1.2.0] - 2026-02-22
 
 ### Added

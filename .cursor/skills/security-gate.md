@@ -205,8 +205,36 @@ If your project uses AI agents (Cursor agents, LLM-powered features, or autonomo
 | **Insecure Output Handling** | Agent output used without validation | AI-generated code reviewed before execution |
 | **Data Exfiltration** | Agent leaks data via tools or API calls | Egress controls on agent network access |
 | **Memory Poisoning** | Malicious data stored in agent context/memory | Context sources trusted and validated |
-| **Supply Chain Compromise** | Malicious plugins, MCP servers, or tools | Verify all installed plugins and MCP servers |
+| **Supply Chain Compromise** | Malicious plugins, MCP servers, or tools | Verify all installed plugins and MCP servers; pin MCP versions; see MCP Security skill |
 | **Uncontrolled Resource Use** | Agent spawns expensive loops or subagents | Rate limits on agent tool calls and spawning |
+
+## MCP Configuration Security (Feb 2026)
+
+### CVE-2025-54136: MCPoison Trust Bypass
+
+A critical vulnerability was disclosed (August 2025) in Cursor's MCP system. Once a user approves an MCP configuration, Cursor never re-checks it — allowing an attacker to silently modify the MCP after approval and gain persistent remote code execution.
+
+**Add this to your security gate:**
+
+```bash
+# 1. Check for unpinned MCP versions (red flag)
+grep -r '"args"' .cursor/mcp.json | grep -v '@[0-9]' && echo "WARNING: Unpinned MCP versions found"
+
+# 2. Verify MCP configs haven't changed since last known-good state
+if [ -f .cursor/mcp.json.checksum ]; then
+  md5sum -c .cursor/mcp.json.checksum || echo "SECURITY: MCP config changed since last verification"
+fi
+
+# 3. Check for hardcoded credentials in MCP config
+grep -E '(password|secret|key|token)\s*[:=]\s*["\x27][a-zA-Z0-9]{8,}' .cursor/mcp.json && echo "CRITICAL: Hardcoded credential in MCP config"
+```
+
+**Gate criteria:**
+- ❌ Any unpinned MCP package version → Block and require pinning
+- ❌ Hardcoded credentials in MCP config → Block immediately, rotate credentials
+- ⚠️ MCP config changed since last review → Require human review before deployment
+
+> See the **MCP Security** skill for full MCP governance guidance.
 
 ## Cursor Hooks (Enterprise Teams)
 
