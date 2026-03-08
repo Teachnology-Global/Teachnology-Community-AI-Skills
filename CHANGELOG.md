@@ -5,6 +5,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.5.0] - 2026-03-08
+
+### Added
+- **AI Project Config Security** skill — governs all AI tool configuration files in repositories (`.cursor/`, `.claude/`, `.github/copilot-instructions.md`, `.continue/`, `.aider*`). Covers CVE-2025-59536 (Claude Code Hooks RCE) and CVE-2026-21852 (API key exfiltration). Includes CODEOWNERS templates, CI workflow for flagging AI config changes, review protocol for pulls/PRs/onboarding, and red flags checklist. Treats AI config files as executable code — because they are.
+- **Deployment Checklist** skill — a focused go/no-go checklist for the moment before you deploy. Shorter and more actionable than the full Pre-Release skill. Covers env vars, database, build, functionality, and post-deploy verification. Platform-specific notes for Vercel, Railway, and Fly.io. Common disaster prevention table and rollback protocol.
+- **Cost Governance** skill — prevents surprise bills from pay-per-use services. Covers OpenAI/Anthropic spending limits, Vercel function timeouts, database connection pooling, Stripe webhook idempotency, and ElevenLabs character budgets. Includes design patterns (caching, rate limiting, model routing, hard timeouts), monthly review checklist, and budget planning template. Written because a community member got an $800 OpenAI bill from a retry loop.
+- **Incident Response** skill — structured runbook for when production breaks. Covers the first 30 minutes (confirm, contain, diagnose, fix), severity classification, common incident patterns (deployment breaks, database failures, API outages, SSL/DNS issues, security incidents), communication templates, and post-mortem process with report template. Designed for solo founders without ops staff.
+
+### Changed
+- README updated: skill count badge (32→36), Before/After table (+4 rows), governance skills table (+4 skills), project structure count.
+
 ## [1.4.0] - 2026-03-08
 
 ### Added
