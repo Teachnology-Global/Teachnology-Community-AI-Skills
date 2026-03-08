@@ -16,6 +16,8 @@ alwaysApply: false
 
 Cursor Cloud Agents (launched Feb 2026) run autonomously in isolated VMs. They can write code, run tests, use software, take screenshots, record videos — and submit the result as a pull request. Bugbot Autofix extends this: it automatically detects issues in your PRs and proposes fixes.
 
+**Cursor Automations (launched March 2026)** extend this further with always-on, event-triggered and scheduled agents. These are a different risk category and have their own dedicated skill — see **Cursor Automations Governance**. This skill covers one-off Cloud Agents and Bugbot Autofix.
+
 This is powerful. It is also a fundamentally new risk model for non-technical founders and teachers who use Cursor. An AI agent autonomously pushing to your codebase, with no human watching in real time, needs governance.
 
 ## The Risk Model for Non-Technical Builders
@@ -55,6 +57,8 @@ Also activates when:
 - Reviewing a PR tagged as AI-generated or from a Cursor agent
 - Configuring `.github/` workflows that involve Cursor agents
 - Enabling Bugbot on a repository
+
+> For scheduled or event-triggered agents (Cursor Automations), see the **Cursor Automations Governance** skill.
 
 ## Before You Enable Cloud Agents
 

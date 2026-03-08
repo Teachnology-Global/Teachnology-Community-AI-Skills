@@ -71,6 +71,26 @@ MCP capabilities (depending on what the server implements):
 
 An MCP is code running on your machine with your privileges. Treat it like installing software.
 
+### Related: AI Tool Project Config Files as Attack Surface (CVE-2025-59536 / CVE-2026-21852)
+
+In March 2026, Check Point Research disclosed a critical vulnerability in Anthropic's Claude Code exploiting the same trust model as MCPoison — but targeting `.claude/settings.json` project files instead of `.cursor/mcp.json`. The **Hooks** feature allowed attackers to embed shell commands in a project's config file; any developer who cloned and opened the repo had arbitrary commands execute on their machine, and Anthropic API keys were silently exfiltrated.
+
+**The pattern is identical to MCPoison:** a config file in the repository is trusted implicitly, and a contributor with repo write access can weaponise it.
+
+**Lesson for Cursor teams:** Any AI tool configuration file that lives in a repository is a potential RCE vector. This includes:
+
+| File | Tool | Risk |
+|------|------|------|
+| `.cursor/mcp.json` | Cursor | MCPoison (CVE-2025-54136) |
+| `.claude/settings.json` | Claude Code | Hooks RCE (CVE-2025-59536) |
+| `.cursor/automations/` | Cursor Automations | Automation config injection |
+
+**Mitigations:**
+- Review any `.claude/`, `.cursor/`, or similar AI tool config directories when cloning unfamiliar repos — treat them like `.github/workflows/`
+- Limit write access to these directories in shared repositories
+- Block direct pushes to these config paths in branch protection rules where possible
+- Update all AI development tools regularly — both CVEs above were patched in subsequent releases
+
 ## Vetting MCPs Before Approval
 
 ### Questions to Ask Before Approving Any MCP

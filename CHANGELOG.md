@@ -5,6 +5,21 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.4.0] - 2026-03-08
+
+### Added
+- **Cursor Automations Governance** skill — governs always-on, scheduled, and event-triggered agents (Cursor Automations, launched March 5, 2026). Covers: event source security and prompt injection via PR/Slack/webhook data, memory governance (memory poisoning risk), auto-approval safeguards, webhook authentication (HMAC-SHA256 validation), weekly automation review checklist, and incident response for runaway automations. Designed for non-technical founders who can't catch compounding agent errors.
+
+### Changed
+- **Cloud Agent Governance** skill updated to reference the new Cursor Automations Governance skill and clarify scope: this skill covers one-off Cloud Agents and Bugbot Autofix; Automations are a separate skill.
+- **MCP Security** skill updated with "Related: AI Tool Project Config Files as Attack Surface" section — covers CVE-2025-59536 (Claude Code Hooks RCE) and CVE-2026-21852 (API key exfiltration), disclosed by Check Point Research March 2026. Documents the pattern: any AI tool config file in a shared repo is a potential RCE vector. Includes comparison table of `.cursor/mcp.json`, `.claude/settings.json`, and `.cursor/automations/` as attack surfaces.
+- README updated: Before/After table, skill count badge (31→32), governance skills table.
+
+### Security
+- Added Cursor Automations governance — prompt injection via event data (PR titles, Slack messages, webhook payloads) is a new and underappreciated attack surface for automation-heavy teams
+- Added CVE-2025-59536 / CVE-2026-21852 awareness: Claude Code Hooks RCE and API key exfiltration via `.claude/settings.json` — same trust model vulnerability class as MCPoison
+- Added webhook authentication requirements for custom Automation triggers
+
 ## [1.3.0] - 2026-03-01
 
 ### Added

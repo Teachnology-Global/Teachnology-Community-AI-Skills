@@ -2,7 +2,7 @@
 
 [![MIT Licence](https://img.shields.io/badge/licence-MIT-blue.svg)](LICENSE)
 [![Cursor Compatible](https://img.shields.io/badge/Cursor-Compatible-purple.svg)](https://cursor.com)
-[![31 Skills](https://img.shields.io/badge/skills-31-green.svg)](#whats-included)
+[![32 Skills](https://img.shields.io/badge/skills-32-green.svg)](#whats-included)
 [![Australian Made](https://img.shields.io/badge/made%20in-Australia%20🇦🇺-gold.svg)](https://www.skool.com/teachnology)
 
 **Stop your AI from shipping insecure, undocumented rubbish.** Drop these governance skills into any Cursor project and your AI assistant will follow proper security, privacy, accessibility, and quality standards - automatically, every time.
@@ -27,6 +27,8 @@ Built for the [Teachnology Community](https://www.skool.com/teachnology) by Jaso
 | AI generates plausible auth code with a logic bug | AI output validation checklist catches the flaw before merge |
 | Team pulls a repo — malicious MCP quietly hijacks the IDE | MCP Security skill requires version pinning, audit trails, and re-verification |
 | Bugbot Autofix auto-merges a "fix" that breaks auth | Cloud Agent Governance skill requires human review before every agent merge |
+| Automation triggered by a Slack message executes injected instructions | Cursor Automations Governance skill requires explicit prompt injection mitigations and event data sanitisation |
+| Scheduled automation makes a bad decision in week 1 — compounds for weeks unnoticed | Automations Governance requires weekly output review, memory governance, and auto-approval kill switch |
 
 ---
 
@@ -80,7 +82,7 @@ You can also try: "Run pre-release checklist" and watch it walk through all 17 g
 
 ## What's Included
 
-### 21 Skills
+### 22 Skills
 
 | Skill | What It Does | Always On? |
 |-------|-------------|------------|
@@ -104,7 +106,8 @@ You can also try: "Run pre-release checklist" and watch it walk through all 17 g
 | **Database Migration Safety** | Zero-downtime migrations, expand-contract pattern, rollback scripts. Neon-specific guidance. | No |
 | **AI Output Validation** | Validates AI-generated code before shipping. Catches hallucinated APIs, auth bugs, prompt injection. Updated for Bugbot and Cloud Agent PR review. | No |
 | **MCP Security** ⭐ NEW | Governs Model Context Protocol configs. MCPoison CVE-2025-54136 guidance, version pinning, team approval workflows, quarterly audit. | No |
-| **Cloud Agent Governance** ⭐ NEW | Safe delegation to Cursor Cloud Agents and Bugbot Autofix. PR review checklists, repo safeguards, rollback planning for autonomous agent workflows. | No |
+| **Cloud Agent Governance** | Safe delegation to Cursor Cloud Agents and Bugbot Autofix. PR review checklists, repo safeguards, rollback planning for autonomous agent workflows. | No |
+| **Cursor Automations Governance** ⭐ NEW | Governs always-on scheduled and event-triggered agents. Covers event source security, prompt injection via Slack/PR/webhook data, memory governance, auto-approval safeguards, webhook authentication, and incident response. | No |
 
 ### Scripts
 
@@ -174,6 +177,8 @@ Once installed, say any of these to your AI in Cursor:
 - "What licences are in my dependencies?"
 - "Audit MCP configurations in this project"
 - "Review this agent PR"
+- "Set up a Cursor Automation safely"
+- "Review my automations for prompt injection risk"
 
 The AI knows what to do.
 
