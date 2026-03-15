@@ -2,7 +2,8 @@
 
 [![MIT Licence](https://img.shields.io/badge/licence-MIT-blue.svg)](LICENSE)
 [![Cursor Compatible](https://img.shields.io/badge/Cursor-Compatible-purple.svg)](https://cursor.com)
-[![34 Skills](https://img.shields.io/badge/skills-34-green.svg)](#whats-included)
+
+[![38 Skills](https://img.shields.io/badge/skills-38-green.svg)](#whats-included)
 [![Australian Made](https://img.shields.io/badge/made%20in-Australia%20🇦🇺-gold.svg)](https://www.skool.com/teachnology)
 
 **Stop your AI from shipping insecure, undocumented rubbish.** Drop these governance skills into any Cursor project and your AI assistant will follow proper security, privacy, accessibility, and quality standards - automatically, every time.
@@ -29,6 +30,11 @@ Built for the [Teachnology Community](https://www.skool.com/teachnology) by Jaso
 | Bugbot Autofix auto-merges a "fix" that breaks auth | Cloud Agent Governance skill requires human review before every agent merge |
 | Automation triggered by a Slack message executes injected instructions | Cursor Automations Governance skill requires explicit prompt injection mitigations and event data sanitisation |
 | Scheduled automation makes a bad decision in week 1 — compounds for weeks unnoticed | Automations Governance requires weekly output review, memory governance, and auto-approval kill switch |
+
+| PR adds a `.claude/settings.json` with hooks that exfiltrate API keys — nobody reviews it | AI Project Config Security requires CODEOWNERS on all AI config paths and CI flags on changes |
+| Solo founder deploys on Friday, Vercel function loops, $400 OpenAI bill by Monday | Cost Governance enforces spending limits, retry caps, and caching before any API integration ships |
+| Production goes down at 11pm — founder stares at logs for an hour not knowing where to start | Incident Response runbook: confirm, rollback, diagnose, fix — structured steps for the first 30 minutes |
+| Founder forgets to set env vars on Vercel, deploys broken auth, users can't log in for 3 hours | Deployment Checklist catches missing env vars, wrong keys, and unrun migrations before the deploy button |
 | AI builds a contact form — no server-side validation, user input passed straight to the DB | Input Validation skill requires parameterised queries, schema validation, and server-side checks on every endpoint |
 | AI adds an OpenAI chat feature — no max_tokens, no spend limit, 10× traffic spike costs $800 overnight | AI Cost Management skill enforces spend caps, max_tokens on every call, per-user rate limits, and pre-launch cost estimation |
 
@@ -84,7 +90,8 @@ You can also try: "Run pre-release checklist" and watch it walk through all 17 g
 
 ## What's Included
 
-### 24 Skills
+
+### 28 Skills
 
 | Skill | What It Does | Always On? |
 |-------|-------------|------------|
@@ -109,7 +116,12 @@ You can also try: "Run pre-release checklist" and watch it walk through all 17 g
 | **AI Output Validation** | Validates AI-generated code before shipping. Catches hallucinated APIs, auth bugs, prompt injection. Updated for Bugbot and Cloud Agent PR review. | No |
 | **MCP Security** ⭐ NEW | Governs Model Context Protocol configs. MCPoison CVE-2025-54136 guidance, version pinning, team approval workflows, quarterly audit. | No |
 | **Cloud Agent Governance** | Safe delegation to Cursor Cloud Agents and Bugbot Autofix. PR review checklists, repo safeguards, rollback planning for autonomous agent workflows. | No |
-| **Cursor Automations Governance** ⭐ NEW | Governs always-on scheduled and event-triggered agents. Covers event source security, prompt injection via Slack/PR/webhook data, memory governance, auto-approval safeguards, webhook authentication, and incident response. | No |
+
+| **Cursor Automations Governance** | Governs always-on scheduled and event-triggered agents. Covers event source security, prompt injection via Slack/PR/webhook data, memory governance, auto-approval safeguards, webhook authentication, and incident response. | No |
+| **AI Project Config Security** ⭐ NEW | Governs all AI tool config files in repos (.cursor/, .claude/, copilot-instructions). CVE-2025-59536 and CVE-2026-21852 guidance. CODEOWNERS templates, CI integration, review protocol. | No |
+| **Deployment Checklist** ⭐ NEW | Focused go/no-go checklist for the "I'm about to press deploy" moment. Platform-specific notes for Vercel, Railway, Fly.io. Rollback protocol. | No |
+| **Cost Governance** ⭐ NEW | Prevents surprise bills from OpenAI, Anthropic, Vercel, and database providers. Spending limits, caching patterns, rate limiting, model routing, monthly review process. | No |
+| **Incident Response** ⭐ NEW | Structured runbook for when production breaks. First 30 minutes protocol, common incident patterns, communication templates, post-mortem process. | No |
 | **Input Validation** ⭐ NEW | Prevents XSS, SQL injection, path traversal, and data corruption. Validation patterns for forms, APIs, file uploads, and URL parameters. Covers AI-generated code red flags. | No |
 | **AI Cost Management** ⭐ NEW | Prevents LLM API bill shock. Token budgeting, per-user rate limits, model selection, prompt caching, spend limits, and production cost estimation. | No |
 
@@ -217,7 +229,7 @@ The AI knows what to do.
 ## Project Structure
 
 ```
-.cursor/skills/          <- 14 governance skills
+.cursor/skills/          <- 26 governance skills
 skills/                  <- 10 marketing skills for education entrepreneurs
 .cursorrules             <- Cursor AI rules (auto-loaded)
 governance.yaml          <- Project configuration
