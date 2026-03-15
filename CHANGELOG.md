@@ -5,6 +5,21 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.5.0] - 2026-03-15
+
+### Added
+- **Input Validation** skill — prevents XSS, SQL injection, path traversal, and data corruption from unvalidated user input. Includes validation patterns for forms, API endpoints, file uploads, and URL parameters. Zod/Pydantic schema examples, parameterised query patterns, DOMPurify XSS prevention, and a "red flags in AI-generated code" section for non-technical reviewers. Addresses a genuine gap: Cursor frequently generates code without server-side validation.
+- **AI Cost Management** skill — prevents LLM API bill shock for non-technical founders building AI features. Covers token budgeting, `max_tokens` enforcement, per-user rate limiting, conversation history trimming, prompt caching (OpenAI and Anthropic native caching), model selection strategy (don't use Opus for everything), usage logging per call, and a pre-production cost estimation template. Targets the exact failure pattern: a feature that works fine in dev generating hundreds of dollars in production overnight.
+
+### Changed
+- **MCP Security** skill updated with March 2026 Marketplace expansion — 30+ new partner plugins added (Atlassian, Datadog, GitLab, Glean, Hugging Face, monday.com, PlanetScale). New risk profile table documents write-access capabilities of each partner (GitLab → repo writes, PlanetScale → production DB, Datadog → logs/PII). Elevated guidance for write-capable plugins: require technical sign-off before enabling. Added Team Marketplaces section (Teams/Enterprise plan central governance).
+- README updated: Before/After table (2 new rows), skill count badge (32→34), governance skills table (22→24).
+
+### Security
+- Input Validation closes a gap in AI-generated code: Cursor frequently ships parameterisation-missing DB queries and missing server-side validation. This skill makes the patterns explicit and reviewable.
+- AI Cost Management adds a security angle: leaked AI API keys without spend limits are a financial risk, not just a security one. Skill cross-references secrets rotation with financial urgency.
+- MCP Security updated to reflect elevated risk from high-privilege Marketplace partners (GitLab, PlanetScale, Datadog) added in March 2026 expansion.
+
 ## [1.4.0] - 2026-03-08
 
 ### Added

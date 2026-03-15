@@ -2,7 +2,7 @@
 
 [![MIT Licence](https://img.shields.io/badge/licence-MIT-blue.svg)](LICENSE)
 [![Cursor Compatible](https://img.shields.io/badge/Cursor-Compatible-purple.svg)](https://cursor.com)
-[![32 Skills](https://img.shields.io/badge/skills-32-green.svg)](#whats-included)
+[![34 Skills](https://img.shields.io/badge/skills-34-green.svg)](#whats-included)
 [![Australian Made](https://img.shields.io/badge/made%20in-Australia%20🇦🇺-gold.svg)](https://www.skool.com/teachnology)
 
 **Stop your AI from shipping insecure, undocumented rubbish.** Drop these governance skills into any Cursor project and your AI assistant will follow proper security, privacy, accessibility, and quality standards - automatically, every time.
@@ -29,6 +29,8 @@ Built for the [Teachnology Community](https://www.skool.com/teachnology) by Jaso
 | Bugbot Autofix auto-merges a "fix" that breaks auth | Cloud Agent Governance skill requires human review before every agent merge |
 | Automation triggered by a Slack message executes injected instructions | Cursor Automations Governance skill requires explicit prompt injection mitigations and event data sanitisation |
 | Scheduled automation makes a bad decision in week 1 — compounds for weeks unnoticed | Automations Governance requires weekly output review, memory governance, and auto-approval kill switch |
+| AI builds a contact form — no server-side validation, user input passed straight to the DB | Input Validation skill requires parameterised queries, schema validation, and server-side checks on every endpoint |
+| AI adds an OpenAI chat feature — no max_tokens, no spend limit, 10× traffic spike costs $800 overnight | AI Cost Management skill enforces spend caps, max_tokens on every call, per-user rate limits, and pre-launch cost estimation |
 
 ---
 
@@ -82,7 +84,7 @@ You can also try: "Run pre-release checklist" and watch it walk through all 17 g
 
 ## What's Included
 
-### 22 Skills
+### 24 Skills
 
 | Skill | What It Does | Always On? |
 |-------|-------------|------------|
@@ -108,6 +110,8 @@ You can also try: "Run pre-release checklist" and watch it walk through all 17 g
 | **MCP Security** ⭐ NEW | Governs Model Context Protocol configs. MCPoison CVE-2025-54136 guidance, version pinning, team approval workflows, quarterly audit. | No |
 | **Cloud Agent Governance** | Safe delegation to Cursor Cloud Agents and Bugbot Autofix. PR review checklists, repo safeguards, rollback planning for autonomous agent workflows. | No |
 | **Cursor Automations Governance** ⭐ NEW | Governs always-on scheduled and event-triggered agents. Covers event source security, prompt injection via Slack/PR/webhook data, memory governance, auto-approval safeguards, webhook authentication, and incident response. | No |
+| **Input Validation** ⭐ NEW | Prevents XSS, SQL injection, path traversal, and data corruption. Validation patterns for forms, APIs, file uploads, and URL parameters. Covers AI-generated code red flags. | No |
+| **AI Cost Management** ⭐ NEW | Prevents LLM API bill shock. Token budgeting, per-user rate limits, model selection, prompt caching, spend limits, and production cost estimation. | No |
 
 ### Scripts
 

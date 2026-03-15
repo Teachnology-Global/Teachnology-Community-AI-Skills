@@ -259,9 +259,25 @@ Cursor's sandbox now supports restricting what MCP servers can reach. Use this t
 
 **Note:** Enterprise plan admins can enforce sandbox policies org-wide from the Cursor admin dashboard. If you're using Cursor Teams, ask your admin to lock down filesystem and network access.
 
-## Cursor Marketplace Plugin Governance (Feb 2026)
+## Cursor Marketplace Plugin Governance (Feb 2026, expanded March 2026)
 
-Cursor's new [Marketplace](https://cursor.com/marketplace) packages MCPs, hooks, skills, and subagents into installable plugins. As of Feb 2026, initial partners include Amplitude, AWS, Figma, Linear, Stripe.
+Cursor's [Marketplace](https://cursor.com/marketplace) packages MCPs, hooks, skills, and subagents into installable plugins. The initial Feb 2026 launch included Amplitude, AWS, Figma, Linear, Stripe. **In March 2026, 30+ new plugins were added** from partners including Atlassian, Datadog, GitLab, Glean, Hugging Face, monday.com, and PlanetScale — significantly expanding the attack surface.
+
+### Risk Profile of March 2026 Partner Plugins
+
+The new partner set introduces higher-risk capability categories:
+
+| Partner | What It Can Access | Why Higher Risk |
+|---------|-------------------|-----------------|
+| **GitLab** | Repositories, branches, CI pipelines | Can push code, trigger pipelines, read all repos you have access to |
+| **Datadog** | Logs, metrics, traces, alerts | Production log data may contain secrets, PII, or internal infra details |
+| **PlanetScale** | Database branches, schema, queries | Production database access; schema changes via agent are dangerous |
+| **Atlassian** | Jira issues, Confluence docs, Bitbucket | Cross-tool access; issues/docs often contain sensitive internal info |
+| **monday.com** | Boards, items, automations, files | Project data, potentially including personal info and credentials in items |
+| **Hugging Face** | Model repos, datasets, inference endpoints | Can push model weights; fine-tuning jobs can be expensive |
+| **Glean** | Enterprise search across all connected apps | Broad read access to your entire company knowledge base |
+
+**For non-technical founders:** The Feb 2026 launch partners (Stripe, Linear, Figma) were mostly read-heavy. The March 2026 partners include write access to production databases, code repos, and CI/CD pipelines. The stakes are higher — treat these plugins like giving the AI a key to your production systems, not just a read-only window.
 
 Before installing any marketplace plugin:
 
@@ -270,6 +286,7 @@ Before installing any marketplace plugin:
 3. **Install to test environment first** — Never install directly to a production project
 4. **Pin the version** — Install at a specific version, not "latest"
 5. **Treat like a code dependency** — It requires the same review as adding an npm package
+6. **For write-capable plugins** (GitLab, PlanetScale, Atlassian): Get explicit sign-off from a technical reviewer before enabling in any environment with production data
 
 ```bash
 # Install a specific plugin version (if supported)
@@ -278,6 +295,17 @@ Before installing any marketplace plugin:
 # Not
 /add-plugin @stripe/cursor-plugin  # installs latest - can change
 ```
+
+### Team Marketplaces (Feb 2026)
+
+Enterprise and Teams plan admins can create **private team marketplaces** to distribute approved plugins internally. This is the recommended governance approach:
+
+1. Admin vets and approves a plugin at a specific version
+2. Plugin is published to the team marketplace
+3. Team members install from the team marketplace (vetted, version-locked)
+4. Admin controls which plugins are available to the team
+
+This centralises the approval process and prevents individuals from installing unvetted plugins directly from the public marketplace. If you're on a Teams plan, configure a team marketplace before enabling marketplace plugins.
 
 ## Periodic Re-Verification
 
