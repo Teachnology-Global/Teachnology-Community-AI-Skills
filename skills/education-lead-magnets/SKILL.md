@@ -4,6 +4,7 @@ version: 1.0.0
 description: "Plan and create free tools, resources, and lead magnets that attract teachers and education professionals. Use when you mention 'lead magnet,' 'free resource,' 'free tool,' 'calculator,' 'quiz,' 'opt-in,' 'freebie,' or 'lead generation.' Covers strategy, formats, and implementation."
 platform: cursor
 category: marketing
+tags: [product]
 ---
 
 # Lead Magnets for Education Entrepreneurs

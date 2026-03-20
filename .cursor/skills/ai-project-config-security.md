@@ -9,6 +9,7 @@ description: >
   (5) setting up a new project with AI tooling.
 globs: ["**/.cursor/**", "**/.claude/**", "**/.github/copilot-instructions.md", "**/.github/copilot*", "**/.continue/**", "**/.aider*"]
 alwaysApply: false
+tags: [product]
 ---
 
 # AI Project Config Security

@@ -7,6 +7,7 @@ description: >
   corrupted, (4) a security incident is suspected, (5) a deployment went wrong.
 globs: ["**/*"]
 alwaysApply: false
+tags: [product]
 ---
 
 # Incident Response

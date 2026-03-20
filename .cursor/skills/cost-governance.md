@@ -8,6 +8,7 @@ description: >
   (5) optimising an existing application's running costs.
 globs: ["**/*.config.*", "**/vercel.json", "**/.env*", "**/package.json"]
 alwaysApply: false
+tags: [product]
 ---
 
 # Cost Governance

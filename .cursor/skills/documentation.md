@@ -6,6 +6,7 @@ description: >
   APIs, (4) releasing new versions, (5) introducing breaking changes.
 globs: ["**/*"]
 alwaysApply: false
+tags: [product]
 ---
 
 # Documentation
@@ -344,4 +345,3 @@ Before deployment:
 - Use consistent linking format
 - Validate links in CI
 - Maintain index files
-

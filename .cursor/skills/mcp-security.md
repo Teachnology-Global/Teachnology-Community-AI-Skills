@@ -9,6 +9,7 @@ description: >
   team member, (5) auditing existing MCP configurations.
 globs: ["**/.cursor/mcp.json", "**/.cursor/*.json", "**/cursor.json"]
 alwaysApply: false
+tags: [product]
 ---
 
 # MCP Security

@@ -7,6 +7,7 @@ description: >
   retention, (5) ensuring right-to-deletion implementation.
 globs: ["**/*.ts", "**/*.tsx", "**/*.js", "**/*.jsx", "**/*.py", "**/*.java", "**/*.cs"]
 alwaysApply: false
+tags: [product]
 ---
 
 # Privacy Guard
@@ -233,4 +234,3 @@ This skill triggers Human Approval for:
 - Privacy decisions captured in ADRs
 - Data handling documented in API docs
 - Privacy policy changes in changelog
-

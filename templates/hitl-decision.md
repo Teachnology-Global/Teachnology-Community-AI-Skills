@@ -1,3 +1,10 @@
+---
+title: "Human Approval Decision Log"
+date: 2026-03-20
+tags: [product]
+status: draft
+---
+
 # Human Approval Decision Log
 
 ## Decision: [ID]

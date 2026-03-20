@@ -1,3 +1,10 @@
+---
+title: "Test Plan: [Feature/Project Name]"
+date: 2026-03-20
+tags: [product]
+status: draft
+---
+
 # Test Plan: [Feature/Project Name]
 
 ## Metadata

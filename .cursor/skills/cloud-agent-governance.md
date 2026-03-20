@@ -8,6 +8,7 @@ description: >
   PR, (3) using Bugbot Autofix, (4) setting up autonomous coding workflows.
 globs: ["**/.github/**", "**/vercel.json", "**/.cursor/**"]
 alwaysApply: false
+tags: [product]
 ---
 
 # Cloud Agent Governance

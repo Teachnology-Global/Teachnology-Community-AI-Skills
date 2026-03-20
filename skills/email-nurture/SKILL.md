@@ -4,6 +4,7 @@ version: 1.0.0
 description: "Create or optimise email sequences and drip campaigns. Use when you mention 'email sequence,' 'drip campaign,' 'nurture sequence,' 'welcome emails,' 'onboarding emails,' 'email automation,' or 'lifecycle emails.' For writing individual marketing copy, see copywriting."
 platform: cursor
 category: marketing
+tags: [product]
 ---
 
 # Email Nurture for Education Entrepreneurs

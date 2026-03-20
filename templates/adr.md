@@ -1,3 +1,10 @@
+---
+title: "ADR-[NNN]: [Title]"
+date: 2026-03-20
+tags: [product]
+status: draft
+---
+
 # ADR-[NNN]: [Title]
 
 <!--

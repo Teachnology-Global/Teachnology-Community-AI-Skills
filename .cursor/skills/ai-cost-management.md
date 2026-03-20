@@ -10,6 +10,7 @@ description: >
   high bills, (5) preparing an AI feature for production.
 globs: ["**/*.ts", "**/*.tsx", "**/*.js", "**/*.py", "**/api/**", "**/*.env*", "**/openai*", "**/anthropic*"]
 alwaysApply: false
+tags: [product]
 ---
 
 # AI Cost Management

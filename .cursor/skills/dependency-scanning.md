@@ -6,6 +6,7 @@ description: >
   security advisories, (4) preparing for release, (5) investigating supply chain risks.
 globs: ["package.json", "package-lock.json", "yarn.lock", "pnpm-lock.yaml", "requirements.txt", "Pipfile.lock", "go.sum", "Cargo.lock", "pom.xml", "*.csproj"]
 alwaysApply: false
+tags: [product]
 ---
 
 # Dependency Scanning

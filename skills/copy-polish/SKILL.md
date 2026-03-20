@@ -4,6 +4,7 @@ version: 1.0.0
 description: "Edit, review, and improve existing marketing copy. Use when you mention 'edit this,' 'review my copy,' 'polish this,' 'make this better,' 'proofread,' or 'copy sweep.' Systematic editing through multiple focused passes."
 platform: cursor
 category: marketing
+tags: [product]
 ---
 
 # Copy Polish for Education Entrepreneurs

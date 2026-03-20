@@ -4,6 +4,7 @@ version: 1.0.0
 description: "Create or update your brand positioning document. Use when you mention 'brand context,' 'positioning,' 'messaging,' 'who is this for,' or want consistent messaging across your marketing. Creates a reusable context file that other marketing skills reference automatically."
 platform: cursor
 category: marketing
+tags: [product]
 ---
 
 # Brand Context for Education Entrepreneurs

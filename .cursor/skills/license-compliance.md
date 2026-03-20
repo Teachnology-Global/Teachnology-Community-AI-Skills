@@ -6,6 +6,7 @@ description: >
   (4) reviewing license compatibility, (5) open source compliance checks.
 globs: ["package.json", "package-lock.json", "requirements.txt", "Pipfile", "go.mod", "Cargo.toml", "pom.xml", "*.csproj"]
 alwaysApply: false
+tags: [product]
 ---
 
 # License Compliance
@@ -306,4 +307,3 @@ npm install axios
 | Snyk | Multi | `snyk test --license` |
 | WhiteSource | Multi | (Commercial) |
 | Black Duck | Multi | (Commercial) |
-

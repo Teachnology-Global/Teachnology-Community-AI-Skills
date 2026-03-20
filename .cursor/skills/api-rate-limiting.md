@@ -7,6 +7,7 @@ description: >
   service abuse, (4) optimizing API costs, (5) handling high traffic loads.
 globs: ["**/api/**/*", "**/pages/api/**/*", "**/routes/**/*", "**/*.api.*", "**/services/**/*"]
 alwaysApply: false
+tags: [product]
 ---
 
 # API Rate Limiting

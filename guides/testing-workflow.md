@@ -1,3 +1,10 @@
+---
+title: "Testing Workflow Guide"
+date: 2026-03-20
+tags: [product]
+status: draft
+---
+
 # Testing Workflow Guide
 
 A comprehensive guide to using the integrated testing skills in the Cursor Governance Framework.

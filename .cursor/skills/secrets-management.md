@@ -7,6 +7,7 @@ description: >
   (5) rotating secrets after a breach or staff change.
 globs: ["**/.env*", "**/*.config.*", "**/docker-compose*", "**/.github/**", "**/vercel.json"]
 alwaysApply: false
+tags: [product]
 ---
 
 # Secrets Management

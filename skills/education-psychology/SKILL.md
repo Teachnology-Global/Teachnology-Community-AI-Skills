@@ -4,6 +4,7 @@ version: 1.0.0
 description: "Apply psychological principles and behavioural science to education marketing. Use when you mention 'psychology,' 'why people buy,' 'decision-making,' 'persuasion,' 'cognitive bias,' 'mental models,' or 'behavioural science.' Provides models specifically relevant to selling education products and services to teachers."
 platform: cursor
 category: marketing
+tags: [product]
 ---
 
 # Marketing Psychology for Education Entrepreneurs

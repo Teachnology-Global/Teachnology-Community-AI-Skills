@@ -7,6 +7,7 @@ description: >
   (3) deploying after a significant change, (4) unsure if something will break in prod.
 globs: ["**/vercel.json", "**/fly.toml", "**/railway.json", "**/Dockerfile", "**/next.config.*"]
 alwaysApply: false
+tags: [product]
 ---
 
 # Deployment Checklist

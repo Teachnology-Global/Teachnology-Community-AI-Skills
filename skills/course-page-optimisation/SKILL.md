@@ -4,6 +4,7 @@ version: 1.0.0
 description: "Optimise course sales pages, community pages, and education landing pages for conversions. Use when you mention 'CRO,' 'conversion rate,' 'this page isn't converting,' 'improve conversions,' 'landing page review,' or 'why isn't this page working.'"
 platform: cursor
 category: marketing
+tags: [product]
 ---
 
 # Course Page Optimisation

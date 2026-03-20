@@ -9,6 +9,7 @@ description: >
   (5) recovering from a failed migration.
 globs: ["**/migrations/**", "**/db/**", "**/*.sql", "**/prisma/schema.prisma", "**/drizzle/**", "**/knexfile*", "**/alembic/**"]
 alwaysApply: false
+tags: [product]
 ---
 
 # Database Migration Safety

@@ -4,6 +4,7 @@ version: 1.0.0
 description: "Create comparison and alternative pages for SEO and positioning. Use when you mention 'comparison page,' 'vs page,' 'alternative to,' 'how we compare,' or 'competitive positioning.' Helps capture search traffic from people comparing education options."
 platform: cursor
 category: marketing
+tags: [product]
 ---
 
 # Education Comparison Pages

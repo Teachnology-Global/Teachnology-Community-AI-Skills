@@ -6,6 +6,7 @@ description: >
   (4) setting up test infrastructure, (5) discussing testing strategy.
 globs: ["**/*.test.*", "**/*.spec.*", "**/__tests__/**", "**/test/**"]
 alwaysApply: false
+tags: [product]
 ---
 
 # Testing Standards
@@ -380,4 +381,3 @@ it('handles empty string input without crashing (fixes #123)', () => {
 
 - Test examples serve as documentation
 - API tests document expected behaviour
-

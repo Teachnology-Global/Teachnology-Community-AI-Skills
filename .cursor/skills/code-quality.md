@@ -6,6 +6,7 @@ description: >
   (4) establishing team standards, (5) addressing tech debt.
 globs: ["**/*.ts", "**/*.tsx", "**/*.js", "**/*.jsx", "**/*.py", "**/*.go", "**/*.java", "**/*.cs"]
 alwaysApply: true
+tags: [product]
 ---
 
 # Code Quality
@@ -333,4 +334,3 @@ All exceptions require:
 1. Issue ticket reference
 2. Planned remediation
 3. Code review approval
-

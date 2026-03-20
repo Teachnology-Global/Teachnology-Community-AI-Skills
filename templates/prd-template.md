@@ -1,3 +1,10 @@
+---
+title: "Product Requirements Document (PRD)"
+date: 2026-03-20
+tags: [product]
+status: draft
+---
+
 # Product Requirements Document (PRD)
 
 ## Document Information

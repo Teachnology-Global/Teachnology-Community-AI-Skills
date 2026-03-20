@@ -1,3 +1,10 @@
+---
+title: "Changelog Entry Template"
+date: 2026-03-20
+tags: [product]
+status: draft
+---
+
 # Changelog Entry Template
 
 Use this format when adding entries to CHANGELOG.md.

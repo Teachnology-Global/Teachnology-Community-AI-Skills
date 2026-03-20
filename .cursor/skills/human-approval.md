@@ -7,6 +7,7 @@ description: >
   (5) adding external dependencies, (6) privacy-impacting code changes.
 globs: ["**/*"]
 alwaysApply: true
+tags: [product]
 ---
 
 # Human Approval
@@ -275,4 +276,3 @@ Every decision must be logged:
 | Internal refactor, same API | Log and continue |
 | Bug fix with clear solution | Log and continue |
 | Style/formatting changes | Continue |
-

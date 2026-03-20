@@ -6,6 +6,7 @@ description: >
   E2E tests, (5) generating test documentation with screenshots.
 globs: ["**/*.spec.ts", "**/*.test.ts", "**/e2e/**", "**/tests/**"]
 alwaysApply: false
+tags: [product]
 ---
 
 # Browser Testing
@@ -427,4 +428,3 @@ test('TC-001: Successful user signup', async ({ page }) => {
 | "Screenshot this flow" | Capture visual evidence |
 | "Generate test report" | Create visual report |
 | "What failed?" | Show failed test details |
-

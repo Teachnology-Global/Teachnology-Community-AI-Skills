@@ -9,6 +9,7 @@ description: >
   (5) auditing existing input handling.
 globs: ["**/*.ts", "**/*.tsx", "**/*.js", "**/*.jsx", "**/*.py", "**/*.html", "**/*.vue", "**/*.svelte", "**/api/**"]
 alwaysApply: false
+tags: [product]
 ---
 
 # Input Validation

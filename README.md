@@ -1,3 +1,10 @@
+---
+title: "Cursor Governance Skills"
+date: 2026-03-20
+tags: [product]
+status: draft
+---
+
 # Cursor Governance Skills
 
 [![MIT Licence](https://img.shields.io/badge/licence-MIT-blue.svg)](LICENSE)

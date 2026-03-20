@@ -9,6 +9,7 @@ description: >
   agentic tasks that write code autonomously.
 globs: ["**/*"]
 alwaysApply: false
+tags: [product]
 ---
 
 # AI Output Validation

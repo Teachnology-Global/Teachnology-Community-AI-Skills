@@ -4,6 +4,7 @@ version: 1.0.0
 description: "Plan what content to create and where to publish it. Use when you mention 'content strategy,' 'what should I write about,' 'content ideas,' 'blog strategy,' 'topic clusters,' or 'content planning.' For writing individual pieces, see copywriting. For editing existing copy, see copy-polish."
 platform: cursor
 category: marketing
+tags: [product]
 ---
 
 # Content Strategy for Education Entrepreneurs

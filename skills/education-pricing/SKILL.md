@@ -4,6 +4,7 @@ version: 1.0.0
 description: "Design pricing for courses, coaching, communities, and education services. Use when you mention 'pricing,' 'what should I charge,' 'pricing tiers,' 'freemium,' 'free vs paid,' 'packaging,' or 'monetisation.' Covers pricing research, tier structure, and psychology for education entrepreneurs."
 platform: cursor
 category: marketing
+tags: [product]
 ---
 
 # Pricing Strategy for Education Entrepreneurs

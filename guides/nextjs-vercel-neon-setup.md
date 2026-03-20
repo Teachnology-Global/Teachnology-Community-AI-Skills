@@ -1,3 +1,10 @@
+---
+title: "Governance Framework Setup Guide"
+date: 2026-03-20
+tags: [product]
+status: draft
+---
+
 # Governance Framework Setup Guide
 ## For Next.js + Vercel + Neon DB Projects
 

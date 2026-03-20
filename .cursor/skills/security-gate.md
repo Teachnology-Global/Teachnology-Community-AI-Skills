@@ -7,6 +7,7 @@ description: >
   (4) setting up CI/CD security gates.
 globs: ["**/*"]
 alwaysApply: false
+tags: [product]
 ---
 
 # Security Gate
@@ -308,4 +309,3 @@ The security gate can only be skipped with:
 4. Time-limited exception with remediation plan
 
 Never skip for convenience. Security debt compounds.
-

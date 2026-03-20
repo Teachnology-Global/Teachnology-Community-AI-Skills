@@ -7,6 +7,7 @@ description: >
   error boundaries, (4) designing user feedback, (5) setting up error monitoring.
 globs: ["**/*.ts", "**/*.tsx", "**/*.js", "**/*.jsx", "**/*.py", "**/*.go"]
 alwaysApply: false
+tags: [product]
 ---
 
 # Error Handling Standards

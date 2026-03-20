@@ -6,6 +6,7 @@ description: >
   (2) final release validation, (3) production readiness review, (4) go/no-go decision.
 globs: ["**/*"]
 alwaysApply: false
+tags: [product]
 ---
 
 # Pre-Release Checklist
@@ -326,4 +327,3 @@ jobs:
         run: |
           echo "All gates passed - release approved"
 ```
-

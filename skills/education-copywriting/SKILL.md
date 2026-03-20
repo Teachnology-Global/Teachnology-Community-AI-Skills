@@ -4,6 +4,7 @@ version: 1.0.0
 description: "Write marketing copy for course pages, landing pages, about pages, and sales pages. Use when you mention 'write copy for,' 'sales page,' 'landing page copy,' 'headline help,' 'CTA copy,' or 'marketing copy.' For editing existing copy, see copy-polish. For email copy, see email-nurture."
 platform: cursor
 category: marketing
+tags: [product]
 ---
 
 # Copywriting for Education Entrepreneurs

@@ -7,6 +7,7 @@ description: >
   (5) implementing accessible components. Updated for 2026 compliance deadlines.
 globs: ["**/*.html", "**/*.tsx", "**/*.jsx", "**/*.vue", "**/*.svelte"]
 alwaysApply: false
+tags: [product]
 ---
 
 # Accessibility
@@ -418,4 +419,3 @@ test('component is accessible', async () => {
 - Accessible component patterns documented
 - Keyboard shortcuts documented
 - Screen reader behaviour documented
-

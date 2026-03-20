@@ -6,6 +6,7 @@ description: >
   visual regression tests, (4) documenting test execution with screenshots.
 globs: ["**/*.spec.ts", "**/*.spec.tsx", "**/*.test.ts", "**/e2e/**", "**/playwright/**", "**/cypress/**"]
 alwaysApply: false
+tags: [product]
 ---
 
 # Test Automation
@@ -564,4 +565,3 @@ export default defineConfig({
 | "Add screenshots to tests" | Enhance tests with capture |
 | "Create visual report" | Generate HTML report |
 | "Convert manual test to automated" | Transform test case to code |
-

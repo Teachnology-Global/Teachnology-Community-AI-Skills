@@ -9,6 +9,7 @@ description: >
   runs, (5) onboarding the team to scheduled agents.
 globs: ["**/.cursor/automations/**", "**/.cursor/automations.yaml", "**/.github/**"]
 alwaysApply: false
+tags: [product]
 ---
 
 # Cursor Automations Governance

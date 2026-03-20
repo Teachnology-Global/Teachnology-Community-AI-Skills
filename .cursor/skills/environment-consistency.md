@@ -8,6 +8,7 @@ description: >
   (3) preparing for deployment, (4) configuring CI/CD pipelines, (5) onboarding team members.
 globs: ["**/package.json", "**/requirements.txt", "**/Dockerfile", "**/.env*", "**/docker-compose*", "**/.github/**", "**/vercel.json", "**/netlify.toml"]
 alwaysApply: false
+tags: [product]
 ---
 
 # Environment Consistency

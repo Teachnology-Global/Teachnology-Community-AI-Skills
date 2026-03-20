@@ -1,3 +1,10 @@
+---
+title: "Changelog"
+date: 2026-03-20
+tags: [product]
+status: draft
+---
+
 # Changelog
 
 All notable changes to this project will be documented in this file.

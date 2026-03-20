@@ -1,3 +1,10 @@
+---
+title: "Security Exception Request"
+date: 2026-03-20
+tags: [product]
+status: draft
+---
+
 # Security Exception Request
 
 ## Exception Details

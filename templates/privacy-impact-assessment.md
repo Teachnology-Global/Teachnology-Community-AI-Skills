@@ -1,3 +1,10 @@
+---
+title: "Privacy Impact Assessment (PIA)"
+date: 2026-03-20
+tags: [product]
+status: draft
+---
+
 # Privacy Impact Assessment (PIA)
 
 ## Document Information

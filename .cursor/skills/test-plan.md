@@ -6,6 +6,7 @@ description: >
   QA coverage, (4) reviewing test completeness, (5) human-in-the-loop adds features.
 globs: ["**/prd*.md", "**/PRD*.md", "**/requirements*.md", "**/test-plan*.md"]
 alwaysApply: false
+tags: [product]
 ---
 
 # Test Plan Management
@@ -319,4 +320,3 @@ Before release:
 | "Show test coverage" | Display coverage report |
 | "What's not tested?" | List uncovered requirements |
 | "Add test case for [feature]" | Create new test case |
-
