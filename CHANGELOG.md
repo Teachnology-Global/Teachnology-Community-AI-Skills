@@ -12,6 +12,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.7.0] - 2026-03-22
+
+### Added
+- **LLM Observability** skill — instruments AI-powered features for production visibility. Covers Langfuse integration (free tier, open source), DIY database logging for teams not ready for a dedicated tool, error rate alerting, per-user token budget enforcement, user feedback signals (👍/👎), deterministic output validation with Zod schemas, and a pre-launch observability checklist. Targets the exact failure pattern for non-technical founders: AI feature ships, works in dev, silently fails or hallucinate in production with no visibility. Cross-references AI Cost Management (controls) and AI Output Validation (prevention).
+- **Webhook Security** skill — prevents forged requests, replay attacks, and payload injection via untrusted webhook data. Covers provider-specific HMAC verification for Stripe, GitHub, Slack, and Clerk; generic HMAC-SHA256 pattern for custom services; timestamp validation and event ID idempotency for replay prevention; payload injection mitigations specifically for AI automation pipelines; and a complete webhook security checklist. Includes test examples for each verification pattern.
+
+### Changed
+- README updated: Before/After table (2 new rows), skill count badge (38→40), skills table (28→30).
+
+### Security
+- Webhook Security closes a critical gap: non-technical founders frequently build Stripe/GitHub/Slack webhook receivers without any signature verification, making them trivially spoofable.
+- LLM Observability adds a security-adjacent layer: per-user rate limits and token caps prevent resource exhaustion attacks and abuse of AI endpoints.
+- Webhook payload injection guidance cross-references Cursor Automations Governance for teams using webhooks as automation triggers.
+
 ## [1.6.0] - 2026-03-15
 
 ### Added

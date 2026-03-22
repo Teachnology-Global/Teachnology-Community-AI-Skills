@@ -10,7 +10,7 @@ status: draft
 [![MIT Licence](https://img.shields.io/badge/licence-MIT-blue.svg)](LICENSE)
 [![Cursor Compatible](https://img.shields.io/badge/Cursor-Compatible-purple.svg)](https://cursor.com)
 
-[![38 Skills](https://img.shields.io/badge/skills-38-green.svg)](#whats-included)
+[![40 Skills](https://img.shields.io/badge/skills-40-green.svg)](#whats-included)
 [![Australian Made](https://img.shields.io/badge/made%20in-Australia%20🇦🇺-gold.svg)](https://www.skool.com/teachnology)
 
 **Stop your AI from shipping insecure, undocumented rubbish.** Drop these governance skills into any Cursor project and your AI assistant will follow proper security, privacy, accessibility, and quality standards - automatically, every time.
@@ -40,6 +40,8 @@ Built for the [Teachnology Community](https://www.skool.com/teachnology) by Jaso
 
 | PR adds a `.claude/settings.json` with hooks that exfiltrate API keys — nobody reviews it | AI Project Config Security requires CODEOWNERS on all AI config paths and CI flags on changes |
 | Solo founder deploys on Friday, Vercel function loops, $400 OpenAI bill by Monday | Cost Governance enforces spending limits, retry caps, and caching before any API integration ships |
+| AI feature ships to production — no logs, no alerts, no idea it's hallucinating for 20% of users until support tickets arrive 3 days later | LLM Observability instruments every call with tracing, error rate alerts, and per-user cost tracking from day one |
+| Stripe webhook endpoint has no signature verification — attacker sends a fake "payment complete" event and gets paid orders for free | Webhook Security requires HMAC signature verification on every webhook endpoint before any business logic runs |
 | Production goes down at 11pm — founder stares at logs for an hour not knowing where to start | Incident Response runbook: confirm, rollback, diagnose, fix — structured steps for the first 30 minutes |
 | Founder forgets to set env vars on Vercel, deploys broken auth, users can't log in for 3 hours | Deployment Checklist catches missing env vars, wrong keys, and unrun migrations before the deploy button |
 | AI builds a contact form — no server-side validation, user input passed straight to the DB | Input Validation skill requires parameterised queries, schema validation, and server-side checks on every endpoint |
@@ -98,7 +100,7 @@ You can also try: "Run pre-release checklist" and watch it walk through all 17 g
 ## What's Included
 
 
-### 28 Skills
+### 30 Skills
 
 | Skill | What It Does | Always On? |
 |-------|-------------|------------|
@@ -130,7 +132,9 @@ You can also try: "Run pre-release checklist" and watch it walk through all 17 g
 | **Cost Governance** ⭐ NEW | Prevents surprise bills from OpenAI, Anthropic, Vercel, and database providers. Spending limits, caching patterns, rate limiting, model routing, monthly review process. | No |
 | **Incident Response** ⭐ NEW | Structured runbook for when production breaks. First 30 minutes protocol, common incident patterns, communication templates, post-mortem process. | No |
 | **Input Validation** ⭐ NEW | Prevents XSS, SQL injection, path traversal, and data corruption. Validation patterns for forms, APIs, file uploads, and URL parameters. Covers AI-generated code red flags. | No |
-| **AI Cost Management** ⭐ NEW | Prevents LLM API bill shock. Token budgeting, per-user rate limits, model selection, prompt caching, spend limits, and production cost estimation. | No |
+| **AI Cost Management** | Prevents LLM API bill shock. Token budgeting, per-user rate limits, model selection, prompt caching, spend limits, and production cost estimation. | No |
+| **LLM Observability** ⭐ NEW | Instruments AI features for production visibility. Tracing calls, quality monitoring, error alerting, per-user cost tracking. Langfuse integration and DIY logging patterns. | No |
+| **Webhook Security** ⭐ NEW | Secures webhook endpoints against forged requests and replay attacks. HMAC verification for Stripe, GitHub, Slack, Clerk. Payload injection prevention for AI automations. | No |
 
 ### Scripts
 
@@ -236,7 +240,7 @@ The AI knows what to do.
 ## Project Structure
 
 ```
-.cursor/skills/          <- 26 governance skills
+.cursor/skills/          <- 30 governance skills
 skills/                  <- 10 marketing skills for education entrepreneurs
 .cursorrules             <- Cursor AI rules (auto-loaded)
 governance.yaml          <- Project configuration
