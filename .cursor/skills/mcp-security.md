@@ -2,12 +2,13 @@
 description: >
   Governs the safe use of Model Context Protocol (MCP) servers and configurations
   in Cursor IDE. Covers vetting, approval, re-verification, and the MCPoison
-  trust-bypass attack (CVE-2025-54136). Critical for teams sharing codebases or
-  using Cursor in production workflows.
+  trust-bypass attack (CVE-2025-54136) plus the five-CVE RCE cluster (CVE-2025-59944,
+  CVE-2025-61590, CVE-2025-61591, CVE-2025-61592, CVE-2025-61593) affecting Cursor ≤1.7.
+  Critical for teams sharing codebases or using Cursor in production workflows.
   Use when: (1) adding an MCP server to a project, (2) reviewing a repo that contains
   .cursor/mcp.json, (3) pulling from a shared repository, (4) onboarding a new
   team member, (5) auditing existing MCP configurations.
-globs: ["**/.cursor/mcp.json", "**/.cursor/*.json", "**/cursor.json"]
+globs: ["**/.cursor/mcp.json", "**/.cursor/*.json", "**/cursor.json", "**/.vscode/**"]
 alwaysApply: false
 tags: [product]
 ---
@@ -30,6 +31,32 @@ In August 2025, Check Point Research disclosed a critical vulnerability in Curso
 **For non-technical founders and teachers:** This means an MCP config in a codebase is like a browser extension that can update itself after you've approved it. If someone else has write access to a repo you work in, they can gain silent, persistent access to your machine — including credentials, SSH keys, and any secrets visible to Cursor.
 
 **Current mitigation:** Update Cursor to the latest version. Cursor patched this in a subsequent release. However, the underlying trust model risk remains for any MCP-heavy workflow — the practices below are still required.
+
+## Five-CVE RCE Cluster: Cursor ≤1.7 (Disclosed ~Oct–Nov 2025)
+
+Geordie AI and independent researchers disclosed a cluster of five high-severity RCE vulnerabilities affecting **Cursor versions 1.7 and below**. All five exploit prompt injection to bypass Cursor's file-protection checks via different vectors.
+
+| CVE | Vector | Mechanism |
+|-----|--------|-----------|
+| **CVE-2025-59944** | Case-sensitivity bypass | On Windows/macOS (case-insensitive filesystems), crafted inputs use alternate case (e.g. `MCP.JSON` instead of `mcp.json`) to overwrite protected config files, achieving persistent RCE across IDE restarts |
+| **CVE-2025-61590** | VS Code workspace manipulation | Malicious `.vscode/settings.json` in a cloned repo runs arbitrary commands when opened |
+| **CVE-2025-61591** | MCP server OAuth impersonation | Malicious MCP server poses as a legitimate OAuth provider, stealing tokens during the auth flow |
+| **CVE-2025-61592** | Malicious project CLI config | Attacker-controlled CLI config file executes code when Cursor initialises the project |
+| **CVE-2025-61593** | CLI agent file modification | Prompt injection causes Cursor's CLI agent to modify config files outside the agent's intended scope |
+
+**CVSS score: 8.0 (High)**. All five are patched in Cursor 1.8+.
+
+**Immediate action required:**
+```bash
+# Check your Cursor version (Help → About in the IDE, or):
+cursor --version
+
+# If below 1.8, update immediately via:
+# Help → Check for Updates
+# or download from https://cursor.com/downloads
+```
+
+**For non-technical founders:** CVE-2025-59944 is the most practically dangerous for shared repositories. An attacker only needs write access to a repo you work in. They rename the MCP config file with an alternate case — Cursor's protection check misses it, the malicious config loads silently every time you open the project, and the RCE persists across restarts. Update Cursor. Now.
 
 ## Activation
 
@@ -82,7 +109,7 @@ In March 2026, Check Point Research disclosed a critical vulnerability in Anthro
 
 | File | Tool | Risk |
 |------|------|------|
-| `.cursor/mcp.json` | Cursor | MCPoison (CVE-2025-54136) |
+| `.cursor/mcp.json` | Cursor | MCPoison (CVE-2025-54136) + case-sensitivity bypass (CVE-2025-59944) |
 | `.claude/settings.json` | Claude Code | Hooks RCE (CVE-2025-59536) |
 | `.cursor/automations/` | Cursor Automations | Automation config injection |
 

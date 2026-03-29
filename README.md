@@ -10,7 +10,7 @@ status: draft
 [![MIT Licence](https://img.shields.io/badge/licence-MIT-blue.svg)](LICENSE)
 [![Cursor Compatible](https://img.shields.io/badge/Cursor-Compatible-purple.svg)](https://cursor.com)
 
-[![40 Skills](https://img.shields.io/badge/skills-40-green.svg)](#whats-included)
+[![41 Skills](https://img.shields.io/badge/skills-41-green.svg)](#whats-included)
 [![Australian Made](https://img.shields.io/badge/made%20in-Australia%20🇦🇺-gold.svg)](https://www.skool.com/teachnology)
 
 **Stop your AI from shipping insecure, undocumented rubbish.** Drop these governance skills into any Cursor project and your AI assistant will follow proper security, privacy, accessibility, and quality standards - automatically, every time.
@@ -46,6 +46,7 @@ Built for the [Teachnology Community](https://www.skool.com/teachnology) by Jaso
 | Founder forgets to set env vars on Vercel, deploys broken auth, users can't log in for 3 hours | Deployment Checklist catches missing env vars, wrong keys, and unrun migrations before the deploy button |
 | AI builds a contact form — no server-side validation, user input passed straight to the DB | Input Validation skill requires parameterised queries, schema validation, and server-side checks on every endpoint |
 | AI adds an OpenAI chat feature — no max_tokens, no spend limit, 10× traffic spike costs $800 overnight | AI Cost Management skill enforces spend caps, max_tokens on every call, per-user rate limits, and pre-launch cost estimation |
+| App ships with no uptime monitoring — founder discovers site was down for 6 hours via a user email | Monitoring & Alerting skill installs Sentry + BetterStack, builds a `/api/health` endpoint, and sets alert rules before launch |
 
 ---
 
@@ -100,7 +101,7 @@ You can also try: "Run pre-release checklist" and watch it walk through all 17 g
 ## What's Included
 
 
-### 30 Skills
+### 31 Skills
 
 | Skill | What It Does | Always On? |
 |-------|-------------|------------|
@@ -134,7 +135,8 @@ You can also try: "Run pre-release checklist" and watch it walk through all 17 g
 | **Input Validation** ⭐ NEW | Prevents XSS, SQL injection, path traversal, and data corruption. Validation patterns for forms, APIs, file uploads, and URL parameters. Covers AI-generated code red flags. | No |
 | **AI Cost Management** | Prevents LLM API bill shock. Token budgeting, per-user rate limits, model selection, prompt caching, spend limits, and production cost estimation. | No |
 | **LLM Observability** ⭐ NEW | Instruments AI features for production visibility. Tracing calls, quality monitoring, error alerting, per-user cost tracking. Langfuse integration and DIY logging patterns. | No |
-| **Webhook Security** ⭐ NEW | Secures webhook endpoints against forged requests and replay attacks. HMAC verification for Stripe, GitHub, Slack, Clerk. Payload injection prevention for AI automations. | No |
+| **Webhook Security** | Secures webhook endpoints against forged requests and replay attacks. HMAC verification for Stripe, GitHub, Slack, Clerk. Payload injection prevention for AI automations. | No |
+| **Monitoring & Alerting** ⭐ NEW | Error tracking (Sentry), uptime monitoring (BetterStack), performance metrics (Vercel Analytics). Health endpoint design, alert rules, Core Web Vitals targets, runbook template. | No |
 
 ### Scripts
 

@@ -12,6 +12,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.8.0] - 2026-03-29
+
+### Added
+- **Monitoring & Alerting** skill — ensures every production app has visibility into errors, downtime, and performance before users find out first. Covers the three-layer stack (error tracking via Sentry, uptime monitoring via BetterStack/UptimeRobot, performance metrics via Vercel Analytics), health endpoint design, alert rule templates, Core Web Vitals targets, and a simple runbook template. Specifically addresses the non-technical founder pattern: "I'll set up monitoring later." Designed to be actionable in under an hour on Vercel + Next.js projects. Cross-references LLM Observability (AI features), AI Cost Management (spend alerting), and Incident Response (when alerts fire).
+
+### Changed
+- **MCP Security** skill updated with five-CVE RCE cluster (CVE-2025-59944, CVE-2025-61590, CVE-2025-61591, CVE-2025-61592, CVE-2025-61593) affecting Cursor ≤1.7. All disclosed ~Oct–Nov 2025, CVSS 8.0. CVE-2025-59944 is the most practically dangerous for shared repos: case-sensitivity bypass on Windows/macOS allows prompt injection to overwrite `.cursor/mcp.json` using alternate case, achieving persistent RCE across IDE restarts. Updated frontmatter description and Attack Vectors table. Added `**.vscode/**` to globs (CVE-2025-61590 targets workspace settings). Added immediate action `cursor --version` check and update instructions.
+- **Accessibility** skill updated with two additions: (1) US ADA Title II compliance deadline — April 24, 2026 for jurisdictions with populations above 50,000, WCAG 2.1 AA required; (2) WCAG 3.0 March 2026 Working Draft status — clearly documented as pre-Recommendation, not yet legally enforceable, with Bronze/Silver/Gold scoring model preview and guidance to target WCAG 2.2 AA now.
+- README updated: Before/After table (1 new row), skill count badge (40→41), skills table (31 rows).
+
+### Security
+- MCP Security CVE cluster update is critical: Cursor ≤1.7 users are exposed to RCE via case-sensitivity bypass, OAuth impersonation, VS Code workspace manipulation, and CLI config injection. Update to 1.8+ immediately.
+- CVE-2025-59944 is particularly dangerous because it enables persistent RCE that survives IDE restarts — unlike MCPoison (CVE-2025-54136) which requires the malicious MCP to load on each project open.
+
 ## [1.7.0] - 2026-03-22
 
 ### Added

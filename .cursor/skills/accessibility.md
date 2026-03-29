@@ -14,7 +14,28 @@ tags: [product]
 
 ## Purpose
 
-Ensure web interfaces are usable by everyone, including people with disabilities. Target WCAG 2.2 Level AA compliance (current standard as of 2026, with federal compliance deadlines in April 2026).
+Ensure web interfaces are usable by everyone, including people with disabilities. Target WCAG 2.2 Level AA compliance — the current enforceable standard for legal compliance.
+
+## Compliance Deadline Alert: April 24, 2026 (US)
+
+**US jurisdictions with populations above 50,000 must meet WCAG 2.1 Level AA by April 24, 2026** under Title II of the ADA (Department of Justice final rule). Smaller entities have a later phase-in through 2027. If your product serves US government or educational institutions, this deadline applies to you.
+
+WCAG 2.2 Level AA is a superset of 2.1 Level AA (it adds 9 new criteria). Meeting 2.2 AA means you also meet 2.1 AA.
+
+### WCAG 3.0 Status (March 2026 — Working Draft Only)
+
+W3C published a new WCAG 3.0 Working Draft in March 2026. **Do not design to WCAG 3.0 yet:**
+- It is a Working Draft, not a final Recommendation
+- Legal requirements (ADA, Section 508, EN 301 549, European Accessibility Act) continue to reference WCAG 2.x
+- WCAG 2.2 remains the current, stable standard for compliance and legal purposes
+- W3C has confirmed "substantial work is still needed" — several years before a final Recommendation
+
+**What WCAG 3.0 will bring (for awareness only):**
+- New scoring model: Bronze / Silver / Gold (replaces pass/fail A/AA/AAA)
+- WCAG 2.1 AA compliance maps to approximately "Bronze" level
+- New guidance on cognitive accessibility, low-vision, and mobile
+
+**Action now:** Achieve WCAG 2.2 Level AA (not just 2.1). This positions you at Bronze+ in the WCAG 3.0 model and covers all current legal requirements.
 
 ## Activation
 
