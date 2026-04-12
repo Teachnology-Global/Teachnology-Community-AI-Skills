@@ -12,6 +12,23 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.9.0] - 2026-04-12
+
+### Added
+- **Prompt Injection Defense** skill — comprehensive defence against prompt injection attacks in AI-assisted development. Covers input sanitisation, output validation, prompt boundary design, Cursor-specific injection vectors (MCP output, Automations + Slack/GitHub, web scraping, file processing, Bugbot Autofix), automation-specific defences with YAML config examples, and test injection payloads. Addresses the #1 attack vector in agentic AI systems as documented by Red Hat, SentinelOne, and academic research (arxiv.org/abs/2601.17549). Cross-references MCP Security, Cursor Automations Governance, Webhook Security, AI Output Validation, and Input Validation.
+- **Git Security & Branch Protection** skill — prevents common git mistakes and secures repositories, especially projects where AI agents generate and commit code. Covers branch protection rules, CODEOWNERS for AI config files, signed commits, safe undo patterns, pre-commit hooks for secret detection, AI agent-specific git concerns (require PR not direct push, auto-approve limits, commit identity), and the critical "secrets in git history" warning that every non-technical founder hits.
+
+### Changed
+- **Accessibility** skill updated with: (1) European Accessibility Act (EAA) enforcement section — deadline passed June 2025, enforcement now active across EU with confirmed actions in Germany, France, Netherlands; (2) EAA vs US ADA comparison table; (3) Updated frontmatter description to reflect EAA enforcement status. ADA Title II deadline is April 24, 2026 (12 days away).
+- **MCP Security** skill updated with: (1) 2026 MCP landscape section covering 30+ CVEs discovered in one year, Anthropic Git MCP vulnerabilities (Jan 2026), GitHub token leaks via MCP, and protocol-level risks identified by Red Hat/academic research; (2) Added `**.cursor/plugins/**` to globs for Cursor Marketplace plugin configs; (3) Frontmatter description updated to reflect expanded threat landscape.
+- README updated: skill count badge, skills table (2 new rows), Before/After table (2 new rows).
+
+### Security
+- EAA enforcement is active — TYO community members building products for EU customers must already be WCAG 2.1 AA compliant
+- US ADA Title II deadline is April 24, 2026 — 12 days from this update. Products serving US public entities must comply immediately
+- MCP attack surface continues to grow — 30+ CVEs identified through April 2026. Every MCP config in Cursor projects requires review
+- Prompt injection is the dominant attack vector for AI-assisted development according to Red Hat 2026 guidance — all projects processing external data via AI need defences
+
 ## [1.8.0] - 2026-03-29
 
 ### Added

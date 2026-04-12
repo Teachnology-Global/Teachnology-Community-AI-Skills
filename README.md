@@ -10,7 +10,7 @@ status: draft
 [![MIT Licence](https://img.shields.io/badge/licence-MIT-blue.svg)](LICENSE)
 [![Cursor Compatible](https://img.shields.io/badge/Cursor-Compatible-purple.svg)](https://cursor.com)
 
-[![41 Skills](https://img.shields.io/badge/skills-41-green.svg)](#whats-included)
+[![43 Skills](https://img.shields.io/badge/skills-43-green.svg)](#whats-included)
 [![Australian Made](https://img.shields.io/badge/made%20in-Australia%20🇦🇺-gold.svg)](https://www.skool.com/teachnology)
 
 **Stop your AI from shipping insecure, undocumented rubbish.** Drop these governance skills into any Cursor project and your AI assistant will follow proper security, privacy, accessibility, and quality standards - automatically, every time.
@@ -47,6 +47,8 @@ Built for the [Teachnology Community](https://www.skool.com/teachnology) by Jaso
 | AI builds a contact form — no server-side validation, user input passed straight to the DB | Input Validation skill requires parameterised queries, schema validation, and server-side checks on every endpoint |
 | AI adds an OpenAI chat feature — no max_tokens, no spend limit, 10× traffic spike costs $800 overnight | AI Cost Management skill enforces spend caps, max_tokens on every call, per-user rate limits, and pre-launch cost estimation |
 | App ships with no uptime monitoring — founder discovers site was down for 6 hours via a user email | Monitoring & Alerting skill installs Sentry + BetterStack, builds a `/api/health` endpoint, and sets alert rules before launch |
+| AI processes user reviews, emails, and web content — hidden instructions in that content hijack AI behaviour to leak data or perform unauthorised actions | Prompt Injection Defense requires input sanitisation, output validation, and prompt boundary design for every external data pipeline |
+| Founder pushes secret to git, removes it next commit, thinks it's fine — secret is still in git history forever | Git Security enforces branch protection, CODEOWNERS, pre-commit secret scanning, and teaches the critical "secrets in history are leaked" lesson |
 
 ---
 
@@ -101,7 +103,7 @@ You can also try: "Run pre-release checklist" and watch it walk through all 17 g
 ## What's Included
 
 
-### 31 Skills
+### 33 Skills
 
 | Skill | What It Does | Always On? |
 |-------|-------------|------------|
@@ -136,7 +138,9 @@ You can also try: "Run pre-release checklist" and watch it walk through all 17 g
 | **AI Cost Management** | Prevents LLM API bill shock. Token budgeting, per-user rate limits, model selection, prompt caching, spend limits, and production cost estimation. | No |
 | **LLM Observability** ⭐ NEW | Instruments AI features for production visibility. Tracing calls, quality monitoring, error alerting, per-user cost tracking. Langfuse integration and DIY logging patterns. | No |
 | **Webhook Security** | Secures webhook endpoints against forged requests and replay attacks. HMAC verification for Stripe, GitHub, Slack, Clerk. Payload injection prevention for AI automations. | No |
-| **Monitoring & Alerting** ⭐ NEW | Error tracking (Sentry), uptime monitoring (BetterStack), performance metrics (Vercel Analytics). Health endpoint design, alert rules, Core Web Vitals targets, runbook template. | No |
+| **Monitoring & Alerting** ⭐ NEW | Error tracking (Sentry), uptime monitoring (BetterStack), performance metrics (Vercel Analytics). Health endpoint design, alert rules, Core Web Vitals targets, runbook template. |
+| **Prompt Injection Defense** | Defends against AI prompt injection via user input, web content, webhook payloads, and MCP tool output. Input sanitisation, output validation, prompt boundary design, automation-specific defences, and test payloads. Covers all Cursor-specific injection vectors. |
+| **Git Security** ⭐ NEW | Branch protection, CODEOWNERS for AI config, signed commits, safe undo patterns, pre-commit secret scanning, AI agent commit policies. Essential for repos where AI agents generate and commit code. | No |
 
 ### Scripts
 
@@ -208,6 +212,9 @@ Once installed, say any of these to your AI in Cursor:
 - "Review this agent PR"
 - "Set up a Cursor Automation safely"
 - "Review my automations for prompt injection risk"
+- "Check git branch protection rules"
+- "Set up CODEOWNERS for AI config"
+- "Test this feature for prompt injection"
 
 The AI knows what to do.
 

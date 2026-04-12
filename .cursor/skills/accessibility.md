@@ -4,7 +4,8 @@ description: >
   ARIA attributes, colour contrast, keyboard navigation, and screen reader compatibility.
   Use when: (1) building user interfaces, (2) conducting accessibility audits,
   (3) reviewing PRs for a11y compliance, (4) fixing accessibility issues,
-  (5) implementing accessible components. Updated for 2026 compliance deadlines.
+  (5) implementing accessible components. Updated April 2026 — ADA Title II deadline
+  is April 24 (12 days away). EAA enforcement now active across EU member states.
 globs: ["**/*.html", "**/*.tsx", "**/*.jsx", "**/*.vue", "**/*.svelte"]
 alwaysApply: false
 tags: [product]
@@ -36,6 +37,28 @@ W3C published a new WCAG 3.0 Working Draft in March 2026. **Do not design to WCA
 - New guidance on cognitive accessibility, low-vision, and mobile
 
 **Action now:** Achieve WCAG 2.2 Level AA (not just 2.1). This positions you at Bronze+ in the WCAG 3.0 model and covers all current legal requirements.
+
+## European Accessibility Act (EAA) — Enforcement Active
+
+The EAA deadline was **28 June 2025** and enforcement is now active across EU member states. Deque has confirmed early enforcement actions in Germany, France, and the Netherlands.
+
+**What this means for your product:**
+- E-commerce, banking, transport, and digital services within scope of EAA must comply
+- Penalties vary by member state — significant fines are being issued
+- WCAG 2.1 Level AA is the harmonised standard referenced by EAA
+- If you sell to EU customers or operate in the EU, EAA applies to you
+
+**EAA vs US ADA — which applies to you?**
+
+| | US ADA Title II | EU EAA |
+|---|---|---|
+| **Scope** | Public entities (50K+ population) | In-scope businesses across EU |
+| **Deadline** | April 24, 2026 | June 28, 2025 (passed — enforcement active) |
+| **Standard** | WCAG 2.1 AA | WCAG 2.1 AA (harmonised) |
+| **Penalties** | DOJ enforcement, private lawsuits | Member-state fines, market restrictions |
+| **Your action** | Comply NOW — deadline in 12 days | Must already be compliant |
+
+**Bottom line:** WCAG 2.2 AA covers both US ADA and EAA requirements. Target 2.2 AA and you're compliant everywhere.
 
 ## Activation
 

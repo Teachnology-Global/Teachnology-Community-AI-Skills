@@ -8,7 +8,7 @@ description: >
   Use when: (1) adding an MCP server to a project, (2) reviewing a repo that contains
   .cursor/mcp.json, (3) pulling from a shared repository, (4) onboarding a new
   team member, (5) auditing existing MCP configurations.
-globs: ["**/.cursor/mcp.json", "**/.cursor/*.json", "**/cursor.json", "**/.vscode/**"]
+globs: ["**/.cursor/mcp.json", "**/.cursor/*.json", "**/cursor.json", "**/.vscode/**", "**/.cursor/plugins/**"]
 alwaysApply: false
 tags: [product]
 ---
@@ -31,6 +31,20 @@ In August 2025, Check Point Research disclosed a critical vulnerability in Curso
 **For non-technical founders and teachers:** This means an MCP config in a codebase is like a browser extension that can update itself after you've approved it. If someone else has write access to a repo you work in, they can gain silent, persistent access to your machine — including credentials, SSH keys, and any secrets visible to Cursor.
 
 **Current mitigation:** Update Cursor to the latest version. Cursor patched this in a subsequent release. However, the underlying trust model risk remains for any MCP-heavy workflow — the practices below are still required.
+
+## 2026 MCP Landscape: 30+ CVEs, Real Breaches, and Protocol-Level Risks
+
+As of April 2026, MCP has become the standard for AI tool integration, but the attack surface has grown significantly:
+
+**Anthropic Git MCP vulnerabilities (Jan 2026):** Three vulnerabilities disclosed in Anthropic's official Git MCP server allowing prompt injection to execute arbitrary git commands. Research: [arxiv.org/abs/2601.17549](https://arxiv.org/abs/2601.17549) — the first rigorous protocol-level security analysis of MCP identified three fundamental architectural vulnerabilities.
+
+**30+ CVEs in one year:** Security scanning of 500+ MCP servers revealed a wide range of vulnerabilities including credential leaks via tool output, supply chain attacks via compromised plugin updates, and RCE through malicious MCP configurations. Research: [MCP's First Year — What 30 CVEs Tell Us](https://medium.com/ai-security-hub/mcps-first-year-what-30-cves-and-500-server-scans-tell-us-about-ai-s-fastest-growing-attack-6d183fc9497f).
+
+**GitHub token leaks via MCP:** Multiple reports of MCP servers inadvertently exposing GitHub tokens in tool output, allowing downstream agents to authenticate on behalf of users without explicit consent. SentinelOne's MCP security guide documents credential theft as a top-3 attack category.
+
+**Red Hat MCP Security Guidance (2026):** Red Hat published definitive guidance that the GitHub MCP vulnerability demonstrates the core pattern — prompt-injection-driven attacks against agentic AI systems are the dominant threat model for MCP. All MCP servers must implement input sanitisation, output filtering, and explicit permission scoping.
+
+For TYO community members building with Cursor: MCP is powerful but treat every plugin like you'd treat a browser extension from an unknown developer — verify the source, limit its permissions, and monitor what it accesses.
 
 ## Five-CVE RCE Cluster: Cursor ≤1.7 (Disclosed ~Oct–Nov 2025)
 
@@ -259,9 +273,29 @@ MCP changes in PRs require review — this is equivalent to adding a new npm pac
 with shell execution capabilities.
 ```
 
-## Sandbox Network Controls (Feb 2026)
+## Sandbox Network Controls (Feb 2026, updated April 2026)
 
 Cursor's sandbox now supports restricting what MCP servers can reach. Use this to limit blast radius:
+
+### Cursor 3.0 Update (April 2, 2026)
+
+**Cursor 3.0 launched April 2, 2026** with significant changes to the MCP and plugin ecosystem:
+
+- **Composer 2**: New default model with updated pricing ($1.50/M input for Fast, $7.50/M output). All MCP tool calls run through Composer 2's larger context window. **Cost impact:** MCP-heavy workflows (Datadog + GitLab + Stripe in parallel) can consume 2–3× more tokens now. Review `max_tokens` on MCP-enabled project configs.
+- **Agents Window**: Multiple agents run simultaneously across repos, each with its own MCP context session. **MCP configuration drift** across parallel agents is a real risk — changes in one session don't automatically propagate to others. Always verify MCP config consistency before enabling parallel agents.
+- **JFrog Plugin** on Cursor Marketplace (verified): Scans CVEs, license risks, secrets and misconfigurations *before* code is committed. Recommended addition for teams concerned about supply chain risk.
+- **Security Automation Templates** (April 2026): Four MCP-based security agent templates from Snyk published — Agentic Security Review, Vuln Hunter, Anybump, and Invariant Sentinel. These review 3,000+ PRs/week in production environments.
+
+### Snyk Analysis: Cursor Security Agent Gap (March 2026)
+
+Snyk published analysis revealing Cursor's security agents only scan *after* PRs are opened — they don't run directly inside the IDE. **Vulnerable code can reach a PR before scanning begins.** Best practice now:
+
+```
+Three-layer defense:
+1. Pre-commit hook → local scan (Semgrep, npm audit, etc.) — BLOCKS bad code before commit
+2. CI pipeline → full vulnerability scan — catches what pre-commit missed
+3. MCP Security Automation → post-PR review — safety net for missed items
+```
 
 ```json
 // .cursor/sandbox.json

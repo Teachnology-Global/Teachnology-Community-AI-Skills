@@ -23,7 +23,7 @@ This is powerful. It is also a fundamentally new risk model for non-technical fo
 
 ## The Risk Model for Non-Technical Builders
 
-### What Cloud Agents Can Do (Feb 2026)
+### What Cloud Agents Can Do (Feb 2026, updated April 2026)
 
 | Capability | Risk |
 |-----------|------|
@@ -33,6 +33,9 @@ This is powerful. It is also a fundamentally new risk model for non-technical fo
 | Submit PRs directly to your repository | Changes land in your codebase without you writing them |
 | Record videos and screenshots as artifacts | Creates evidence of what happened — but you must review it |
 | Push changes directly to a branch (if configured) | Bypasses even PR review if auto-merge is enabled |
+| Run up to 10 agents in parallel (Cursor 3.0) | Parallel agents can produce conflicting changes; review burden multiplies |
+| Self-hosted cloud agents (Cursor 3.0) | Code stays in your infra — but so does the risk; see Self-Hosted Agent Governance |
+| Design Mode UI targeting (Cursor 3.0) | Agents can target specific UI elements — can be used to scrape sensitive UIs |
 
 ### What Could Go Wrong
 
