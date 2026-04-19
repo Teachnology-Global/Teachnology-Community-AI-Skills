@@ -5,7 +5,7 @@ description: >
   Use when: (1) building user interfaces, (2) conducting accessibility audits,
   (3) reviewing PRs for a11y compliance, (4) fixing accessibility issues,
   (5) implementing accessible components. Updated April 2026 — ADA Title II deadline
-  is April 24 (12 days away). EAA enforcement now active across EU member states.
+  extended to April 2027/2028. EAA enforcement active across EU member states.
 globs: ["**/*.html", "**/*.tsx", "**/*.jsx", "**/*.vue", "**/*.svelte"]
 alwaysApply: false
 tags: [product]
@@ -17,9 +17,19 @@ tags: [product]
 
 Ensure web interfaces are usable by everyone, including people with disabilities. Target WCAG 2.2 Level AA compliance — the current enforceable standard for legal compliance.
 
-## Compliance Deadline Alert: April 24, 2026 (US)
+## Compliance Deadlines (Updated April 2026)
 
-**US jurisdictions with populations above 50,000 must meet WCAG 2.1 Level AA by April 24, 2026** under Title II of the ADA (Department of Justice final rule). Smaller entities have a later phase-in through 2027. If your product serves US government or educational institutions, this deadline applies to you.
+The US Department of Justice **extended ADA Title II compliance deadlines** in April 2026:
+
+| Jurisdiction | Original Deadline | Extended Deadline |
+|---|---|---|
+| Public entities (50K+ population) | April 24, 2026 | **April 26, 2027** |
+| Public entities (< 50K population) | April 26, 2027 | **April 26, 2028** |
+| Special district governments | April 26, 2027 | **April 26, 2028** |
+
+Source: [DOJ extension announcement](https://accessible.org/news/doj-extends-ada-title-ii-web-compliance-deadline/)
+
+**What this means:** The immediate pressure has eased by 12 months, but the standard hasn't changed. WCAG 2.1 AA (for 50K+) / WCAG 2.1 AA for smaller entities remains the target. Building to WCAG 2.2 AA still positions you ahead of the final deadline.
 
 WCAG 2.2 Level AA is a superset of 2.1 Level AA (it adds 9 new criteria). Meeting 2.2 AA means you also meet 2.1 AA.
 
@@ -53,10 +63,10 @@ The EAA deadline was **28 June 2025** and enforcement is now active across EU me
 | | US ADA Title II | EU EAA |
 |---|---|---|
 | **Scope** | Public entities (50K+ population) | In-scope businesses across EU |
-| **Deadline** | April 24, 2026 | June 28, 2025 (passed — enforcement active) |
+| **Deadline** | April 26, 2027 (50K+); April 26, 2028 (rest) [extended] | June 28, 2025 (passed — enforcement active) |
 | **Standard** | WCAG 2.1 AA | WCAG 2.1 AA (harmonised) |
 | **Penalties** | DOJ enforcement, private lawsuits | Member-state fines, market restrictions |
-| **Your action** | Comply NOW — deadline in 12 days | Must already be compliant |
+| **Your action** | Comply before extended deadline | Must already be compliant |
 
 **Bottom line:** WCAG 2.2 AA covers both US ADA and EAA requirements. Target 2.2 AA and you're compliant everywhere.
 
@@ -406,7 +416,8 @@ test('component is accessible', async () => {
 ## 2026 Compliance Requirements
 
 **Federal Deadlines:**
-- **April 24, 2026**: ADA Title II compliance for state/local government (population 50,000+)
+- **April 26, 2027**: ADA Title II compliance for state/local government (population 50,000+) — extended from April 24, 2026
+- **April 26, 2028**: ADA Title II compliance for state/local government (population < 50,000) and special districts — extended from April 26, 2027
 - **Late 2026**: WCAG 2.2 becomes ISO/IEC 40500:2026 standard
 - **Ongoing**: EU Accessibility Act, WCAG 2.2 AA expected
 

@@ -10,10 +10,12 @@ status: draft
 [![MIT Licence](https://img.shields.io/badge/licence-MIT-blue.svg)](LICENSE)
 [![Cursor Compatible](https://img.shields.io/badge/Cursor-Compatible-purple.svg)](https://cursor.com)
 
-[![43 Skills](https://img.shields.io/badge/skills-43-green.svg)](#whats-included)
+[![37 Skills](https://img.shields.io/badge/skills-37-green.svg)](#whats-included)
 [![Australian Made](https://img.shields.io/badge/made%20in-Australia%20🇦🇺-gold.svg)](https://www.skool.com/teachnology)
 
 **Stop your AI from shipping insecure, undocumented rubbish.** Drop these governance skills into any Cursor project and your AI assistant will follow proper security, privacy, accessibility, and quality standards - automatically, every time.
+
+**Last updated:** April 2026 — New CVE coverage (CVE-2026-31854 NomShub), ADA Title II deadline extended, 2 new skills added.
 
 No plugins. No config servers. Just copy the files and go.
 
@@ -103,7 +105,7 @@ You can also try: "Run pre-release checklist" and watch it walk through all 17 g
 ## What's Included
 
 
-### 33 Skills
+### 37 Skills
 
 | Skill | What It Does | Always On? |
 |-------|-------------|------------|
@@ -140,7 +142,9 @@ You can also try: "Run pre-release checklist" and watch it walk through all 17 g
 | **Webhook Security** | Secures webhook endpoints against forged requests and replay attacks. HMAC verification for Stripe, GitHub, Slack, Clerk. Payload injection prevention for AI automations. | No |
 | **Monitoring & Alerting** ⭐ NEW | Error tracking (Sentry), uptime monitoring (BetterStack), performance metrics (Vercel Analytics). Health endpoint design, alert rules, Core Web Vitals targets, runbook template. |
 | **Prompt Injection Defense** | Defends against AI prompt injection via user input, web content, webhook payloads, and MCP tool output. Input sanitisation, output validation, prompt boundary design, automation-specific defences, and test payloads. Covers all Cursor-specific injection vectors. |
-| **Git Security** ⭐ NEW | Branch protection, CODEOWNERS for AI config, signed commits, safe undo patterns, pre-commit secret scanning, AI agent commit policies. Essential for repos where AI agents generate and commit code. | No |
+| **Git Security** | Branch protection, CODEOWNERS for AI config, signed commits, safe undo patterns, pre-commit secret scanning, AI agent commit policies. Essential for repos where AI agents generate and commit code. | No |
+| **API Authentication Security** ⭐ NEW | Secure JWT implementation, OAuth 2.1/PKCE, session management, CORS configuration, token lifecycle, password hashing (bcrypt/argon2). The most common security failure point for non-technical builders. | No |
+| **Backup & Recovery** ⭐ NEW | Database backup strategy (Neon/Supabase/MongoDB), automated backup scripts, recovery playbook, monthly verification. Because "we lost all user data" is not an acceptable answer. | No |
 
 ### Scripts
 
@@ -176,6 +180,11 @@ You write code in Cursor
 |  Skills activate on        |
 |  context (file type,       |
 |  keywords, always-on)      |
+|  37 skills covering:       |
+|  security, auth, backups,  |
+|  accessibility, quality,   |
+|  privacy, testing, cost,   |
+|  AI governance, recovery   |
 +-------------+--------------+
               |
               v
@@ -212,9 +221,12 @@ Once installed, say any of these to your AI in Cursor:
 - "Review this agent PR"
 - "Set up a Cursor Automation safely"
 - "Review my automations for prompt injection risk"
-- "Check git branch protection rules"
-- "Set up CODEOWNERS for AI config"
+- "Set up secure authentication"
+- "Configure OAuth with PKCE"
+- "What's our backup strategy?"
 - "Test this feature for prompt injection"
+- "Review the recovery playbook"
+- "Set up automated database backups"
 
 The AI knows what to do.
 
@@ -249,7 +261,7 @@ The AI knows what to do.
 ## Project Structure
 
 ```
-.cursor/skills/          <- 30 governance skills
+.cursor/skills/          <- 37 governance skills
 skills/                  <- 10 marketing skills for education entrepreneurs
 .cursorrules             <- Cursor AI rules (auto-loaded)
 governance.yaml          <- Project configuration

@@ -46,6 +46,21 @@ As of April 2026, MCP has become the standard for AI tool integration, but the a
 
 For TYO community members building with Cursor: MCP is powerful but treat every plugin like you'd treat a browser extension from an unknown developer — verify the source, limit its permissions, and monitor what it accesses.
 
+## CVE-2026-31854: NomShub — Indirect Prompt Injection RCE (Disclosed ~April 2026)
+
+A vulnerability chain dubbed **NomShub** was disclosed in April 2026 affecting **Cursor versions below 2.0**. If a user visits a website with maliciously crafted content, indirect prompt injection can achieve persistent remote code execution.
+
+**How it works:** Cursor's web preview / browser integration reads page content that may contain hidden injection payloads. These payloads manipulate Cursor's AI instructions, causing it to execute arbitrary commands on the developer's machine. This is particularly dangerous because it requires no user interaction beyond visiting a webpage — the same workflow a developer might use daily for documentation, tutorials, or Stack Overflow.
+
+**Affected versions:** Cursor < 2.0
+**Mitigation:** Update to Cursor 2.0 or later immediately. See [SecurityWeek report](https://www.securityweek.com/cursor-ai-vulnerability-exposed-developer-devices/) and [NVD entry](https://nvd.nist.gov/vuln/detail/CVE-2026-31854).
+
+**For non-technical founders:** This means that simply opening a malicious webpage in Cursor (e.g., to read documentation) could let an attacker run commands on your machine. Update Cursor. Do not browse untrusted websites in Cursor's built-in browser.
+
+### Related: AI Tool Project Config Files as Attack Surface (CVE-2025-59536 / CVE-2026-21852)
+
+See the **AI Project Config Security** skill for details on how `.cursor/` and `.claude/` configuration files can be weaponised for RCE and credential theft. These CVEs demonstrate that AI config files in repos are now a significant attack surface.
+
 ## Five-CVE RCE Cluster: Cursor ≤1.7 (Disclosed ~Oct–Nov 2025)
 
 Geordie AI and independent researchers disclosed a cluster of five high-severity RCE vulnerabilities affecting **Cursor versions 1.7 and below**. All five exploit prompt injection to bypass Cursor's file-protection checks via different vectors.
@@ -60,12 +75,14 @@ Geordie AI and independent researchers disclosed a cluster of five high-severity
 
 **CVSS score: 8.0 (High)**. All five are patched in Cursor 1.8+.
 
+**Current update target:** Cursor 2.0+ (patches both the 5-CVE cluster AND CVE-2026-31854).
+
 **Immediate action required:**
 ```bash
 # Check your Cursor version (Help → About in the IDE, or):
 cursor --version
 
-# If below 1.8, update immediately via:
+# If below 2.0, update immediately via:
 # Help → Check for Updates
 # or download from https://cursor.com/downloads
 ```
