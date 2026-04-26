@@ -188,13 +188,17 @@ If moving from Cursor-hosted to self-hosted agents:
 5. **Switch over repos one at a time** — not a bulk migration
 6. **Keep Cursor-hosted as fallback** for at least 2 weeks
 
-## What Changes in Cursor 3.0
+## What Changes in Cursor 3.0+
 
-### Cursor 3.0 Impact (April 2026)
+### Cursor 3.2 Impact (April 2026)
 
 **Agents Window**: The new interface makes it easier to run multiple agents in parallel — locally, in worktrees, in the cloud, and on remote SSH. This means self-hosted agents can now be controlled alongside Cursor-hosted agents from a single interface. **Ensure your self-hosted agents have separate access controls from Cursor-hosted ones.**
 
-**10 Parallel Workers**: Cursor 3.0 allows up to 10 parallel agents per user. With self-hosted agents, this means **10 simultaneous VMs in your infrastructure**. Your network and compute must handle this.
+**Async Subagents (/multitask)**: Cursor 3.2 introduces async subagents that can run on self-hosted infrastructure. Your 10 parallel workers can now themselves spawn subagents — resource monitoring is critical. See **Async Subagent Governance** for parallel execution rules.
+
+**10 Parallel Workers**: Cursor 3.0+ allows up to 10 parallel agents per user. With self-hosted agents, this means **10 simultaneous VMs in your infrastructure**. Your network and compute must handle this. With 3.2's subagents, the actual execution count can multiply further.
+
+**Multi-Root Workspaces**: Agents with access to multiple repos in your infrastructure can pivot between them. Ensure per-repo access boundaries are enforced for self-hosted agents.
 
 **Design Mode**: Agents can now annotate and target UI elements directly. For self-hosted agents, this means browser instances running in your infrastructure — ensure they're isolated and can't access internal admin panels.
 

@@ -10,12 +10,12 @@ status: draft
 [![MIT Licence](https://img.shields.io/badge/licence-MIT-blue.svg)](LICENSE)
 [![Cursor Compatible](https://img.shields.io/badge/Cursor-Compatible-purple.svg)](https://cursor.com)
 
-[![37 Skills](https://img.shields.io/badge/skills-37-green.svg)](#whats-included)
+[![38 Skills](https://img.shields.io/badge/skills-38-green.svg)](#whats-included)
 [![Australian Made](https://img.shields.io/badge/made%20in-Australia%20🇦🇺-gold.svg)](https://www.skool.com/teachnology)
 
 **Stop your AI from shipping insecure, undocumented rubbish.** Drop these governance skills into any Cursor project and your AI assistant will follow proper security, privacy, accessibility, and quality standards - automatically, every time.
 
-**Last updated:** April 2026 — New CVE coverage (CVE-2026-31854 NomShub), ADA Title II deadline extended, 2 new skills added.
+**Last updated:** April 2026 — Cursor 3.2 async subagents governance, worktree/multi-root coverage.
 
 No plugins. No config servers. Just copy the files and go.
 
@@ -105,7 +105,7 @@ You can also try: "Run pre-release checklist" and watch it walk through all 17 g
 ## What's Included
 
 
-### 37 Skills
+### 38 Skills
 
 | Skill | What It Does | Always On? |
 |-------|-------------|------------|
@@ -144,7 +144,8 @@ You can also try: "Run pre-release checklist" and watch it walk through all 17 g
 | **Prompt Injection Defense** | Defends against AI prompt injection via user input, web content, webhook payloads, and MCP tool output. Input sanitisation, output validation, prompt boundary design, automation-specific defences, and test payloads. Covers all Cursor-specific injection vectors. |
 | **Git Security** | Branch protection, CODEOWNERS for AI config, signed commits, safe undo patterns, pre-commit secret scanning, AI agent commit policies. Essential for repos where AI agents generate and commit code. | No |
 | **API Authentication Security** ⭐ NEW | Secure JWT implementation, OAuth 2.1/PKCE, session management, CORS configuration, token lifecycle, password hashing (bcrypt/argon2). The most common security failure point for non-technical builders. | No |
-| **Backup & Recovery** ⭐ NEW | Database backup strategy (Neon/Supabase/MongoDB), automated backup scripts, recovery playbook, monthly verification. Because "we lost all user data" is not an acceptable answer. | No |
+| **Backup & Recovery** | Database backup strategy (Neon/Supabase/MongoDB), automated backup scripts, recovery playbook, monthly verification. Because "we lost all user data" is not an acceptable answer. | No |
+| **Async Subagent Governance** ⭐ NEW | Covers Cursor 3.2 /multitask, parallel agents, multi-root workspaces. Scope segregation, budget limits, kill-switch protocol, merge ordering. | No |
 
 ### Scripts
 
@@ -180,7 +181,7 @@ You write code in Cursor
 |  Skills activate on        |
 |  context (file type,       |
 |  keywords, always-on)      |
-|  37 skills covering:       |
+|  38 skills covering:       |
 |  security, auth, backups,  |
 |  accessibility, quality,   |
 |  privacy, testing, cost,   |

@@ -33,9 +33,12 @@ This is powerful. It is also a fundamentally new risk model for non-technical fo
 | Submit PRs directly to your repository | Changes land in your codebase without you writing them |
 | Record videos and screenshots as artifacts | Creates evidence of what happened — but you must review it |
 | Push changes directly to a branch (if configured) | Bypasses even PR review if auto-merge is enabled |
-| Run up to 10 agents in parallel (Cursor 3.0) | Parallel agents can produce conflicting changes; review burden multiplies |
-| Self-hosted cloud agents (Cursor 3.0) | Code stays in your infra — but so does the risk; see Self-Hosted Agent Governance |
-| Design Mode UI targeting (Cursor 3.0) | Agents can target specific UI elements — can be used to scrape sensitive UIs |
+| Run up to 10 agents in parallel (Cursor 3.0+) | Parallel agents can produce conflicting changes; review burden multiplies |
+| Async subagents via /multitask (Cursor 3.2) | Agents run simultaneously — scope segregation critical; see Async Subagent Governance |
+| Self-hosted cloud agents (Cursor 3.0+) | Code stays in your infra — but so does the risk; see Self-Hosted Agent Governance |
+| Multi-root workspaces (Cursor 3.2) | Single agent session targets multiple repos — cross-repo scope bleed risk |
+| Async subagent fleet management (Cursor 3.2) | Unbounded parallel execution without budget limits; requires cost monitoring |
+| Design Mode UI targeting (Cursor 3.0+) | Agents can target specific UI elements — can be used to scrape sensitive UIs |
 
 ### What Could Go Wrong
 
