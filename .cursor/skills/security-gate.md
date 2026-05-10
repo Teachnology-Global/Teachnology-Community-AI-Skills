@@ -1,8 +1,8 @@
 ---
 description: >
   Pre-production security gate that must pass before code reaches staging or production.
-  Orchestrates static analysis, dependency scanning, and secret detection with clear 
-  pass/fail criteria. Use when: (1) preparing code for deployment, (2) running final 
+  Orchestrates static analysis, dependency scanning, secret detection, and Cursor Security Review (beta April 2026).
+  Use when: (1) preparing code for deployment, (2) running final
   security checks before release, (3) validating pull requests to protected branches,
   (4) setting up CI/CD security gates.
 globs: ["**/*"]
@@ -28,7 +28,7 @@ This skill activates when you mention:
 
 ### Pass (✅ Deploy Allowed)
 - Zero critical findings
-- Zero high findings  
+- Zero high findings
 - No secrets detected
 - All scans completed successfully
 
@@ -184,16 +184,29 @@ security-gate:
   runs-on: ubuntu-latest
   steps:
     - uses: actions/checkout@v4
-    
+
     - name: SAST Scan
       run: semgrep --config=auto --severity=ERROR --severity=WARNING .
-      
-    - name: Dependency Scan  
+
+    - name: Dependency Scan
       run: trivy fs --severity CRITICAL,HIGH .
-      
+
     - name: Secret Scan
       run: gitleaks detect --source=.
 ```
+
+## OWASP GenAI Exploit Round-up Q1 2026
+
+OWASP published its Q1 2026 GenAI Exploit Round-up Report (April 2026). Key findings that affect governance:
+
+| Finding | Impact | Mitigation |
+|---------|--------|------------|
+| **LLM05: Improper Output Handling** | Debug artifacts leaked into production release paths | Strip debug/trace output before production builds |
+| **ASI04: Agentic Supply Chain Vulnerabilities** | Agent tooling artifacts became a supply-chain weakness (malicious npm packages targeting AI agent ecosystems) | Pin ALL tool versions; scan agent dependencies separately from app dependencies |
+| **Memory Poisoning via AI Chat Logs** | Conversation history containing injected payloads persisted across sessions | Sanitise chat logs before persistence; limit memory scope per session |
+| **Denial of Wallet via Token Inflation** | Attackers craft inputs that cause exponential token output | Set hard `max_tokens` limits; implement output size validation |
+
+Reference: [OWASP GenAI Exploit Round-up Q1 2026](https://genai.owasp.org/2026/04/14/owasp-genai-exploit-round-up-report-q1-2026/)
 
 ## OWASP Top 10 for Agentic Applications (2026)
 
@@ -213,7 +226,7 @@ If your project uses AI agents (Cursor agents, LLM-powered features, or autonomo
 
 ### CVE-2025-54136: MCPoison Trust Bypass
 
-A critical vulnerability was disclosed (August 2025) in Cursor's MCP system. Once a user approves an MCP configuration, Cursor never re-checks it — allowing an attacker to silently modify the MCP after approval and gain persistent remote code execution.
+A critical vulnerability was disclosed (August 2025) in Cursor's MCP system. Once a user approves an MCP configuration, Cursor never re-checks it - allowing an attacker to silently modify the MCP after approval and gain persistent remote code execution.
 
 **Add this to your security gate:**
 
@@ -236,6 +249,36 @@ grep -E '(password|secret|key|token)\s*[:=]\s*["\x27][a-zA-Z0-9]{8,}' .cursor/mc
 - ⚠️ MCP config changed since last review → Require human review before deployment
 
 > See the **MCP Security** skill for full MCP governance guidance.
+
+## Cursor Security Review (Beta — April 2026)
+
+**Cursor Security Review** launched April 30, 2026 (beta for Teams/Enterprise). This feature runs two types of always-on security agents directly in your workflow:
+
+**Security Reviewer** — checks every PR for:
+- Security vulnerabilities
+- Auth regressions
+- Privacy and data-handling risks
+- Agent tool auto-approval issues
+- Prompt injection attacks
+
+Leaves inline comments at exact diff locations with severity and remediation.
+
+**Vulnerability Scanner** — scheduled scans of your codebase for:
+- Known vulnerabilities
+- Outdated dependencies
+- Configuration issues
+- Slack notifications for findings
+
+**Governance Requirements:**
+1. **Enable on all team repos** — Admins should enable in Cursor dashboard
+2. **Customise with your own instructions** — Add organisation-specific rules
+3. **Integrate MCP scanners** — Plug in your existing SAST/SCA/secrets scanners via MCP servers
+4. **Don't disable inline comments** — These are the first line of defence
+5. **Review findings as part of PR review** — Treat Security Reviewer inline comments like linter errors — fix before merge
+
+For Teams/Enterprise users: this supplements (not replaces) this Security Gate skill. Security Review catches things at PR time; Security Gate catches things pre-deploy. Use both.
+
+See: [Cursor Security Review docs](https://cursor.com/docs/security-review)
 
 ## Cursor Hooks (Enterprise Teams)
 

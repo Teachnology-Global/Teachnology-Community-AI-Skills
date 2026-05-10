@@ -1,12 +1,12 @@
 ---
 description: >
-  Governs the safe use of Cursor 3.2 async subagents (/@multitask and parallel agent
-  runs). Covers resource contention, cross-branch conflicts, workspace isolation, approval
-  coordination, and kill-switch protocols. Essential for anyone using Cursor 3.1+ with
-  parallel agents — non-technical founders will not spot the failure modes.
-  Use when: (1) using /multitask or /fan in Cursor, (2) running multiple agents in parallel,
-  (3) configuring tiled agent layouts, (4) agents target overlapping files or branches,
-  (5) scaling agent workloads across tasks.
+  Governs the safe use of Cursor async subagents (/multitask, parallel agent runs, and worktrees).
+  Covers resource contention, cross-branch conflicts, workspace isolation, multi-root governance,
+  approval coordination, and kill-switch protocols. Updated May 2026 with Cursor 3.2 multitask,
+  worktrees, and multi-root workspace features.
+  Use when: (1) using /multitask in Cursor, (2) running multiple agents in parallel,
+  (3) using worktrees for isolated tasks, (4) agents target overlapping files or branches,
+  (5) using multi-root workspaces across repos.
 globs: ["**/*.md", "**/*.py", "**/*.ts", "**/*.js", "**/*.tsx", "**/*.jsx"]
 alwaysApply: false
 tags: [product]
@@ -16,7 +16,13 @@ tags: [product]
 
 ## Purpose
 
-Cursor 3.1+ (April 2026) introduced **async subagents** — parallel agent runs via `/multitask` in the Agents Window. Instead of queuing tasks, Cursor now spawns multiple agents simultaneously via its "fleet" system. These agents can target different branches, worktrees, or files in parallel.
+Cursor 3.2 (April 24, 2026) introduced three major parallelisation features:
+
+1. **`/multitask`** — async subagents that run simultaneously via Cursor's "fleet" system, breaking larger tasks into smaller chunks
+2. **Worktrees in Agents Window** — isolated tasks across different branches with one-click foreground promotion
+3. **Multi-root workspaces** — single agent sessions targeting multiple folders/repos simultaneously
+
+Instead of queuing tasks, Cursor now spawns multiple agents in parallel. They can target different branches, worktrees, or files simultaneously.
 
 This is powerful but introduces failure modes that don't exist with single-agent workflows: agents can produce conflicting changes, race on shared resources, generate redundant work, or collectively exhaust your API quota before you notice.
 
