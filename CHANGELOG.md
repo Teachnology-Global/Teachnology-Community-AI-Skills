@@ -12,6 +12,34 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.11.0] - 2026-05-10
+
+### Added
+- **LLM Agent Governance** skill — the foundational governance layer for interacting with AI agents. Covers prompting discipline (scoped instructions vs vague prompts), output verification (trust but verify checklist), context window discipline (using Cursor's May 2026 Context Usage Breakdown), prompt injection hygiene for project files, onboarding non-technical team members to AI-assisted development, and a daily agent checklist. This skill is the human-AI interface that all other governance skills assume but don't explicitly teach. Activated by `.cursorrules`, `.cursor/rules/`, `AGENTS.md`, `CLAUDE.md`, and prompt-related keywords.
+
+### Changed
+- **README** updated: skill count badge (38→39), added LLM Agent Governance row to AI Agent Governance table, added new Before/After row for vague prompts scenario, updated "Last updated" to May 2026, added Cursor 3 feature coverage (PR review, Build in Parallel, Split Changes into PRs, Context Usage Breakdown, Soft Spend Limits).
+
+### Security
+- Cursor 3.1+ (May 2026) introduces three major features affecting governance: **PR Review** experience (all-in-one PR management), **Build in Parallel from Plans** (async subagent spawning), **Split Changes into PRs** (auto-slice into independent branches). Each introduces new governance requirements around scope control, output verification, and PR hygiene. LLM Agent Governance addresses these at the operator level.
+- Cursor's **Soft Spend Limits** (May 4, 2026) give enterprise admins granular budget control with alerts at 50%, 80%, 100% — this complements Cost Governance and AI Cost Management but doesn't replace them (soft limits still allow exceeding thresholds).
+- Cursor's **Model Access Controls** (May 4, 2026) let admins block providers/models by default, set context window limits, and require migration by June 1st. Governance implications for team environments.
+
+### Notable External Findings
+- **OWASP GenAI Exploit Round-up Q1 2026** (covered in v1.10.0 Security Gate update): LLM05 Improper Output Handling, ASI04 Agentic Supply Chain Vulnerabilities, Memory Poisoning via AI Chat Logs, Denial of Wallet via Token Inflation.
+- **OWASP Top 10 for Agentic Applications 2026** — distinct from LLM Top 10; focuses on agentic failures: goal misalignment, tool misuse, delegated trust, inter-agent communication, persistent memory, and emergent autonomous behavior. Coverage exists across MCP Security, Prompt Injection Defense, and Cloud Agent Governance.
+- **WCAG 3.0** remains in Working Draft status (March 2026) — not yet legally enforceable. Continue targeting WCAG 2.2 AA.
+
+## [1.10.0] - 2026-05-10
+
+### Added
+- **Cursor Security Review** integration in Security Gate skill — beta coverage for Teams/Enterprise (launched April 30, 2026). Security Reviewer (per-PR security checks) and Vulnerability Scanner (scheduled codebase scans) now complement existing SAST/dependency/secret scanning.
+- **OWASP GenAI Exploit Round-up Q1 2026** section in Security Gate — LLM05, ASI04, Memory Poisoning, Denial of Wallet findings with governance mitigations.
+
+### Changed
+- **Security Gate** — now includes Cursor Security Review (beta) as a recommended supplementary scanning layer for Teams/Enterprise users.
+- **Async Subagent Governance** — updated for Cursor 3.2 worktrees in Agents Window and multi-root workspace governance (from `3.1 /@multitask` to `3.2` with worktrees, multi-root).
+
 ## [1.9.0] - 2026-04-12
 
 ### Added
