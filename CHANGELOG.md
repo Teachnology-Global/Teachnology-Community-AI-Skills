@@ -12,6 +12,21 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.12.0] - 2026-05-17
+
+### Changed
+- **Cloud Agent Governance** — major update covering four new Cursor features from May 2026:
+  - **Bugbot Effort Levels** (May 11, 2026): Added governance for Default/High/Custom effort tiers, usage-based billing implications, and cost control guidance. High effort costs 3-5× more — needs explicit scoping rules.
+  - **Cloud Agent Development Environments** (May 13, 2026): New section covering Dockerfile-based environments, multi-repo environments, build secrets, version history/audit logs, and egress scoping. Covers credential bleed, scope creep, and cross-repo injection risks.
+  - **Cursor in Microsoft Teams**: New section covering Teams-specific risks — unrestricted channel invocation, context leakage from thread history, and auto-PR creation governance.
+  - Added activation globs for `Dockerfile*` and `.teams/**` patterns.
+
+### Security
+- **Bugbot billing change**: Switch to usage-based billing (effective after June 8, 2026) means cost control is now the admin's responsibility. Default effort level still works but High effort can blow budgets if triggered carelessly.
+- **Dev Environment build secrets**: While scoped to build step, Docker layer caching could leak values. New governance rule: always verify build secrets don't appear in final image layers.
+- **Multi-repo credential bleed**: Agents with access to multiple repos can potentially access credentials from repo A while working on repo B. Scope secrets to specific repos.
+- **Teams channel exposure**: Any team member (including external/guest users) can trigger an agent via @Cursor. Restrict to dedicated channels with no guest access.
+
 ## [1.11.0] - 2026-05-10
 
 ### Added

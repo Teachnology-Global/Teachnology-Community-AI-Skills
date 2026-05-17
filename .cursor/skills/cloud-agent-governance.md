@@ -1,12 +1,17 @@
 ---
 description: >
-  Governs the safe use of Cursor Cloud Agents and Bugbot Autofix — autonomous AI
-  agents that write code, run tests, use software in VMs, and submit pull requests
-  without a human at the keyboard. Defines review requirements, approval gates,
-  and safe delegation patterns for non-technical founders and teachers.
+  Governs the safe use of Cursor Cloud Agents, Bugbot Autofix, and Cloud Agent
+  Development Environments — autonomous AI agents that write code, run tests, use
+  software in VMs, and submit pull requests without a human at the keyboard. Covers
+  Bugbot effort levels (Default/High/Custom, usage-based billing), multi-repo
+  environments, Dockerfile-based dev environments with build secrets, environment
+  version history and audit logs, and Microsoft Teams integration. Defines review
+  requirements, approval gates, and safe delegation patterns for non-technical
+  founders and teachers. Updated May 2026.
   Use when: (1) enabling Cloud Agents on a project, (2) reviewing an agent-generated
-  PR, (3) using Bugbot Autofix, (4) setting up autonomous coding workflows.
-globs: ["**/.github/**", "**/vercel.json", "**/.cursor/**"]
+  PR, (3) using Bugbot Autofix, (4) configuring Cloud Agent Dev Environments,
+  (5) setting up multi-repo agent workflows, (6) using Cursor in Microsoft Teams.
+globs: ["**/.github/**", "**/vercel.json", "**/.cursor/**", "**/Dockerfile*", "**/.teams/**"]
 alwaysApply: false
 tags: [product]
 ---
@@ -37,6 +42,9 @@ This is powerful. It is also a fundamentally new risk model for non-technical fo
 | Async subagents via /multitask (Cursor 3.2) | Agents run simultaneously — scope segregation critical; see Async Subagent Governance |
 | Self-hosted cloud agents (Cursor 3.0+) | Code stays in your infra — but so does the risk; see Self-Hosted Agent Governance |
 | Multi-root workspaces (Cursor 3.2) | Single agent session targets multiple repos — cross-repo scope bleed risk |
+| Multi-repo Dev Environments (May 2026) | Agents span multiple repos — cross-repo secret exposure, credential bleed, and scope creep |
+| Dev Environment version history | Admin-only rollback restrictions create single-point-of-failure; ensure at least 2 admins have rollback access |
+| Cursor in Microsoft Teams | Mentioning @Cursor in a channel delegates tasks — any channel member can trigger agent actions; restrict who can invoke |
 | Async subagent fleet management (Cursor 3.2) | Unbounded parallel execution without budget limits; requires cost monitoring |
 | Design Mode UI targeting (Cursor 3.0+) | Agents can target specific UI elements — can be used to scrape sensitive UIs |
 
@@ -48,6 +56,10 @@ This is powerful. It is also a fundamentally new risk model for non-technical fo
 - Agent modifies database queries in a way that breaks data integrity
 - Agent generates code that passes tests but violates business logic
 - Bugbot Autofix "fixes" something that wasn't actually broken
+- Bugbot High effort mode costs 3-5× more per review — easy to blow budget if left unchecked
+- Dev Environment build secrets leak into running agent environment despite scoping guarantees
+- Multi-repo environment exposes credentials from repo A to an agent working on repo B
+- Cursor Teams channel member sends malicious prompt that triggers agent to push changes
 
 **The core issue:** Cloud agents are confident and fast. They produce code that looks reasonable. Non-technical reviewers may not catch problems that a senior developer would spot immediately. Governance is your safety net.
 
@@ -178,6 +190,18 @@ High-risk files (always review carefully):
 
 Bugbot Autofix (launched Feb 26, 2026) detects issues in PRs and proposes fixes via `@cursor` commands.
 
+### Bugbot Effort Levels (Updated May 11, 2026)
+
+Cursor switched Bugbot to **usage-based billing** for Teams and Individual plans (effective at renewal after June 8, 2026). This removes per-seat fees and introduces configurable effort levels:
+
+| Effort Level | Cost | Speed | Best For |
+|---|---|---|---|
+| **Default** | Standard | Fast | Routine PRs, minor bugs, formatting |
+| **High** | 3-5× more | Slower | Security-sensitive code, auth changes, payment logic |
+| **Custom** | Variable | Variable | Natural-language rules: "Use High effort for anything touching auth or payments, Default otherwise" |
+
+**For non-technical founders:** If you set Bugbot to "Custom", write specific rules. Don't leave it open-ended. Ambiguity means Bugbot will default to the cheapest (Default) effort — which may miss subtle bugs in critical code paths.
+
 ### Recommended Configuration
 
 ```markdown
@@ -188,10 +212,17 @@ Mode: PROPOSE ONLY (not auto-merge)
 - A human reviews and merges using @cursor merge
 - Never enable auto-push to branch without review
 
+Effort level strategy:
+- Most PRs: Default (cost-efficient)
+- PRs touching auth/payments/DB: High (deep analysis worth the cost)
+- Use Custom effort rules if you have predictable patterns
+
 Why not auto-merge?
-Bugbot Autofix has a 35% merge rate — meaning 65% of its fixes require
-human review. Even for the 35% that get merged, those were presumably
-reviewed. Auto-merging without review is dangerous.
+Bugbot Autofix has a 70%+ resolution rate for bugs it identifies,
+but the 35% merge rate means most fixes still need human review.
+Even when Bugbot's fix is correct, auto-merging without review
+means you lose the chance to understand what went wrong — a critical
+learning moment for less technical team members.
 ```
 
 ### Evaluating a Bugbot Fix
@@ -336,3 +367,73 @@ git revert [agent-commit-hash]
 - Agent-generated code must meet the same test coverage requirements as human code
 - If the agent didn't write tests, ask it to before merging
 - Run the full test suite — not just the tests the agent wrote
+
+## Cloud Agent Development Environments (May 2026)
+
+Cursor released **Cloud Agent Development Environments** on May 13, 2026. This lets teams configure Dockerfile-based development environments for agents, with multi-repo support, build secrets, version history, and audit logs.
+
+**For non-technical founders:** Think of a Dev Environment as a virtual computer that your AI agent uses to work. You configure it once (or Cursor auto-generates it), and every agent runs in that same reproducible setup. The agent gets the right tools, dependencies, and credentials before it starts working.
+
+### Risk Model
+
+| Capability | Risk | Mitigation |
+|---|---|---|
+| **Dockerfile-based config** | Misconfigured image can expose tools or libs to agents unnecessarily | Pin base images, remove unnecessary packages, use minimal base (alpine/slim) |
+| **Build secrets** | Build secrets are scoped to build step BUT Docker layer caching can leak values; never use them with multi-stage build mistakes | Verify build secrets never appear in final image layers; use docker scan after build |
+| **Multi-repo environments** | Credentials from repo A accessible to agent working on repo B — scope bleed | Only combine repos that need cross-repo access; separate environments otherwise |
+| **Version history** | Rollback restricted to admins creates single-point-of-failure | Ensure at least 2 admins have rollback access |
+| **Audit logs** | Audit log shows who changed environment — but not whether they *should* have changed it | Review audit logs weekly; alert on unexpected environment modifications |
+| **Egress scoping** | Agent can reach any network the dev environment has access to | Restrict egress in Dockerfile; use egress proxy for outbound traffic |
+| **Auto-generated Dockerfiles** | Cursor-generated Dockerfiles in private beta may include unnecessary dependencies | Review every auto-generated Dockerfile before committing |
+
+### Dev Environment Governance Rules
+
+```markdown
+## Dev Environment Security Checklist
+
+- [ ] Dockerfile pinned to specific base image tag (not `latest`)
+- [ ] Only necessary packages installed
+- [ ] Build secrets verified to not leak into final image
+- [ ] Multi-repo environments only combine repos with genuine cross-repo access needs
+- [ ] Egress restricted to required external services
+- [ ] At least 2 admins have rollback permissions
+- [ ] Audit log review scheduled (weekly minimum)
+- [ ] Environment falls back to base image only — never silently succeeds with wrong config
+```
+
+### Multi-Repo Environment Risks
+
+When an agent has access to multiple repos:
+
+**Credential bleed:** If repo A has `DATABASE_URL` and the agent opens repo B's PR, the credential is technically available to any tool the agent runs in that environment. Scope secrets to specific repos when possible.
+
+**Scope creep:** An agent tasked with "fix the API endpoint" in repo A might "helpfully" update the corresponding frontend in repo B without you asking. Set explicit scope boundaries in agent prompts.
+
+**Cross-repo injection:** If repo B is a public repo and someone submits a PR with malicious code in a file the agent reads, the agent could be compromised via indirect prompt injection across repos.
+
+## Cursor in Microsoft Teams (May 2026)
+
+Cursor is now available in Microsoft Teams. Mention `@Cursor` in any Teams channel to delegate a task to a cloud agent.
+
+### Teams-Specific Risks
+
+**Unrestricted invocation:** Any member of the Teams channel can trigger an agent — including external users if the channel has guest access. This means your codebase can be accessed by anyone with channel membership.
+
+**Context leakage:** Cursor reads the entire thread for context. Previous messages, files, and discussions become part of the prompt. Sensitive information in earlier thread messages is exposed to the agent.
+
+**Auto-PR creation:** A casual request in a Teams chat creates a real PR. Without channel-level governance, this could lead to a flood of unreviewed agent work.
+
+### Teams Governance Rules
+
+```markdown
+## Cursor in Teams — Required Safeguards
+
+- [ ] Restrict @Cursor invocation to specific channels (not org-wide)
+- [ ] Remove external/guest access from channels where Cursor is active
+- [ ] Establish naming conventions for agent-generated PRs (e.g., "[Cursor] ...")
+- [ ] Require human review for all Cursor-generated PRs (no auto-merge)
+- [ ] Do not discuss secrets, credentials, or sensitive data in channels where Cursor is active
+- [ ] Pin a governance message explaining how to use Cursor safely in the channel
+```
+
+**For non-technical founders:** The easiest way to misuse Cursor in Teams is to ask it to do something in a public channel where the wrong people can see the agent's work and the agent can see sensitive conversation history. Use a dedicated channel for agent tasks.
