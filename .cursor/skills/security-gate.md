@@ -208,6 +208,31 @@ OWASP published its Q1 2026 GenAI Exploit Round-up Report (April 2026). Key find
 
 Reference: [OWASP GenAI Exploit Round-up Q1 2026](https://genai.owasp.org/2026/04/14/owasp-genai-exploit-round-up-report-q1-2026/)
 
+## OWASP Top 10:2025 Reference
+
+The OWASP Top 10 was updated in 2025 with two significant changes from 2021:
+
+| A#:2025 | Category | New In 2025? | Relevance to Cursor Projects |
+|---------|----------|-------------|------------------------------|
+| **A01** | Broken Access Control | No (still #1) | AI agents must follow least-privilege on repo/secret access |
+| **A02** | Security Misconfiguration | ↑ from #5 | AI-generated config (CORS, middleware, CSP) must be reviewed |
+| **A03** | Software Supply Chain Failures | NEW (#3) | See dependency-scanning.md — transitive deps, install scripts, lock files |
+| **A04** | Cryptographic Failures | No | AI should never implement custom crypto; use established libraries |
+| **A05** | Injection | ↓ from #1 | Prompt injection adds an AI-specific injection dimension |
+| **A06** | Insecure Design | ↓ from #4 | Architecture review before AI scaffolds a system |
+| **A07** | Authentication Failures | No | See api-authentication-security.md |
+| **A08** | Software or Data Integrity Failures | No | AI-generated binaries, serialized data, unsigned deps |
+| **A09** | Security Logging and Alerting Failures | No | See monitoring-alerting.md |
+| **A10** | Mishandling of Exceptional Conditions | NEW (#10) | AI tends to skip error handling; see error-handling.md |
+
+**A10:2025 — Mishandling of Exceptional Conditions** is a brand-new category in the 2025 revision. This directly impacts AI-assisted development because AI models frequently produce code that handles the happy path but omits error cases. The Security Gate should verify:
+- Every API call has try/catch or equivalent error handling
+- Every database query handles null/not-found cases
+- Every async operation has timeout and retry logic
+- Unhandled Promise exceptions are not left in code
+
+See **Error Handling** skill for comprehensive patterns.
+
 ## OWASP Top 10 for Agentic Applications (2026)
 
 If your project uses AI agents (Cursor agents, LLM-powered features, or autonomous workflows), scan for these agentic-specific risks in addition to standard OWASP Top 10:

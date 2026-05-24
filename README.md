@@ -10,12 +10,12 @@ status: draft
 [![MIT Licence](https://img.shields.io/badge/licence-MIT-blue.svg)](LICENSE)
 [![Cursor Compatible](https://img.shields.io/badge/Cursor-Compatible-purple.svg)](https://cursor.com)
 
-[![39 Skills](https://img.shields.io/badge/skills-39-green.svg)](#whats-included)
+[![40 Skills](https://img.shields.io/badge/skills-40-green.svg)](#whats-included)
 [![Australian Made](https://img.shields.io/badge/made%20in-Australia%20🇦🇺-gold.svg)](https://www.skool.com/teachnology)
 
 **Stop your AI from shipping insecure, undocumented rubbish.** Drop these governance skills into any Cursor project and your AI assistant will follow proper security, privacy, accessibility, and quality standards - automatically, every time.
 
-**Last updated:** May 2026 — Cursor 3 PR review, Build in Parallel, Context Usage Breakdown, Soft Spend Limits, LLM Agent Governance skill.
+**Last updated:** May 2026 — Cursor 3.5 Automations (multi-repo, no-repo, Jira), Composer 2.5, OWASP Top 10:2025 integration, Feature Flag Governance skill.
 
 No plugins. No config servers. Just copy the files and go.
 
@@ -43,6 +43,7 @@ Built for the [Teachnology Community](https://www.skool.com/teachnology) by Jaso
 | Solo founder deploys on Friday, Vercel function loops, $400 OpenAI bill by Monday | Cost Governance enforces spending limits, retry caps, and caching before any API integration ships |
 | AI feature ships to production — no logs, no alerts, no idea it's hallucinating for 20% of users until support tickets arrive 3 days later | LLM Observability instruments every call with tracing, error rate alerts, and per-user cost tracking from day one |
 | Stripe webhook endpoint has no signature verification — attacker sends a fake "payment complete" event and gets paid orders for free | Webhook Security requires HMAC signature verification on every webhook endpoint before any business logic runs |
+| Feature flag created to bypass auth for "testing" — left enabled in production for 6 months | Feature Flag Governance enforces naming conventions, 90-day max lifespan, security red lines (never control auth/payments via flags), and mandatory cleanup tickets |
 | Production goes down at 11pm — founder stares at logs for an hour not knowing where to start | Incident Response runbook: confirm, rollback, diagnose, fix — structured steps for the first 30 minutes |
 | Founder forgets to set env vars on Vercel, deploys broken auth, users can't log in for 3 hours | Deployment Checklist catches missing env vars, wrong keys, and unrun migrations before the deploy button |
 | AI builds a contact form — no server-side validation, user input passed straight to the DB | Input Validation skill requires parameterised queries, schema validation, and server-side checks on every endpoint |

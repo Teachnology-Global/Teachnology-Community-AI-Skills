@@ -173,9 +173,15 @@ dependency-scan:
 - **Regenerate periodically** to pick up transitive dependency patches
 - **Never manually edit** lock files
 
-## OWASP 2026: Supply Chain Now Top 10
+## OWASP Top 10:2025 — A03 Software Supply Chain Failures
 
-Software supply chain failures officially joined the OWASP Top 10 in early 2026. This means dependency hygiene is no longer optional — it's a recognised critical risk category.
+Software supply chain failures ranked **#3 in the OWASP Top 10:2025** — promoted from a data-driven category to a formal top-10 entry. This is the most significant ranking change in the 2025 edition and reflects the reality that supply chain attacks (npm typosquatting, compromised dependencies, CI/CD pipeline manipulation) now outpace many traditional injection risks.
+
+**What this means for your scanning:**
+- **Transitive dependencies matter as much as direct ones** — a compromised package 3 levels deep can still own your app
+- **Install scripts are a major attack vector** — any `postinstall` script that makes network calls is a red flag
+- **Lock file integrity checks** — verify lock files haven't been tampered with (especially in CI environments)
+- **Checksum verification** — use `npm ci` (not `npm install`) in CI to enforce lock file integrity
 
 **What this means for your scanning:**
 - **Transitive dependencies matter as much as direct ones** — a compromised package 3 levels deep can still own your app
