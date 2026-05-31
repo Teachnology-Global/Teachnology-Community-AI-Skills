@@ -247,6 +247,30 @@ Every decision must be logged:
 - Present more than 3 detailed options
 - Rush the human - allow time to think
 
+## Cursor 3.6 Auto-review Run Mode (May 2026)
+
+Cursor 3.6 introduced **Auto-review**, a new run mode that allows agents to work for longer with fewer approval prompts. It classifies tool calls into: allowlisted (run immediately), sandboxed (run in isolation), or escalated (to a classifier subagent).
+
+**This does NOT replace human approval governance.** Auto-review is a classifier — not a human. It optimises for productivity, not accountability. When using Auto-review mode:
+
+1. **Never auto-approve security, privacy, or breaking changes** — these must always reach a human, regardless of the classifier.
+2. **Configure allowlists conservatively** — only permit read-only operations (file reads, grep, git log) without approval.
+3. **Review classifier decisions** — the classifier subagent that decides "allow vs ask" is itself an AI and can be wrong or manipulated.
+4. **Add to `.cursorrules`:**
+   ```
+   # When running in Auto-review mode, always require human approval for:
+   # - Any file write to .env*, secrets/, or credentials
+   # - Any database schema change
+   # - Any authentication or authorization code
+   # - Any dependency addition or version change
+   # - Any API key rotation or credential modification
+   # - Any deployment, build output, or production config change
+   # - Any changes to this .cursorrules file itself
+   ```
+5. **Steer the classifier** via custom instructions in Cursor Settings > Agents. Tell it explicitly which categories always escalate to human.
+
+Auto-review is useful for productive, safe iteration on non-critical code paths. But for production-bound work, the Human Approval rules in this document take precedence over any AI classifier decision.
+
 ## Integration with Other Skills
 
 | Trigger | Related Skill | Action |

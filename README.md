@@ -166,6 +166,7 @@ Full release notes are in the [CHANGELOG](CHANGELOG.md).
 
 | Version | Date | Highlights |
 |---|---|---|
+| v1.14.0 | May 2026 | CVE-2026-26268 (git hook RCE) coverage; Cursor 3.6 Auto-review governance; Code Review for Founders skill |
 | v1.11.0 | May 2026 | LLM Agent Governance skill, PR review / Build in Parallel / Spend Limits coverage |
 | v1.10.0 | May 2026 | Security Gate: Cursor Security Review + OWASP GenAI Q1 2026; Async Subagent: worktrees + multi-root |
 | v1.9.0 | Apr 2026 | Prompt Injection Defense, Git Security, MCP 30+ CVE update, EAA enforcement |

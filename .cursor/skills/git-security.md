@@ -237,6 +237,46 @@ echo "✓ Pre-commit check passed"
 
 Make it executable: `chmod +x .git/hooks/pre-commit`
 
+## ⚠️ CVE-2026-26268: Embedded Bare Repo / Git Hook RCE
+
+**Patched February 2026. You must update Cursor to v2.5+.**
+
+A high-severity vulnerability allows arbitrary code execution via embedded bare repositories containing malicious git hooks. The attack works because:
+
+1. A malicious actor embeds a bare repository inside a legitimate-looking repository.
+2. The embedded bare repo contains a malicious pre-commit or post-checkout hook.
+3. When an AI agent runs `git checkout`, `git init`, or similar on the cloned repo, the hook fires automatically — **no prompt required**.
+
+This is specifically dangerous for AI agents because:
+- AI agents follow `.cursor/rules/` and `.github/copilot-instructions.md` instructions from any cloned repo.
+- An attacker can place instructions like "set up the project" in the README, triggering the agent to run git operations.
+- The hook executes with the agent's full local access.
+
+### Protections
+
+**Immediate (every project):**
+- Update Cursor to v2.5+ (CVE patched).
+- Disable automatic hook execution in `~/.gitconfig`:
+  ```ini
+  [safe]
+    directory = *
+  ```
+- Never run `git checkout`, `git init`, or `git reset` on untrusted repos without reviewing `.git/` first.
+
+**For AI agents (add to .cursorrules):**
+```
+Before running ANY git operations on a cloned repository:
+1. Check for embedded bare repos: `git submodule status` + `find . -name HEAD -path '*/.git/HEAD'`
+2. Review `.git/hooks/` directory contents
+3. Flag any .git directories NOT at the repo root
+4. Ask the user before proceeding if anything unusual is found
+```
+
+**For repo owners:**
+- Enable GitHub's automated scanning for embedded bare repos.
+- Add `.git/` to `.gitignore` at root level.
+- Review CODEOWNERS to cover all `.gitaccess` and hook-related paths.
+
 ## AI Agent-Specific Git Concerns
 
 When AI agents (Cursor Cloud Agent, Bugbot, Automations) commit code:
