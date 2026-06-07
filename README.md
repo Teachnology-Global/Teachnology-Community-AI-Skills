@@ -10,12 +10,12 @@ status: draft
 [![MIT Licence](https://img.shields.io/badge/licence-MIT-blue.svg)](LICENSE)
 [![Cursor Compatible](https://img.shields.io/badge/Cursor-Compatible-purple.svg)](https://cursor.com)
 
-[![40 Skills](https://img.shields.io/badge/skills-40-green.svg)](#whats-included)
+[![41 Skills](https://img.shields.io/badge/skills-41-green.svg)](#whats-included)
 [![Australian Made](https://img.shields.io/badge/made%20in-Australia%20🇦🇺-gold.svg)](https://www.skool.com/teachnology)
 
 **Stop your AI from shipping insecure, undocumented rubbish.** Drop these governance skills into any Cursor project and your AI assistant will follow proper security, privacy, accessibility, and quality standards - automatically, every time.
 
-**Last updated:** May 2026 — Cursor 3.5 Automations (multi-repo, no-repo, Jira), Composer 2.5, OWASP Top 10:2025 integration, Feature Flag Governance skill.
+**Last updated:** June 2026 — Added Env Variable Management skill for TYO community. OWASP Top 10:2025, WCAG 2.2 AA, CVE-2026-26268 all current.
 
 No plugins. No config servers. Just copy the files and go.
 
@@ -95,6 +95,7 @@ skills:
 | Webhook Security | HMAC verification, replay prevention, payload injection mitigations |
 | Security Gate | Pre-deploy gate: SAST, dependency scanning, secret detection, Security Review |
 | Secrets Management | Environment variable discipline, .env hygiene, key rotation patterns |
+| Env Variable Management | .env files, API key safety, environment hierarchy, platform-specific setup |
 | Git Security | Branch protection, CODEOWNERS, signed commits, pre-commit hooks |
 | Privacy Guard | PII detection, data minimisation, encryption requirements, GDPR basics |
 | Input Validation | Schema validation (Zod/Yup), sanitisation, parameterised queries |
