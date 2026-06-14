@@ -15,7 +15,7 @@ status: draft
 
 **Stop your AI from shipping insecure, undocumented rubbish.** Drop these governance skills into any Cursor project and your AI assistant will follow proper security, privacy, accessibility, and quality standards - automatically, every time.
 
-**Last updated:** June 2026 — Added Env Variable Management skill for TYO community. OWASP Top 10:2025, WCAG 2.2 AA, CVE-2026-26268 all current.
+**Last updated:** June 15, 2026 — Added CVE-2026-26268 (git hook RCE) to MCP Security skill. Added Bugbot /review command (Cursor 3.7) to Security Gate skill. OWASP Top 10:2025, WCAG 2.2 AA all current.
 
 No plugins. No config servers. Just copy the files and go.
 

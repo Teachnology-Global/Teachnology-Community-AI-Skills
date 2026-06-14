@@ -2,8 +2,9 @@
 description: >
   Governs the safe use of Model Context Protocol (MCP) servers and configurations
   in Cursor IDE. Covers vetting, approval, re-verification, and the MCPoison
-  trust-bypass attack (CVE-2025-54136) plus the five-CVE RCE cluster (CVE-2025-59944,
-  CVE-2025-61590, CVE-2025-61591, CVE-2025-61592, CVE-2025-61593) affecting Cursor ≤1.7.
+  trust-bypass attack (CVE-2025-54136), the five-CVE RCE cluster (CVE-2025-59944,
+  CVE-2025-61590, CVE-2025-61591, CVE-2025-61592, CVE-2025-61593) affecting Cursor ≤1.7,
+  and CVE-2026-26268 (git hook RCE, CVSS 8.1) patched in Cursor 3.1+.
   Critical for teams sharing codebases or using Cursor in production workflows.
   Use when: (1) adding an MCP server to a project, (2) reviewing a repo that contains
   .cursor/mcp.json, (3) pulling from a shared repository, (4) onboarding a new
@@ -31,6 +32,20 @@ In August 2025, Check Point Research disclosed a critical vulnerability in Curso
 **For non-technical founders and teachers:** This means an MCP config in a codebase is like a browser extension that can update itself after you've approved it. If someone else has write access to a repo you work in, they can gain silent, persistent access to your machine — including credentials, SSH keys, and any secrets visible to Cursor.
 
 **Current mitigation:** Update Cursor to the latest version. Cursor patched this in a subsequent release. However, the underlying trust model risk remains for any MCP-heavy workflow — the practices below are still required.
+
+## CVE-2026-26268: Git Hook Arbitrary Code Execution (CVSS 8.1 — Patched Feb 2026)
+
+Disclosed by Novee Security in April 2026, this high-severity vulnerability allows a **malicious repository to execute arbitrary code on a developer's machine the moment Cursor's agent performs a Git operation** (clone, pull, checkout). The attack exploits hidden Git hooks embedded in a repository — when Cursor runs a git command, the hook executes with the developer's full permissions.
+
+**How it works:**
+1. Attacker commits a malicious `.git/hooks/post-checkout` (or similar) hook to a repo
+2. Developer clones or checks out a branch using Cursor's agent
+3. Git hook executes arbitrary code — shell access, credential theft, persistence
+
+**Affected versions:** Cursor ≤ 3.0 (patched in 3.1, February 2026)
+**Current fix:** Update to Cursor 3.1+. Also run `git config --global core.hooksPath /dev/null` as an extra precaution.
+
+**For TYO community:** Always inspect `.git/hooks/` in unfamiliar repos before cloning. Use Cursor's `/review` command (3.7+) to scan repos before Git operations.
 
 ## 2026 MCP Landscape: 30+ CVEs, Real Breaches, and Protocol-Level Risks
 

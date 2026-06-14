@@ -305,6 +305,21 @@ For Teams/Enterprise users: this supplements (not replaces) this Security Gate s
 
 See: [Cursor Security Review docs](https://cursor.com/docs/security-review)
 
+## Bugbot /review Command (Cursor 3.7+ — June 2026)
+
+Cursor 3.7 introduced the `/review` command, letting developers run Bugbot and Security Review **before pushing code**. This closes a key governance gap: previously, security checks only happened at PR time on GitHub/GitLab.
+
+**Usage:**
+- `/review` — prompts you to choose Bugbot, Security Review, or both
+- `/review-bugbot` — runs Bugbot directly
+- `/review-security` — runs Security Review directly
+
+**Bugbot improvements (June 2026):** Now powered by Composer 2.5 — 3× faster (~90s avg), 22% cheaper, 10% more bugs found per review. Bugbot also recognises if you've already run `/review` on the same diff and skips duplicate work.
+
+**Governance integration:** Add `/review` to your pre-push workflow. Treat it as the last checkpoint before `git push`. Teams should standardise on `/review-bugbot` + `/review-security` as a combined pre-push gate.
+
+See: [Bugbot docs](https://cursor.com/docs/bugbot), [Security Agents docs](https://cursor.com/docs/security-agents)
+
 ## Cursor Hooks (Enterprise Teams)
 
 If your organisation uses Cursor for Teams or Enterprise, leverage **Cursor Hooks** to enforce the security gate at the IDE level:
