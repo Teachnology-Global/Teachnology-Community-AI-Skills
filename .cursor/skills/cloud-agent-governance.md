@@ -7,7 +7,7 @@ description: >
   environments, Dockerfile-based dev environments with build secrets, environment
   version history and audit logs, and Microsoft Teams integration. Defines review
   requirements, approval gates, and safe delegation patterns for non-technical
-  founders and teachers. Updated May 2026.
+  founders and teachers. Updated June 2026.
   Use when: (1) enabling Cloud Agents on a project, (2) reviewing an agent-generated
   PR, (3) using Bugbot Autofix, (4) configuring Cloud Agent Dev Environments,
   (5) setting up multi-repo agent workflows, (6) using Cursor in Microsoft Teams.
@@ -47,6 +47,8 @@ This is powerful. It is also a fundamentally new risk model for non-technical fo
 | Cursor in Microsoft Teams | Mentioning @Cursor in a channel delegates tasks — any channel member can trigger agent actions; restrict who can invoke |
 | Async subagent fleet management (Cursor 3.2) | Unbounded parallel execution without budget limits; requires cost monitoring |
 | Design Mode UI targeting (Cursor 3.0+) | Agents can target specific UI elements — can be used to scrape sensitive UIs |
+| Cloud Subagents in Agents Window (June 2026) | Agents can spawn sub-agents on separate VMs for parallel work; each sub-agent has independent tool access — scope segregation is critical |
+| Cloud Environment Snapshots (June 2026) | Reusable environment snapshots speed up agent startup but may bake in stale configs or secrets if not refreshed |
 
 ### What Could Go Wrong
 

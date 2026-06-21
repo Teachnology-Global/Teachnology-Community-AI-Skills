@@ -18,6 +18,25 @@ tags: [product]
 
 Cursor Automations (launched March 2026) are always-on agents that execute in cloud sandboxes on a schedule or in response to external events. Unlike one-off Cloud Agent tasks you trigger manually, Automations run **continuously and unattended** — triggered by Slack messages, merged PRs, created Linear issues, PagerDuty incidents, Jira work items, or any custom webhook.
 
+### Cursor 3.8 Updates (June 18, 2026) — /automate, New Triggers, and Computer Use
+
+Cursor 3.8 (released June 18, 2026) introduced four significant changes to Automations governance:
+
+**1. /automate Skill** — Users can now create automations directly in their local agent session using natural language. Describe the task and Cursor configures triggers, instructions, and tools automatically. **Governance impact:** Lower barrier to creating automations means more automations will be created — including by non-technical users who may not understand the risk model. Every automation created via `/automate` still requires the full pre-automation checklist. The convenience of natural language setup does not reduce governance requirements.
+
+**2. New GitHub Triggers** — Five new event triggers:
+- Issue comment (non-PR issues)
+- PR review comment (inline diff comments)
+- PR review submitted
+- Review thread updated (resolved/unresolved)
+- Workflow run completed (GitHub Actions on PR/branch)
+
+**Governance impact:** More triggers = more prompt injection surfaces. PR review comments from external contributors are now direct automation triggers. Treat all GitHub event data (comments, reviews, thread content) as untrusted input.
+
+**3. Slack Emoji Trigger** — React to any Slack message with a designated emoji to kick off an automation. **Governance impact:** Any Slack channel member with emoji access can trigger an automation. Restrict emoji-triggered automations to read-only analysis patterns. If write actions are involved, require the triggering user to be in an allowlist.
+
+**4. Computer Use Tool for Automations** — Cloud agents kicked off by automations can now use their own computers (browser, terminal UI) to produce demos or artifacts. Enabled by default. **Governance impact:** This is a significant expansion of automation capability. An automation can now interact with arbitrary web UIs, admin panels, and terminal interfaces inside its VM — actions that were previously manual-only. Disable computer use for automations unless explicitly needed. When enabled, add "do not access admin panels or authentication UIs" to the automation prompt.
+
 ### Cursor 3.5 Updates (May 2026) — Three New Automation Capabilities
 
 Cursor 3.5 (released May 20, 2026) introduced three significant changes to Automations governance:

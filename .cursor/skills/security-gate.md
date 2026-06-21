@@ -322,6 +322,8 @@ See: [Bugbot docs](https://cursor.com/docs/bugbot), [Security Agents docs](https
 
 ## Cursor Hooks (Enterprise Teams)
 
+## Cursor Hooks (Enterprise Teams)
+
 If your organisation uses Cursor for Teams or Enterprise, leverage **Cursor Hooks** to enforce the security gate at the IDE level:
 
 Hooks run custom scripts before or after defined stages of the agent loop and can observe, block, or modify behaviour. Use them to:

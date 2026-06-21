@@ -15,7 +15,7 @@ status: draft
 
 **Stop your AI from shipping insecure, undocumented rubbish.** Drop these governance skills into any Cursor project and your AI assistant will follow proper security, privacy, accessibility, and quality standards - automatically, every time.
 
-**Last updated:** June 15, 2026 — Added CVE-2026-26268 (git hook RCE) to MCP Security skill. Added Bugbot /review command (Cursor 3.7) to Security Gate skill. OWASP Top 10:2025, WCAG 2.2 AA all current.
+**Last updated:** June 22, 2026 — Updated Automations Governance with Cursor 3.8 (/automate, emoji triggers, new GitHub triggers, computer use). Updated Cloud Agent Governance with cloud subagents and environment snapshots. Security Gate /review section confirmed current.
 
 No plugins. No config servers. Just copy the files and go.
 
