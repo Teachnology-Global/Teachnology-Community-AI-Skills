@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- **Agentic AI Security (OWASP ASI 2026)** skill (42) — dedicated governance mapping for the OWASP Top 10 for Agentic Applications 2026 framework. Translates all 10 ASI risks (Goal Hijack, Tool Misuse, Privilege Abuse, Supply Chain, Code Execution, Memory Poisoning, Inter-Agent Comms, Cascading Failures, Trust Exploitation, Autonomy Bounds) into concrete Cursor-specific governance rules. Includes non-technical founder quick checklist and cross-reference mapping to all existing governance skills.
 - **Feature Flag Governance** skill (40) — governs safe use of feature flags for gradual rollouts, A/B testing, and kill switches. Covers flag lifecycle, naming conventions (exp-/ops-/perm-/roll- prefix scheme), cleanup discipline (90-day max lifespan), audit trails, and security red lines (never use flags for auth bypass, payment logic, or rate-limit disable). Critical for non-technical founders who need to ship safely without full confidence in every change.
 
 ### Changed

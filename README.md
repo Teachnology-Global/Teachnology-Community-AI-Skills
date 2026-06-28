@@ -10,12 +10,12 @@ status: draft
 [![MIT Licence](https://img.shields.io/badge/licence-MIT-blue.svg)](LICENSE)
 [![Cursor Compatible](https://img.shields.io/badge/Cursor-Compatible-purple.svg)](https://cursor.com)
 
-[![41 Skills](https://img.shields.io/badge/skills-41-green.svg)](#whats-included)
+[![42 Skills](https://img.shields.io/badge/skills-42-green.svg)](#whats-included)
 [![Australian Made](https://img.shields.io/badge/made%20in-Australia%20🇦🇺-gold.svg)](https://www.skool.com/teachnology)
 
 **Stop your AI from shipping insecure, undocumented rubbish.** Drop these governance skills into any Cursor project and your AI assistant will follow proper security, privacy, accessibility, and quality standards - automatically, every time.
 
-**Last updated:** June 22, 2026 — Updated Automations Governance with Cursor 3.8 (/automate, emoji triggers, new GitHub triggers, computer use). Updated Cloud Agent Governance with cloud subagents and environment snapshots. Security Gate /review section confirmed current.
+**Last updated:** June 29, 2026 — Added Agentic AI Security (OWASP ASI 2026) skill mapping all 10 agentic application risks to Cursor-specific governance rules. Updated Automations Governance with Cursor 3.8.
 
 No plugins. No config servers. Just copy the files and go.
 
@@ -52,6 +52,7 @@ Built for the [Teachnology Community](https://www.skool.com/teachnology) by Jaso
 | AI processes user reviews, emails, and web content — hidden instructions in that content hijack AI behaviour to leak data or perform unauthorised actions | Prompt Injection Defense requires input sanitisation, output validation, and prompt boundary design for every external data pipeline |
 | Founder pushes secret to git, removes it next commit, thinks it's fine — secret is still in git history forever | Git Security enforces branch protection, CODEOWNERS, pre-commit secret scanning, and teaches the critical "secrets in history are leaked" lesson |
 | Team member writes vague prompt "make it better" — AI adds 5 unsolicited features, breaks existing UX | LLM Agent Governance requires scoped instructions, output verification, and a daily agent checklist before session end |
+| Agent with shell access runs `rm -rf` on wrong directory, cascading failure corrupts 3 connected repos | Agentic AI Security enforces least-privilege tool access, circuit breakers on repeated failures, and explicit autonomy boundaries per agent |
 
 ---
 
@@ -111,6 +112,7 @@ skills:
 | Async Subagent Governance | `/multitask`, parallel agents, worktrees, multi-root workspaces |
 | Cursor Automations Governance | Always-on triggered/scheduled agents, memory management, auto-approval limits |
 | LLM Agent Governance | **NEW (May 2026)** — Prompting discipline, output verification, context management, onboarding |
+| Agentic AI Security | **NEW (Jun 2026)** — OWASP Top 10 for Agentic Applications 2026: goal hijack, tool misuse, memory poisoning, cascading failures |
 | Cursor SDK Governance | `@cursor/sdk` for programmatic agents outside the IDE |
 | Human Approval | Structured escalation when AI decisions exceed documented requirements |
 | LLM Observability | Production AI visibility: Langfuse, tracing, per-user cost tracking, feedback loops |
@@ -167,6 +169,7 @@ Full release notes are in the [CHANGELOG](CHANGELOG.md).
 
 | Version | Date | Highlights |
 |---|---|---|
+| v1.15.0 | Jun 2026 | Agentic AI Security (OWASP ASI 2026) skill — 10 agentic risks mapped to governance |
 | v1.14.0 | May 2026 | CVE-2026-26268 (git hook RCE) coverage; Cursor 3.6 Auto-review governance; Code Review for Founders skill |
 | v1.11.0 | May 2026 | LLM Agent Governance skill, PR review / Build in Parallel / Spend Limits coverage |
 | v1.10.0 | May 2026 | Security Gate: Cursor Security Review + OWASP GenAI Q1 2026; Async Subagent: worktrees + multi-root |
