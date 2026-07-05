@@ -10,12 +10,12 @@ status: draft
 [![MIT Licence](https://img.shields.io/badge/licence-MIT-blue.svg)](LICENSE)
 [![Cursor Compatible](https://img.shields.io/badge/Cursor-Compatible-purple.svg)](https://cursor.com)
 
-[![42 Skills](https://img.shields.io/badge/skills-42-green.svg)](#whats-included)
+[![43 Skills](https://img.shields.io/badge/skills-43-green.svg)](#whats-included)
 [![Australian Made](https://img.shields.io/badge/made%20in-Australia%20🇦🇺-gold.svg)](https://www.skool.com/teachnology)
 
 **Stop your AI from shipping insecure, undocumented rubbish.** Drop these governance skills into any Cursor project and your AI assistant will follow proper security, privacy, accessibility, and quality standards - automatically, every time.
 
-**Last updated:** June 29, 2026 — Added Agentic AI Security (OWASP ASI 2026) skill mapping all 10 agentic application risks to Cursor-specific governance rules. Updated Automations Governance with Cursor 3.8.
+**Last updated:** July 6, 2026 — Added Supply Chain Security skill covering June 2026 npm supply chain attacks (node-gyp worm, Red Hat Miasma campaign). Updated MCP Security and Cursor SDK with June 2026 threats and Team MCPs expansion.
 
 No plugins. No config servers. Just copy the files and go.
 
@@ -53,6 +53,7 @@ Built for the [Teachnology Community](https://www.skool.com/teachnology) by Jaso
 | Founder pushes secret to git, removes it next commit, thinks it's fine — secret is still in git history forever | Git Security enforces branch protection, CODEOWNERS, pre-commit secret scanning, and teaches the critical "secrets in history are leaked" lesson |
 | Team member writes vague prompt "make it better" — AI adds 5 unsolicited features, breaks existing UX | LLM Agent Governance requires scoped instructions, output verification, and a daily agent checklist before session end |
 | Agent with shell access runs `rm -rf` on wrong directory, cascading failure corrupts 3 connected repos | Agentic AI Security enforces least-privilege tool access, circuit breakers on repeated failures, and explicit autonomy boundaries per agent |
+| Founder runs `npm install` on a package with malicious `preinstall` hook — credentials stolen before code even runs | Supply Chain Security disables install scripts by default, requires package vetting, pins exact versions, and runs weekly audits |
 
 ---
 
@@ -87,7 +88,7 @@ skills:
 
 ## What's Included
 
-### Security (12 skills)
+### Security (13 skills)
 | Skill | What It Does |
 |---|---|
 | MCP Security | MCPoison CVE coverage, 30+ MCP CVEs, protocol-level risks, re-verification requirements |
@@ -98,6 +99,7 @@ skills:
 | Secrets Management | Environment variable discipline, .env hygiene, key rotation patterns |
 | Env Variable Management | .env files, API key safety, environment hierarchy, platform-specific setup |
 | Git Security | Branch protection, CODEOWNERS, signed commits, pre-commit hooks |
+| Supply Chain Security | npm/pip dependency vetting, lockfile hygiene, install script controls, incident response |
 | Privacy Guard | PII detection, data minimisation, encryption requirements, GDPR basics |
 | Input Validation | Schema validation (Zod/Yup), sanitisation, parameterised queries |
 | AI Output Validation | Detecting plausible-but-wrong AI code, logic verification patterns |

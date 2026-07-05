@@ -15,6 +15,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- **Supply Chain Security** skill (43) — comprehensive dependency security governance covering package vetting, lockfile hygiene, install script controls, and incident response. Updated with June 2026 node-gyp supply chain worm (57 packages, Critical severity) and Red Hat npm Miasma campaign (90+ compromised versions, credential theft). Includes non-technical founder guidance and PR review checklist.
+
+### Changed
+- **MCP Security** — added June 2026 npm supply chain attacks section (node-gyp worm, Red Hat Miasma credential stealing). Updated Team Marketplaces section with June 30, 2026 expansion: Team MCPs and organization groups now supported, allowing admins to distribute approved MCPs across cloud agents, IDE, and CLI with group-based access control.
+- **Cursor SDK Governance** — added June 2026 SDK update section covering four new primitives: custom tools (wire your own functions into agents), configurable persistence stores (agents maintain state across runs), contextual classifier (gates tool availability per task), and auto-review pipeline. Includes governance implications for each.
+
+### Security
+- **June 2026 npm Supply Chain Attacks**: Two critical campaigns disclosed. (1) Node-gyp worm affecting 57 packages with self-propagating malicious build scripts. (2) Red Hat Miasma compromising 90+ @redhat-cloud-services package versions with credential-stealing preinstall hooks. Both execute during `npm install` before application code runs — standard code review doesn't catch them.
+- **Cursor Team MCPs (June 30, 2026)**: Centralised MCP distribution now available. Teams should migrate from per-developer configs to Team MCPs for single approval workflow and group-based access control.
+
+### Previous
+
+### Added
 - **Agentic AI Security (OWASP ASI 2026)** skill (42) — dedicated governance mapping for the OWASP Top 10 for Agentic Applications 2026 framework. Translates all 10 ASI risks (Goal Hijack, Tool Misuse, Privilege Abuse, Supply Chain, Code Execution, Memory Poisoning, Inter-Agent Comms, Cascading Failures, Trust Exploitation, Autonomy Bounds) into concrete Cursor-specific governance rules. Includes non-technical founder quick checklist and cross-reference mapping to all existing governance skills.
 - **Feature Flag Governance** skill (40) — governs safe use of feature flags for gradual rollouts, A/B testing, and kill switches. Covers flag lifecycle, naming conventions (exp-/ops-/perm-/roll- prefix scheme), cleanup discipline (90-day max lifespan), audit trails, and security red lines (never use flags for auth bypass, payment logic, or rate-limit disable). Critical for non-technical founders who need to ship safely without full confidence in every change.
 
