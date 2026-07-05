@@ -76,6 +76,32 @@ A vulnerability chain dubbed **NomShub** was disclosed in April 2026 affecting *
 
 See the **AI Project Config Security** skill for details on how `.cursor/` and `.claude/` configuration files can be weaponised for RCE and credential theft. These CVEs demonstrate that AI config files in repos are now a significant attack surface.
 
+## June 2026 NPM Supply Chain Attacks: Critical for MCP Dependencies
+
+Two major supply chain compromises in June 2026 directly affect MCP server ecosystems:
+
+### Node-gyp Supply Chain Compromise (June 2026)
+
+Snyk discovered 57 npm packages with hundreds of malicious versions containing **embedded malicious code** at Critical severity. The worm self-propagates through build scripts that execute during `npm install` — any MCP server with native Node.js dependencies may be affected.
+
+**Immediate actions for Cursor teams:**
+- Run `npm audit` on all MCP server dependencies
+- Check if any MCPs depend on packages using `node-gyp` for native compilation
+- Pin MCP versions to pre-June 2026 releases until verified clean
+- Use `npm install --ignore-scripts` for MCP servers with native modules (test thoroughly first)
+
+### Red Hat npm Miasma Campaign (June 2026)
+
+Microsoft disclosed that over 90 versions of `@redhat-cloud-services` packages were silently compromised, stealing credentials from GitHub, cloud platforms, and local systems. The malicious code executes during `preinstall` hooks.
+
+**For TYO community:** If any MCP server uses Red Hat cloud services packages, rotate all credentials immediately (AWS keys, GitHub tokens, cloud provider secrets). Check `package-lock.json` for `@redhat-cloud-services/*` entries.
+
+**General supply chain lesson:** MCP servers are npm packages with shell access. A compromised MCP dependency = compromised developer machine. Always:
+1. Pin exact versions in `.cursor/mcp.json`
+2. Run weekly `npm audit` on MCP servers
+3. Subscribe to Snyk/GitHub security advisories for MCP dependencies
+4. Use `--ignore-scripts` when possible for MCP installations
+
 ## Five-CVE RCE Cluster: Cursor ≤1.7 (Disclosed ~Oct–Nov 2025)
 
 Geordie AI and independent researchers disclosed a cluster of five high-severity RCE vulnerabilities affecting **Cursor versions 1.7 and below**. All five exploit prompt injection to bypass Cursor's file-protection checks via different vectors.
@@ -390,7 +416,15 @@ Before installing any marketplace plugin:
 /add-plugin @stripe/cursor-plugin  # installs latest - can change
 ```
 
-### Team Marketplaces (Feb 2026)
+### Team Marketplaces (Feb 2026, Expanded June 30 2026)
+
+**June 30, 2026 update:** Team marketplaces now support **Team MCPs and organization groups**. Admins can configure Team MCP servers once and distribute them across cloud agents, the agents window, IDE, and CLI. Organisation groups allow segmented access — e.g., a "frontend team" group gets different MCPs than "backend team".
+
+**Governance implication:** This is a major improvement for centralised control. Teams should migrate from per-developer MCP configs to Team MCPs immediately. Benefits:
+- Single approval workflow per MCP
+- Consistent version across all team members
+- Group-based access control (limit blast radius)
+- Cloud agents inherit the same approved MCPs
 
 Enterprise and Teams plan admins can create **private team marketplaces** to distribute approved plugins internally. This is the recommended governance approach:
 

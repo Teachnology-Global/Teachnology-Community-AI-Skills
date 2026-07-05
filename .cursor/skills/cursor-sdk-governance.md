@@ -17,6 +17,42 @@ tags: [product]
 
 On **May 1, 2026**, Cursor released the **Cursor SDK** (`@cursor/sdk`) — a TypeScript library for building agents that use Cursor's runtime, harness, and models *outside the IDE*.
 
+### June 2026 SDK Update: Custom Tools, Stores, and Auto-Review
+
+The **June 2026 SDK release** added four new primitives that move Cursor from an IDE assistant into a deployable agent runtime:
+
+1. **Custom Tools** — Wire your own functions into the agent's tool set. The agent can call these during execution. Governance implication: custom tool outputs become agent inputs — validate both directions.
+2. **Configurable Persistence Stores** — Agents can now maintain state across runs. Governance implication: persistent state can accumulate credentials or PII — enforce data retention policies on agent stores.
+3. **Contextual Classifier** — Gates tool availability based on task context. Governance implication: reduces blast radius by limiting which tools are available per task type.
+4. **Auto-Review Pipeline** — Automated quality checks on agent output before delivery. Governance implication: useful safety layer but don't rely on it as sole validation.
+
+**For TYO community:** The June SDK makes agents significantly more powerful. If you're building products with the SDK, custom tools are your biggest risk — every tool you wire in is a new attack surface. Audit tools the same way you'd audit MCP servers (see MCP Security skill).
+
+```typescript
+// June 2026: Custom Tools
+import { Agent, Tool } from "@cursor/sdk";
+
+const queryDatabase = new Tool({
+  name: "query_db",
+  description: "Run a read-only SQL query",
+  parameters: { query: "string" },
+  handler: async ({ query }) => {
+    // ⚠️ GOVERNANCE: Validate and sanitise inputs
+    if (query.match(/DROP|DELETE|UPDATE|INSERT/i)) {
+      throw new Error("Write operations not permitted");
+    }
+    return await db.query(query);
+  },
+});
+
+const agent = await Agent.create({
+  apiKey: process.env.CURSOR_API_KEY!,
+  model: { id: "composer-2" },
+  tools: [queryDatabase], // Custom tools attached
+  store: { type: "sqlite", path: "/tmp/agent-store.db" }, // Persistence store
+});
+```
+
 ```typescript
 import { Agent } from "@cursor/sdk";
 
